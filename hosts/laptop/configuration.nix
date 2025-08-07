@@ -28,4 +28,12 @@
   environment.variables = {
     USE_WAYLAND_GRIM = 1;
   };
+
+  services.dbus.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    config.common.default = "*";
+  };
 }
