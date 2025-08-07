@@ -2,7 +2,7 @@
   programs.bash = {
     enable = true;
     shellAliases = let
-      flakePath = "~/nix";
+      flakePath = "~/nixos";
     in {
       vim = "nvim";
       rebuild = "sudo nixos-rebuild switch --flake ${flakePath}#$(hostname)";
