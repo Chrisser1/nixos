@@ -50,14 +50,6 @@ in {
       ];
 
       exec-once = ["${startupScript}/bin/start"];
-      #      monitor = [",preferred,auto,1"];
-      /*
-      monitor = [
-        "HDMI-A-1,preferred,auto,1"
-        "DP-1,preferred,auto-left,1"
-        "DP-2,preferred,auto-right,1"
-      ];
-      */
       bind = [
         "${mod}, Q, exec, ${pkgs.firefox}/bin/firefox"
         "${mod}_SHIFT, C, killactive"
@@ -90,7 +82,6 @@ in {
       bindm = [
         "${mod}, mouse:272, movewindow"
         "${mod}, mouse:273, resizewindow"
-        "${mod} ALT, mouse:272, resizewindow"
       ];
 
       input = {
