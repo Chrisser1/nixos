@@ -5,17 +5,11 @@
   lib,
   ...
 }: let
-  wallpaper = ../assets/wallpaper.png;
   terminal = pkgs.alacritty + "/bin/alacritty";
   mod = "SUPER";
-  startupScript = pkgs.writeShellScriptBin "start" ''
-    ${pkgs.waybar}/bin/waybar &
-    swww-daemon &
-    swww img ${wallpaper}
-  '';
 in {
   home = {
-    packages = [ pkgs.swww ];
+    packages = [ pkgs.wpaperd ];
     pointerCursor = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
@@ -33,14 +27,70 @@ in {
 
     settings = {
       general = {
-        gaps_in = 10;
-        gaps_out = 10;
+        gaps_in = 5;
+        gaps_out = 5;
+        border_size = 2;
+
+        # keys with dots need quoting in Nix
+        "col.active_border"   = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        "col.inactive_border" = "rgba(595959aa)";
+
+        resize_on_border = true;
+        allow_tearing = false;
+        layout = "dwindle";
+      };
+
+      decoration = {
+        rounding = 10;
+        rounding_power = 2;
+
+        active_opacity = 1.0;
+        inactive_opacity = 1.0;
+
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+          color = "rgba(1a1a1aee)";
+        };
+
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 1;
+          vibrancy = 0.1696;
+        };
       };
 
       animations = {
+        # your old "yes, please :)" → boolean true here
         enabled = true;
+
+        bezier = [
+          "easeOutQuint,0.23,1,0.32,1"
+          "easeInOutCubic,0.65,0.05,0.36,1"
+          "linear,0,0,1,1"
+          "almostLinear,0.5,0.5,0.75,1.0"
+          "quick,0.15,0,0.1,1"
+        ];
+
         animation = [
-          "workspaces, 0, 1, default"
+          "global, 1, 10, default"
+          "border, 1, 5.39, easeOutQuint"
+          "windows, 1, 4.79, easeOutQuint"
+          "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
+          "windowsOut, 1, 1.49, linear, popin 87%"
+          "fadeIn, 1, 1.73, almostLinear"
+          "fadeOut, 1, 1.46, almostLinear"
+          "fade, 1, 3.03, quick"
+          "layers, 1, 3.81, easeOutQuint"
+          "layersIn, 1, 4, easeOutQuint, fade"
+          "layersOut, 1, 1.5, linear, fade"
+          "fadeLayersIn, 1, 1.79, almostLinear"
+          "fadeLayersOut, 1, 1.39, almostLinear"
+          "workspaces, 1, 1.94, almostLinear, fade"
+          "workspacesIn, 1, 1.21, almostLinear, fade"
+          "workspacesOut, 1, 1.94, almostLinear, fade"
         ];
       };
 
@@ -49,13 +99,17 @@ in {
         "XCURSOR_SIZE,24"
       ];
 
-      exec-once = ["${startupScript}/bin/start"];
+      exec-once = [
+        "${pkgs.waybar}/bin/waybar"
+        "wpaperd -d"
+      ];
+
       bind = [
-        "${mod}, Q, exec, ${pkgs.firefox}/bin/firefox"
+        "${mod}, S, exec, ${pkgs.firefox}/bin/firefox"
         "${mod}_SHIFT, C, killactive"
-        "${mod}, Return, exec, ${terminal}"
+        "${mod}, Q, exec, ${terminal}"
         "${mod}, Space, togglefloating,"
-        "${mod}, S, exec, ${pkgs.wofi}/bin/wofi --show drun"
+        "${mod}, R, exec, ${pkgs.wofi}/bin/wofi --show drun"
         "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
         "${mod}, 1, split-workspace, 1"

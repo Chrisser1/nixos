@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
 		./packages.nix
     ./alacritty.nix
     ./bash.nix
@@ -16,5 +16,6 @@
 #    ./nixvim.nix
     ./hyprshot.nix
     ./wofi.nix
+    ./wpaperd.nix
   ];
 }

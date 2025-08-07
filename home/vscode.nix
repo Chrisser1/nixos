@@ -9,16 +9,18 @@
     # Explicitly allow VS Code to manage ~/.vscode/extensions itself.
     mutableExtensionsDir = true;  # avoids the immutable marker file
 
-    # Install just your one extension declaratively
-    extensions = with pkgs.vscode-extensions; [
-      bbenoist.nix
-    ];
+    profiles.default = {
+      # Install just your one extension declaratively
+      extensions = with pkgs.vscode-extensions; [
+        bbenoist.nix
+      ];
 
-    # Keep settings simple & top-level (not profiles.*)
-    userSettings = {
-      "files.autoSave" = "afterDelay";
-      "files.autoSaveDelay" = 1000;
-      "disable-hardware-acceleration" = true;
+      # Keep settings simple & top-level (not profiles.*)
+      userSettings = {
+        "files.autoSave" = "afterDelay";
+        "files.autoSaveDelay" = 1000;
+        "disable-hardware-acceleration" = true;
+      };
     };
   };
 
