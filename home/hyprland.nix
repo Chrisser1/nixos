@@ -9,7 +9,6 @@
   mod = "SUPER";
 in {
   home = {
-    packages = [ pkgs.wpaperd ];
     pointerCursor = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
@@ -106,7 +105,7 @@ in {
 
       bind = [
         "${mod}, S, exec, ${pkgs.firefox}/bin/firefox"
-        "${mod}_SHIFT, C, killactive"
+        "${mod} SHIFT, C, killactive"
         "${mod}, Q, exec, ${terminal}"
         "${mod}, Space, togglefloating,"
         "${mod}, R, exec, ${pkgs.wofi}/bin/wofi --show drun"
