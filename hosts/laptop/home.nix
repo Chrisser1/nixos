@@ -6,8 +6,8 @@
   ...
 }: {
   home = {
-    username = "lukas";
-    homeDirectory = "/home/lukas";
+    username = "chris";
+    homeDirectory = "/home/chris";
     stateVersion = "25.05";
 		};
   wayland.windowManager.hyprland.settings = {
