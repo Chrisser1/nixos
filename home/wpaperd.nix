@@ -16,6 +16,6 @@
     sorting = "random"
     duration = "30m"
     recursive = true
-    mode = "fill"
+    mode = "fit"
   '';
 }
