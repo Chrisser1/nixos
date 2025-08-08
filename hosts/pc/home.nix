@@ -6,8 +6,7 @@
 }: 
 { 
   wayland.windowManager.hyprland.settings.monitor = [
-    "HDMI-A-1,preferred,auto,1"
-    "DP-1,preferred,auto-left,1"
-    "DP-2,preferred,auto-right,1"
+    "DP-4,preferred,auto,1.4"
+    "HDMI-A-1,preferred,auto,0.8"
   ];
 }
