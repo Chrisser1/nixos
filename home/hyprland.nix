@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  terminal = pkgs.alacritty + "/bin/alacritty";
+  terminal = pkgs.kitty + "/bin/kitty";
   mod = "SUPER";
 in {
   home = {
