@@ -59,7 +59,7 @@
   users.users.chris = {
     isNormalUser = true;
     description = "chris";
-    extraGroups = [ "wheel" "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "audio" "video" "input" ];
   };
 
   # Optional: explicit, though sudo is enabled by default on NixOS

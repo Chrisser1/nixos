@@ -12,6 +12,9 @@ let
     # screenshots/lock from your binds
     hyprshot
     hyprlock
+
+    nautilus
+    gvfs
   ];
 
   # Optional apps

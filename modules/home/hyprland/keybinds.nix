@@ -2,6 +2,7 @@
 let
   terminal = "${pkgs.kitty}/bin/kitty";
   mod = "SUPER";
+  fm = "${pkgs.nautilus}/bin/nautilus";
 in {
   wayland.windowManager.hyprland.settings = {
     bind = [
@@ -11,7 +12,7 @@ in {
       "${mod}, Space, togglefloating,"
       "${mod}, R, exec, ${pkgs.wofi}/bin/wofi --show drun"
       "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      "${mod}, E, exec, nautilus"
+      "${mod}, E, exec, ${fm}"
 
       "${mod}, 1, split-workspace, 1"
       "${mod}, 2, split-workspace, 2"
