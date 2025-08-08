@@ -1,22 +1,19 @@
+{ 
+    pkgs, 
+    inputs, 
+    lib, 
+    ... 
+}:
 {
-  config,
-  pkgs,
-  inputs,
-  lib,
-  ...
-}: let
-  terminal = pkgs.kitty + "/bin/kitty";
-  mod = "SUPER";
-in {
-  home = {
-    pointerCursor = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-      size = 24;
-      gtk.enable = true;
-      x11.enable = true;
-    };
+  # Cursor theme across Wayland + XWayland
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
   };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -29,11 +26,8 @@ in {
         gaps_in = 5;
         gaps_out = 5;
         border_size = 2;
-
-        # keys with dots need quoting in Nix
         "col.active_border"   = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
-
         resize_on_border = true;
         allow_tearing = false;
         layout = "dwindle";
@@ -62,9 +56,7 @@ in {
       };
 
       animations = {
-        # your old "yes, please :)" → boolean true here
         enabled = true;
-
         bezier = [
           "easeOutQuint,0.23,1,0.32,1"
           "easeInOutCubic,0.65,0.05,0.36,1"
@@ -72,7 +64,6 @@ in {
           "almostLinear,0.5,0.5,0.75,1.0"
           "quick,0.15,0,0.1,1"
         ];
-
         animation = [
           "global, 1, 10, default"
           "border, 1, 5.39, easeOutQuint"
@@ -98,44 +89,10 @@ in {
         "XCURSOR_SIZE,24"
       ];
 
+      # Base autostart: host files can append with lib.mkAfter
       exec-once = [
         "${pkgs.waybar}/bin/waybar"
         "wpaperd -d"
-      ];
-
-      bind = [
-        "${mod}, S, exec, ${pkgs.firefox}/bin/firefox"
-        "${mod} SHIFT, C, killactive"
-        "${mod}, Q, exec, ${terminal}"
-        "${mod}, Space, togglefloating,"
-        "${mod}, R, exec, ${pkgs.wofi}/bin/wofi --show drun"
-        "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        "${mod}, E, exec, nautilus"
-
-        "${mod}, 1, split-workspace, 1"
-        "${mod}, 2, split-workspace, 2"
-        "${mod}, 3, split-workspace, 3"
-        "${mod}, 4, split-workspace, 4"
-        "${mod}, 5, split-workspace, 5"
-        "${mod}, 6, split-workspace, 6"
-        "${mod}, 7, split-workspace, 7"
-        "${mod}, 8, split-workspace, 8"
-        "${mod}, 9, split-workspace, 9"
-
-        "${mod} SHIFT, 1, split-movetoworkspace, 1"
-        "${mod} SHIFT, 2, split-movetoworkspace, 2"
-        "${mod} SHIFT, 3, split-movetoworkspace, 3"
-        "${mod} SHIFT, 4, split-movetoworkspace, 4"
-        "${mod} SHIFT, 5, split-movetoworkspace, 5"
-        "${mod} SHIFT, 6, split-movetoworkspace, 6"
-        "${mod} SHIFT, 7, split-movetoworkspace, 7"
-        "${mod} SHIFT, 8, split-movetoworkspace, 8"
-        "${mod} SHIFT, 9, split-movetoworkspace, 9"
-      ];
-
-      bindm = [
-        "${mod}, mouse:272, movewindow"
-        "${mod}, mouse:273, resizewindow"
       ];
 
       input = {
@@ -144,8 +101,7 @@ in {
         sensitivity = 1;
         touchpad = {
           disable_while_typing = true;
-          natural_scroll = true; # Enable "natural" scrolling (like macOS)
-          #natural_scroll = false; # Disable (traditional scrolling)
+          natural_scroll = true;
         };
       };
 
@@ -157,6 +113,7 @@ in {
         animate_mouse_windowdragging = false;
       };
     };
+
     extraConfig = ''
       plugin:split-monitor-workspaces:enable_persistent_workspaces = 0
     '';

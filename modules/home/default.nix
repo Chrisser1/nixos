@@ -5,23 +5,25 @@
   ...
 }: {
   imports = [
-    inputs.nixvim.homeModules.nixvim
-		./packages.nix
-    # ./alacritty.nix
+    ./packages.nix
+
     ./kitty.nix
     ./starship.nix
     ./bash.nix
-    ./hyprland.nix
+
+    # Hyprland split
+    ./hyprland/core.nix
+    ./hyprland/keybinds.nix
+
     ./waybar.nix
     ./git.nix
     ./vscode.nix
-#    ./nixvim.nix
     ./hyprshot.nix
     ./wofi.nix
     ./wpaperd.nix
   ];
   
-  # Pretty, featureful
+  # Pretty, featureful (wayland)
   services.swaync.enable = true;
   # or tiny & simple
   # services.mako.enable = true;

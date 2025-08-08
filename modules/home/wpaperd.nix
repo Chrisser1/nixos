@@ -5,7 +5,7 @@
 
   # Link the repo folder into ~/.config/backgrounds
   home.file.".config/backgrounds" = {
-    source = ../assets/bagrounds;   
+    source = ../assets/backgrounds;   
     recursive = true;               
   };
 

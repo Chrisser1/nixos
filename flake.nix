@@ -7,11 +7,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
-		nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
 		nvf.url = "github:notashelf/nvf";
 
@@ -40,10 +35,21 @@
         specialArgs = commonArgs;
         modules = [
           ./hosts/laptop/configuration.nix
-					./nixos
+					./modules/nixos
 					nvf.nixosModules.default
+          home-manager.nixosModules.home-manager
           {
             networking.hostName = "laptop";
+            
+            # Make HM see the same args as your homeConfigurations (esp. `inputs`)
+            home-manager.extraSpecialArgs = commonArgs;
+            home-manager.useUserPackages = true;
+            
+            # Base user config
+            home-manager.users.chris = import ./users/chris/home.nix;
+
+            # Host-only HM tweaks (monitors, extra exec-once, etc.)
+            home-manager.users.chris.imports = [ ./hosts/laptop/home.nix ];
           }
         ];
       };
@@ -53,10 +59,17 @@
         specialArgs = commonArgs;
         modules = [
           ./hosts/pc/configuration.nix
-					./nixos
+					./modules/nixos
 					nvf.nixosModules.default
+          home-manager.nixosModules.home-manager
           {
             networking.hostName = "pc";
+            
+            home-manager.extraSpecialArgs = commonArgs;
+            home-manager.useUserPackages = true;
+            
+            home-manager.users.chris = import ./users/chris/home.nix;
+            home-manager.users.chris.imports = [ ./hosts/pc/home.nix ];
           }
         ];
       };
@@ -68,8 +81,8 @@
         inherit pkgs;
         extraSpecialArgs = commonArgs;
         modules = [
+          ./users/chris/home.nix
           ./hosts/laptop/home.nix
-					./home
         ];
       };
 
@@ -77,8 +90,8 @@
         inherit pkgs;
         extraSpecialArgs = commonArgs;
         modules = [
+          ./users/chris/home.nix
           ./hosts/pc/home.nix
-					./home
         ];
       };
     };
