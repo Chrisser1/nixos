@@ -3,7 +3,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}: 
+{
   networking.hostName = "laptop";
   system.stateVersion = "25.05";
 
@@ -22,20 +23,6 @@
     powerManagement.enable = false;        # leave off on desktops/VM passthrough; flip on if needed
   };
   
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    xwayland.enable = true;
-  };
-
-  services.displayManager = {
-    sddm = {
-      enable = true;
-      wayland.enable = true; # Required for Wayland sessions
-    };
-    defaultSession = "hyprland";
-  };
-
   environment.sessionVariables = {
     USE_WAYLAND_GRIM = "1";
     # NVIDIA + wlroots helpers (uncomment/tweak if needed)
@@ -45,9 +32,11 @@
     # WLR_NO_HARDWARE_CURSORS = "1";  # only if you see cursor glitches
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-    config.common.default = "*";
-  };
+  # Bootloader
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
+
+  # Bootloader (VM example)
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/vda";
 }

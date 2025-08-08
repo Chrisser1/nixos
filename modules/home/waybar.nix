@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
-
+{ 
+  config, 
+  pkgs, 
+  ... 
+}:
 let
   # helper scripts (all end up on PATH)
   wpctlSinkMenu = pkgs.writeShellScriptBin "wpctl-sink-menu" ''
@@ -38,9 +41,9 @@ let
     [[ -n "$real" ]] && basename "$real"
   '';
 in {
-  # Waybar + deps you reference in on-click handlers
+  # Deps you reference in on-click handlers
   home.packages = with pkgs; [
-    waybar playerctl wofi jq pavucontrol libnotify
+    playerctl wofi jq pavucontrol libnotify
     wpctlSinkMenu wallpaperLabel
   ];
 
@@ -167,6 +170,6 @@ in {
   };
 
   # Install your CSS pieces as files Waybar can @import
-  home.file.".config/waybar/mocha.css".text  = builtins.readFile ./waybar/mocha.css;
-  home.file.".config/waybar/style.css".text  = builtins.readFile ./waybar/style.css;
+  home.file.".config/waybar/mocha.css".text  = builtins.readFile ../../assets/waybar/mocha.css;
+  home.file.".config/waybar/style.css".text  = builtins.readFile ../../assets/waybar/style.css;
 }

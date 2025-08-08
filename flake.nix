@@ -36,6 +36,7 @@
         modules = [
           ./hosts/laptop/configuration.nix
 					./modules/nixos
+					./modules/nixos/dev.nix
 					nvf.nixosModules.default
           home-manager.nixosModules.home-manager
           {
@@ -60,6 +61,7 @@
         modules = [
           ./hosts/pc/configuration.nix
 					./modules/nixos
+          ./modules/nixos/dev.nix
 					nvf.nixosModules.default
           home-manager.nixosModules.home-manager
           {

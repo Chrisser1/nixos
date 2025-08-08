@@ -1,18 +1,20 @@
-# e.g. home/wpaperd.nix
-{ config, pkgs, ... }:
+{ 
+  config, 
+  pkgs, 
+  lib, 
+  ... 
+}:
 {
+  # Keep the binary with the module to avoid chasing it in packages.nix
   home.packages = [ pkgs.wpaperd ];
 
-  # Link the repo folder into ~/.config/backgrounds
-  home.file.".config/backgrounds" = {
-    source = ../assets/backgrounds;   
-    recursive = true;               
-  };
+  # Link repo backgrounds into the config dir
+  home.file."${config.xdg.configHome}/backgrounds" = lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/code/nixos/assets/backgrounds";
 
-  # Keep TOML pointing to the stable location
-  home.file.".config/wpaperd/config.toml".text = ''
+  # Minimal TOML pointing at the stable location
+  home.file."${config.xdg.configHome}/wpaperd/config.toml".text = ''
     [default]
-    path = "${config.home.homeDirectory}/.config/backgrounds"
+    path = "${config.xdg.configHome}/backgrounds"
     sorting = "random"
     duration = "30m"
     recursive = true

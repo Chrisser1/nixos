@@ -1,24 +1,29 @@
-{ config, pkgs, lib, ... }:
-
+{ 
+  config, 
+  pkgs, 
+  lib, 
+  ... 
+}:
 {
   programs.kitty = {
     enable = true;
 
-    # Font (Nerd Font w/ glyphs for Starship)
     font = {
-      package = pkgs.nerd-fonts.caskaydia-cove; # installs the font
+      package = pkgs.nerd-fonts.caskaydia-cove;
       name = "CaskaydiaCove Nerd Font";
       size = 14;
     };
 
     settings = {
       background_opacity = "0.9";
-      # If you want to keep using the “current-theme.conf” include:
-      # include = "current-theme.conf";
+      confirm_os_window_close = 0;
+      enable_audio_bell = "no";
     };
 
-    # EITHER: let HM manage theme from kitty-themes
-    # (works with most themes, including Catppuccin)
-    themeFile = "Catppuccin-Mocha";
+    # Reliable theme hook through kitty-themes
+    theme = "Catppuccin-Mocha";
+
+    # (Optional) prompt/URL handlers etc.
+    shellIntegration.enableBashIntegration = true;
   };
 }

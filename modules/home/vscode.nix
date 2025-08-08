@@ -6,6 +6,8 @@
     # Use the stock package; no overrides → no `pname` issue.
     package = pkgs.vscode;  # or pkgs.vscodium if you prefer
 
+    enableUpdateCheck = false;             # nix manages updates
+    
     # Explicitly allow VS Code to manage ~/.vscode/extensions itself.
     mutableExtensionsDir = true;  # avoids the immutable marker file
 
@@ -13,6 +15,7 @@
       # Install just your one extension declaratively
       extensions = with pkgs.vscode-extensions; [
         bbenoist.nix
+        # jnoortheen.nix-ide  # (optional, nicer Nix experience)
       ];
 
       # Keep settings simple & top-level (not profiles.*)
@@ -67,4 +70,8 @@
     { key = "ctrl+shift+alt+up"; command = "-editor.action.copyLinesUpAction";
       when = "editorTextFocus && !editorReadonly"; }
   ];
+
+  # # Duplicate for VSCodium so you can flip packages without surprises
+  # home.file.".config/VSCodium/User/keybindings.json".text =
+  #   config.home.file.".config/Code/User/keybindings.json".text;
 }

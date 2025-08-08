@@ -7,9 +7,9 @@
   imports = [
     ./packages.nix
 
-    ./kitty.nix
-    ./starship.nix
-    ./bash.nix
+    ./terminal/kitty.nix
+    ./terminal/starship.nix
+    ./terminal/bash.nix
 
     # Hyprland split
     ./hyprland/core.nix
