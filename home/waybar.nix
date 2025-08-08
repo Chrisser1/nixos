@@ -2,21 +2,32 @@
 
 let
   # helper scripts (all end up on PATH)
-  paSinkMenu = pkgs.writeShellScriptBin "pa-sink-menu.sh" ''
+  wpctlSinkMenu = pkgs.writeShellScriptBin "wpctl-sink-menu" ''
     #!/usr/bin/env bash
-    mapfile -t SINKS < <(pactl list sinks | awk -F': ' '
-      /^\s*Name:/        { name=$2 }
-      /^\s*Description:/ { print name"|"$2 }
+    set -euo pipefail
+
+    # Read only the Sinks block (don't anchor to column 0)
+    mapfile -t SINKS < <(wpctl status | awk '
+      /Sinks:/   {ins=1; next}
+      /Sources:/ {ins=0}
+      ins && match($0, /[[:space:]]\*?[[:space:]]*([0-9]+)\.\s+(.*)$/, m) {
+        print m[1] "|" m[2]
+      }
     ')
-    MENU=$(printf '%s\n' "''${SINKS[@]}" | cut -d'|' -f2)
-    CHOICE=$(printf '%s\n' "$MENU" | wofi --dmenu -i -p "Switch audio to:" --lines 8)
-    [[ -z $CHOICE ]] && exit 0
-    SINK_NAME=$(printf '%s\n' "''${SINKS[@]}" | grep -F "|$CHOICE" | cut -d'|' -f1)
-    pactl set-default-sink "$SINK_NAME"
-    pactl set-sink-mute "$SINK_NAME" false
-    pactl set-sink-volume "$SINK_NAME" 50%
-    pactl list short sink-inputs | cut -f1 | xargs -r -I{} pactl move-sink-input {} "$SINK_NAME"
+
+    if [[ ''${#SINKS[@]} -eq 0 ]]; then
+      notify-send "Audio" "No sinks found"
+      exit 1
+    fi
+
+    MENU=$(printf "%s\n" "''${SINKS[@]}" | cut -d"|" -f2)
+    CHOICE=$(printf "%s\n" "$MENU" | wofi --dmenu -i -p "Switch output to:" --lines 10)
+    [[ -z "$CHOICE" ]] && exit 0
+
+    ID=$(printf "%s\n" "''${SINKS[@]}" | grep -F -m1 "|$CHOICE" | cut -d"|" -f1)
+    wpctl set-default "$ID"
   '';
+
 
   # show current wpaperd wallpaper (take first display’s symlink)
   wallpaperLabel = pkgs.writeShellScriptBin "waybar-wallpaper-label" ''
@@ -29,8 +40,8 @@ let
 in {
   # Waybar + deps you reference in on-click handlers
   home.packages = with pkgs; [
-    waybar playerctl wofi jq pavucontrol
-    paSinkMenu wallpaperLabel
+    waybar playerctl wofi jq pavucontrol libnotify
+    wpctlSinkMenu wallpaperLabel
   ];
 
   programs.waybar = {
@@ -51,6 +62,10 @@ in {
         "battery"
         "clock"
       ];
+
+      "hyprland/window" = {
+        "swap-icon-label" = false;
+      };
 
       clock = {
         format = "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}";
@@ -89,21 +104,28 @@ in {
 
       # Built-in MPRIS (replaces the custom Spotify JSON tail)
       mpris = {
-        player = "spotify";
-        format = "<span foreground='#1ED760'> </span>{dynamic}";
-        "title-len" = 30;
-        "artist-len" = 20;
-        "dynamic-len" = 52;
+        player = "spotify";          # or drop this to follow the active player
+        interval = 1;                # <— makes position tick
+        dynamic-order = [ "title" "artist" "position" "length" ];
+      
+        # Keep your clicks
         "on-click" = "playerctl play-pause -p spotify";
         "on-scroll-up" = "playerctl next -p spotify";
         "on-scroll-down" = "playerctl previous -p spotify";
+      
+        # Optional: icons (lets CSS do the coloring)
+        "format" = "{player_icon} {dynamic}";
+        "format-paused" = "{player_icon} {dynamic}";
+        "player-icons".default = "";
+        "status-icons".paused = "";
       };
+
 
       pulseaudio = {
         format = "{icon}  {volume}%";
         "format-muted" = "";
         "format-icons".default = [ "" "" "" ];
-        "on-click" = "pa-sink-menu.sh";
+        "on-click" = "wpctl-sink-menu";
       };
 
       # Wallpaper widget, talks to wpaperd
@@ -142,9 +164,6 @@ in {
         };
       };
     };
-
-    # Your CSS theme
-    style = builtins.readFile ./waybar/style.css;
   };
 
   # Install your CSS pieces as files Waybar can @import

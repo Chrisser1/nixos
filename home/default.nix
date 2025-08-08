@@ -20,4 +20,9 @@
     ./wofi.nix
     ./wpaperd.nix
   ];
+  
+  # Pretty, featureful
+  services.swaync.enable = true;
+  # or tiny & simple
+  # services.mako.enable = true;
 }

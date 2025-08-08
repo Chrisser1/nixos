@@ -167,3 +167,13 @@ button:hover {
     background-color: rgba(107, 142, 35, 0.1);
     color: @white;
 }
+
+/* MPRIS status-based colors */
+#mpris.playing {
+  color: #1ED760;                    /* Spotify green */
+  border-bottom: 2px solid #1ED760;
+}
+#mpris.paused {
+  color: #f5c2e7;                    /* your pink */
+  border-bottom: 2px solid #f5c2e7;
+}

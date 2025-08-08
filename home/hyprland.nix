@@ -110,6 +110,7 @@ in {
         "${mod}, Space, togglefloating,"
         "${mod}, R, exec, ${pkgs.wofi}/bin/wofi --show drun"
         "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "${mod}, E, exec, nautilus"
 
         "${mod}, 1, split-workspace, 1"
         "${mod}, 2, split-workspace, 2"
