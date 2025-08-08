@@ -5,6 +5,12 @@
     ... 
 }:
 {
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50; # ~half of RAM as compressed swap
+  };
+
   # Flakes, store maintenance
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.auto-optimise-store = true;
