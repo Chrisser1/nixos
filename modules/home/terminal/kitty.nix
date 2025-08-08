@@ -21,7 +21,7 @@
     };
 
     # Reliable theme hook through kitty-themes
-    theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha";
 
     # (Optional) prompt/URL handlers etc.
     shellIntegration.enableBashIntegration = true;

@@ -1,6 +1,7 @@
 { 
     pkgs, 
     inputs, 
+    lib,
     ... 
 }:
 {
@@ -20,7 +21,7 @@
   # Portals for Wayland apps (Hyprland + GTK)
   xdg.portal = {
     enable = true;
-    extraPortals = [
+    extraPortals = lib.mkForce [
       pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];

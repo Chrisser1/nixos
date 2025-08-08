@@ -46,11 +46,12 @@
             home-manager.extraSpecialArgs = commonArgs;
             home-manager.useUserPackages = true;
             
-            # Base user config
-            home-manager.users.chris = import ./users/chris/home.nix;
-
-            # Host-only HM tweaks (monitors, extra exec-once, etc.)
-            home-manager.users.chris.imports = [ ./hosts/laptop/home.nix ];
+            home-manager.users.chris = {
+              imports = [
+                ./users/chris/home.nix
+                ./hosts/laptop/home.nix
+              ];
+            };
           }
         ];
       };
@@ -70,8 +71,12 @@
             home-manager.extraSpecialArgs = commonArgs;
             home-manager.useUserPackages = true;
             
-            home-manager.users.chris = import ./users/chris/home.nix;
-            home-manager.users.chris.imports = [ ./hosts/pc/home.nix ];
+            home-manager.users.chris = {
+              imports = [
+                ./users/chris/home.nix
+                ./hosts/laptop/home.nix
+              ];
+            };
           }
         ];
       };

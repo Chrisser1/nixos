@@ -6,12 +6,13 @@
     # Use the stock package; no overrides → no `pname` issue.
     package = pkgs.vscode;  # or pkgs.vscodium if you prefer
 
-    enableUpdateCheck = false;             # nix manages updates
     
     # Explicitly allow VS Code to manage ~/.vscode/extensions itself.
     mutableExtensionsDir = true;  # avoids the immutable marker file
 
     profiles.default = {
+      enableUpdateCheck = false;             # nix manages updates
+      
       # Install just your one extension declaratively
       extensions = with pkgs.vscode-extensions; [
         bbenoist.nix
