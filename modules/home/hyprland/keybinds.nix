@@ -38,6 +38,10 @@ in {
       "${mod} SHIFT, 8, split-movetoworkspace, 8"
       "${mod} SHIFT, 9, split-movetoworkspace, 9"
 
+      "${mod}, left, movefocus, l"
+      "${mod}, right, movefocus, r"
+      "${mod}, up, movefocus, u"
+      "${mod}, down, movefocus, d"
     ];
 
     bindm = [
