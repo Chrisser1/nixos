@@ -16,8 +16,9 @@ in {
       "${mod} SHIFT, P, exec, shutdown now"
       "${mod}, G, exec, ${pkgs.firefox}/bin/firefox https://github.com/Chrisser1"
       "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://gemini.google.com"
+      "${mod}, L, exec, ${pkgs.firefox}/bin/firefox https://learn.inside.dtu.dk/d2l/home"
 
-
+      # Workspaces
       "${mod}, 1, split-workspace, 1"
       "${mod}, 2, split-workspace, 2"
       "${mod}, 3, split-workspace, 3"
@@ -38,12 +39,20 @@ in {
       "${mod} SHIFT, 8, split-movetoworkspace, 8"
       "${mod} SHIFT, 9, split-movetoworkspace, 9"
 
+      # Focus on windows
       "${mod}, left, movefocus, l"
       "${mod}, right, movefocus, r"
       "${mod}, up, movefocus, u"
       "${mod}, down, movefocus, d"
+
+      # Move active window
+      "${mod} SHIFT, left, movewindow, l"
+      "${mod} SHIFT, right, movewindow, r"
+      "${mod} SHIFT, up, movewindow, u"
+      "${mod} SHIFT, down, movewindow, d"
     ];
 
+    # Drag and move windows with mouse
     bindm = [
       "${mod}, mouse:272, movewindow"
       "${mod}, mouse:273, resizewindow"

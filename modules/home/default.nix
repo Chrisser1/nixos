@@ -6,7 +6,8 @@
 }: {
   imports = [
     ./packages.nix
-
+    
+    # Terminal
     ./terminal/kitty.nix
     ./terminal/starship.nix
     ./terminal/bash.nix
@@ -15,12 +16,16 @@
     ./hyprland/core.nix
     ./hyprland/keybinds.nix
 
+    # Visuals
     ./waybar.nix
+    ./wofi.nix
+    ./wpaperd.nix
+
+    # Utilities
     ./git.nix
     ./vscode.nix
     ./hyprshot.nix
-    ./wofi.nix
-    ./wpaperd.nix
+    ./firefox.nix
 
     # Developer stuff
     ./dev/python.nix
