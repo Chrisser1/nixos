@@ -21,6 +21,9 @@
     ./hyprshot.nix
     ./wofi.nix
     ./wpaperd.nix
+
+    # Developer stuff
+    ./dev/python.nix
   ];
   
   # Pretty, featureful (wayland)

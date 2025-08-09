@@ -13,7 +13,7 @@ window#waybar {
     color: @subtext1;                    /* Berserk subtext1 */
     transition-property: background-color;
     transition-duration: 0.1s;
-    border-bottom: 1px solid @subtext0;  /* Berserk subtext0 */
+    /* border-bottom: 1px solid @subtext0;  Berserk subtext0 */
 }
 
 #window {
@@ -77,22 +77,22 @@ button:hover {
 
 #clock {
     color: @text;
-    border-bottom: 2px solid @text;
+    /* border-bottom: 2px solid @text; */
 }
 
 #clock.date {
     color: @purple;
-    border-bottom: 2px solid @purple;
+    /* border-bottom: 2px solid @purple; */
 }
 
 #pulseaudio {
     color: @cyan;
-    border-bottom: 2px solid @cyan;
+    /* border-bottom: 2px solid @cyan; */
 }
 
 #network {
     color: @yellow;
-    border-bottom: 2px solid @yellow;
+    /* border-bottom: 2px solid @yellow; */
 }
 
 #idle_inhibitor {
@@ -106,7 +106,7 @@ button:hover {
 
 #battery {
     color: @green;
-    border-bottom: 2px solid @green;
+    /* border-bottom: 2px solid @green; */
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -132,26 +132,27 @@ button:hover {
     color: @subtext1;
     transition-property: background-color;
     transition-duration: 0.1s;
-    border-bottom: 2px solid @blue;
+    /* border-bottom: 2px solid @blue; */
 }
+
 #custom-spotify:hover {
     background-color: @bg2;              /* Berserk bg2 */
 }
 
 #custom-wallpaper {
     color: @cyan;
-    border-bottom: 2px solid @cyan;
+    /* border-bottom: 2px solid @cyan; */
     padding: 0 4px;
 }
+
 #custom-wallpaper:hover {
     background-color: @bg2;
 }
 
-
 /* CPU usage */
 #cpu {
     color: @orange;                      /* Berserk orange */
-    border-bottom: 2px solid @orange;
+    /* border-bottom: 2px solid @orange; */
 }
 #cpu:hover {
     background-color: rgba(184, 134, 11, 0.1);
@@ -161,7 +162,7 @@ button:hover {
 /* Memory usage */
 #memory {
     color: @green;
-    border-bottom: 2px solid @green;
+    /* border-bottom: 2px solid @green; */
 }
 #memory:hover {
     background-color: rgba(107, 142, 35, 0.1);
@@ -171,9 +172,9 @@ button:hover {
 /* MPRIS status-based colors */
 #mpris.playing {
   color: #1ED760;                    /* Spotify green */
-  border-bottom: 2px solid #1ED760;
+  /* border-bottom: 2px solid #1ED760; */
 }
 #mpris.paused {
   color: #f5c2e7;                    /* your pink */
-  border-bottom: 2px solid #f5c2e7;
+  /* border-bottom: 2px solid #f5c2e7; */
 }

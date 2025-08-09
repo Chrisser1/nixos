@@ -56,14 +56,21 @@ in {
       "modules-left"   = [ "hyprland/workspaces" "mpris" ];
       "modules-center" = [ "hyprland/window" ];
       "modules-right"  = [
+        "custom/divider"
         "custom/wallpaper"
+        "custom/divider"
         "network#eth"
         "network#wifi"
+        "custom/divider"
         "memory"
+        "custom/divider"
         "cpu"
+        "custom/divider"
         "pulseaudio"
+        "custom/divider"
         "battery"
         "clock"
+        "custom/divider"
       ];
 
       "hyprland/window" = {
@@ -117,8 +124,8 @@ in {
         "on-scroll-down" = "playerctl previous -p spotify";
       
         # Optional: icons (lets CSS do the coloring)
-        "format" = "{player_icon} {dynamic}";
-        "format-paused" = "{player_icon} {dynamic}";
+        "format" = " {player_icon} {dynamic}";
+        "format-paused" = " {player_icon} {dynamic}";
         "player-icons".default = "";
         "status-icons".paused = "";
       };
@@ -165,6 +172,12 @@ in {
           "16"="6"; "17"="7"; "18"="8"; "19"="9"; "20"="0";
           active=""; visible=""; urgent=""; empty="";
         };
+      };
+
+      "custom/divider" = {
+          format = "|";
+          interval = "once";
+          tooltip = false;
       };
     };
   };

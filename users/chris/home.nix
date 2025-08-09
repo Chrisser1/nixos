@@ -15,6 +15,10 @@
     stateVersion = "25.05";
   };
 
+  dconf.settings."org/gnome/desktop/interface" = {
+    color-scheme = "prefer-dark";
+  };
+
   # Pull in your shared HM stack (kitty, starship, hyprland, waybar, etc.)
   imports = [
     ../../modules/home
