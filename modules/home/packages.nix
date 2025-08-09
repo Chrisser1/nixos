@@ -15,6 +15,8 @@ let
 
     nautilus
     gvfs
+
+    obsidian
   ];
 
   # Optional apps

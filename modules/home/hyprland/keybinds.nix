@@ -13,6 +13,10 @@ in {
       "${mod}, R, exec, ${pkgs.wofi}/bin/wofi --show drun"
       "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       "${mod}, E, exec, ${fm}"
+      "${mod} SHIFT, P, exec, shutdown now"
+      "${mod}, G, exec, ${pkgs.firefox}/bin/firefox https://github.com/Chrisser1"
+      "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://gemini.google.com"
+
 
       "${mod}, 1, split-workspace, 1"
       "${mod}, 2, split-workspace, 2"
@@ -33,6 +37,7 @@ in {
       "${mod} SHIFT, 7, split-movetoworkspace, 7"
       "${mod} SHIFT, 8, split-movetoworkspace, 8"
       "${mod} SHIFT, 9, split-movetoworkspace, 9"
+
     ];
 
     bindm = [

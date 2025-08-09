@@ -79,4 +79,15 @@
     htop
     home-manager
   ];
+
+  programs.nix-ld = {
+    enable = true;
+    # a few extra libs that Python packages commonly need:
+    libraries = with pkgs; [
+      stdenv.cc.cc          # glibc + libstdc++
+      zlib
+      libffi
+      openssl
+    ];
+  };
 }
