@@ -8,6 +8,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
 		nvf.url = "github:notashelf/nvf";
 
     hyprland.url = "github:hyprwm/Hyprland";
@@ -21,12 +26,17 @@
     self,
     nixpkgs,
     home-manager,
+    firefox-addons,
 		nvf,
     ...
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    commonArgs = {inherit inputs;};
+
+    commonArgs = {
+      inherit inputs;
+      inherit firefox-addons;
+    };
   in {
     # NixOS system configurations
     nixosConfigurations = {

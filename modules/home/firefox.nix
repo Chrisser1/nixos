@@ -1,19 +1,20 @@
-{ pkgs, inputs, ... }:
+# This module now expects `firefox-addons` to be passed as an argument
+{ pkgs, firefox-addons, lib, ... }:
 
 let
-  # This makes sure we are using the 'nixpkgs' flake input you defined
-  # and not some other version of pkgs that might be getting passed accidentally.
-  firefox-addons = inputs.nixpkgs.legacyPackages.${pkgs.system}.firefox-addons;
+  # Define a local variable for the addon packages from the correct source
+  addons = firefox-addons.packages.${pkgs.system};
 in
 {
   programs.firefox = {
     enable = true;
     profiles.chris = {
       isDefault = true;
+
+      # Use the modern `extensions.packages` option [1]
       extensions.packages = [
-        firefox-addons.ublock-origin
-        firefox-addons.bitwarden
-        firefox-addons.grammarly
+        addons.ublock-origin
+        addons.bitwarden
       ];
     };
   };
