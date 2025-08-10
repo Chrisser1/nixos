@@ -13,7 +13,7 @@
 
     # # (optional) ensure workspace 1 lives on the ASUS
     # workspace = [
-    #   "1, monitor:DP-4, default:true"
+    #   "1, monitor:HDMI-A-2, default:true"
     # ];
   };
 }
