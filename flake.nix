@@ -84,7 +84,7 @@
             home-manager.users.chris = {
               imports = [
                 ./users/chris/home.nix
-                ./hosts/laptop/home.nix
+                ./hosts/pc/home.nix
               ];
             };
           }
