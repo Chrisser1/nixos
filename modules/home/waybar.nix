@@ -96,15 +96,35 @@ in {
         "tooltip-format" = "{time}";
       };
 
+      # Divider that only appears on machines with a battery
       "custom/divider-battery" = {
-        format = "|";
-        "exec-if" = pkgs.writeShellScript "check-battery" ''
-          #!${pkgs.stdenv.shell}
-          # Exit with 0 if a battery is found in /sys, 1 otherwise.
-          ls /sys/class/power_supply/ | grep -q "^BAT"
-        '';
+        format = "{text}";          # show whatever the script prints
         tooltip = false;
+        interval = "once";          # run at startup; this rarely changes
+        hide-empty-text = true;     # if script prints nothing, hide the module
+
+        # One tiny script does everything: detect battery; print "|" or nothing.
+        exec = pkgs.writeShellScript "divider-battery" ''
+          #!${pkgs.stdenv.shell}
+          # Consider any power_supply whose "type" is exactly "Battery"
+          have_bat=1
+          have_bat=0
+          for t in /sys/class/power_supply/*/type; do
+            [ -r "$t" ] || continue
+            if grep -qx "Battery" "$t"; then
+              have_bat=1
+              break
+            fi
+          done
+
+          if [ "$have_bat" -eq 1 ]; then
+            printf '|'
+          else
+            : # print nothing -> hidden by hide-empty-text
+          fi
+        '';
       };
+
 
       # Ethernet instance
       "network#eth" = {
