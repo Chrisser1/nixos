@@ -11,6 +11,9 @@
     ./hardware-configuration.nix
   ];
 
+  # Enable a greeter for Hyprland
+  services.greetd.enable = true;
+
   # --- NVIDIA (safe defaults for Hyprland) ---
   # Requires: nixpkgs.config.allowUnfree = true (in your base).
   services.xserver.videoDrivers = [ "nvidia" ]; # loads the kernel module

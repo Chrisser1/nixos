@@ -7,13 +7,13 @@
 {
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "DP-4,preferred,auto,1"
+      "DP-4,preferred,0x0,1"
       "HDMI-A-2,preferred,auto-left,0.8"
     ];
 
-    # (optional) ensure workspace 1 lives on the ASUS
-    workspace = [
-      "1, monitor:DP-4, default:true"
-    ];
+    # # (optional) ensure workspace 1 lives on the ASUS
+    # workspace = [
+    #   "1, monitor:DP-4, default:true"
+    # ];
   };
 }

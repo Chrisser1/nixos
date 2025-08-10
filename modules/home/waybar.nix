@@ -56,19 +56,20 @@ in {
       "modules-left"   = [ "hyprland/workspaces" "mpris" ];
       "modules-center" = [ "hyprland/window" ];
       "modules-right"  = [
-        "custom/divider"
-        "custom/wallpaper"
+        # "custom/divider"
+        # "custom/wallpaper"
         "custom/divider"
         "network#eth"
         "network#wifi"
-        "custom/divider"
-        "memory"
+        # "custom/divider"
+        # "memory"
         "custom/divider"
         "cpu"
         "custom/divider"
         "pulseaudio"
         "custom/divider"
         "battery"
+        "custom/divider-battery"
         "clock"
         "custom/divider"
       ];
@@ -95,6 +96,16 @@ in {
         "tooltip-format" = "{time}";
       };
 
+      "custom/divider-battery" = {
+        format = "|";
+        "exec-if" = pkgs.writeShellScript "check-battery" ''
+          #!${pkgs.stdenv.shell}
+          # Exit with 0 if a battery is found in /sys, 1 otherwise.
+          ls /sys/class/power_supply/ | grep -q "^BAT"
+        '';
+        tooltip = false;
+      };
+
       # Ethernet instance
       "network#eth" = {
         interface = "en*";
@@ -110,6 +121,7 @@ in {
         "format-wifi"         = "<span size='13000' foreground='#f5e0dc'> </span>{essid} ({signalStrength}%)";
         "format-disconnected" = "";
         "tooltip-format-wifi" = "Signal Strength: {signalStrength}%";
+        "on-click" = "${pkgs.networkmanager-dmenu}/bin/networkmanager_dmenu";
       };
 
       # Built-in MPRIS (replaces the custom Spotify JSON tail)

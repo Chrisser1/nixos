@@ -29,6 +29,9 @@
 
     # Developer stuff
     ./dev/python.nix
+
+    # Network management
+    ./networkmanager-dmenu.nix
   ];
   
   # Pretty, featureful (wayland)

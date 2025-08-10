@@ -17,6 +17,9 @@ let
     gvfs
 
     obsidian
+
+    # For waybar click to get wifi
+    networkmanager-dmenu
   ];
 
   # Optional apps
