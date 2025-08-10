@@ -121,7 +121,7 @@ in {
         "format-wifi"         = "<span size='13000' foreground='#f5e0dc'> </span>{essid} ({signalStrength}%)";
         "format-disconnected" = "";
         "tooltip-format-wifi" = "Signal Strength: {signalStrength}%";
-        "on-click" = "${pkgs.networkmanager-dmenu}/bin/networkmanager_dmenu";
+        "on-click" = "${pkgs.networkmanager_dmenu}/bin/networkmanager_dmenu";
       };
 
       # Built-in MPRIS (replaces the custom Spotify JSON tail)

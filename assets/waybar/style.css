@@ -89,10 +89,18 @@ button:hover {
     color: @cyan;
     /* border-bottom: 2px solid @cyan; */
 }
+#pulseaudio:hover {
+    background-color: rgba(184, 134, 11, 0.1);
+    color: @white;                       /* Berserk white */
+}
 
 #network {
     color: @yellow;
     /* border-bottom: 2px solid @yellow; */
+}
+#network:hover {
+    background-color: rgba(184, 134, 11, 0.1);
+    color: @white;                       /* Berserk white */
 }
 
 #idle_inhibitor {
@@ -107,6 +115,11 @@ button:hover {
 #battery {
     color: @green;
     /* border-bottom: 2px solid @green; */
+}
+
+#battery:hover {
+    background-color: rgba(184, 134, 11, 0.1);
+    color: @white;                       /* Berserk white */
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -151,7 +164,7 @@ button:hover {
 
 /* CPU usage */
 #cpu {
-    color: @orange;                      /* Berserk orange */
+    color: @green;                      /* Berserk orange */
     /* border-bottom: 2px solid @orange; */
 }
 #cpu:hover {

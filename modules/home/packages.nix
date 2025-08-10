@@ -19,7 +19,7 @@ let
     obsidian
 
     # For waybar click to get wifi
-    networkmanager-dmenu
+    networkmanager_dmenu
   ];
 
   # Optional apps
