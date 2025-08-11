@@ -39,4 +39,25 @@
   # # Bootloader (VM example)
   # boot.loader.grub.enable = true;
   # boot.loader.grub.device = "/dev/vda";
+
+  # Ensure NetworkManager is OFF on this host (so wpa_supplicant can own Wi-Fi)
+  networking.networkmanager.enable = lib.mkForce false;
+
+  environment.etc."nixos/certs/dtu_ca.pem".source = ./certs/dtu_ca.pem;
+
+  networking.wireless = {
+    enable = true;
+
+    networks."DTUsecure".auth = ''
+      key_mgmt=WPA-EAP
+      eap=PEAP
+      identity="s244769@dtu.dk"
+      password_file="/etc/nixos/secrets/dtu-password"
+      phase2="auth=MSCHAPV2"
+      ca_cert="/etc/nixos/certs/dtu_ca.pem"
+      # Optional hardening if DTU publishes a RADIUS hostname:
+      # domain_suffix_match=dtu.dk
+      # altsubject_match="DNS:radius.example.dtu.dk"
+    '';
+  };
 }
