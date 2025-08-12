@@ -6,7 +6,7 @@
   ...
 }: {
   wayland.windowManager.hyprland.settings = {
-    monitor = [",preferred,auto,1.2"];
+    monitor = [",preferred,auto,1.4"];
     exec-once = lib.mkAfter [
       "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ 1"
     ];

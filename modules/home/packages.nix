@@ -20,6 +20,9 @@ let
 
     # For waybar click to get wifi
     networkmanager_dmenu
+
+    bluez
+    bluez-tools
   ];
 
   # Optional apps
