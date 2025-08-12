@@ -26,7 +26,7 @@ in
     DOTNET_ROOT = "${sdk}";              # lets global tools/IDEs find the SDK
   };
 
-  # Optional quality-of-life aliases ds
+  # Optional quality-of-life aliases
   programs.bash.shellAliases = {
     dn = "dotnet";
     db = "dotnet build";
