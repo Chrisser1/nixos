@@ -19,12 +19,12 @@
         # jnoortheen.nix-ide  # (optional, nicer Nix experience)
       ];
 
-      # # Keep settings simple & top-level (not profiles.*)
-      # userSettings = {
-      #   "files.autoSave" = "afterDelay";
-      #   "files.autoSaveDelay" = 1000;
-      #   "disable-hardware-acceleration" = true;
-      # };
+      # Keep settings simple & top-level (not profiles.*)
+      userSettings = {
+        "files.autoSave" = "afterDelay";
+        "files.autoSaveDelay" = 1000;
+        "disable-hardware-acceleration" = true;
+      };
     };
   };
 
