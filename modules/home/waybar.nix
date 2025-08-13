@@ -98,19 +98,24 @@ in {
 
       # Divider that only appears on machines with a battery
       "custom/divider-battery" = {
-        format = "{text}";          # show whatever the script prints
+        format = "{text}";
         tooltip = false;
-        interval = "once";          # run at startup; this rarely changes
-        hide-empty-text = true;     # if script prints nothing, hide the module
+        interval = "once";
+        hide-empty-text = true;
 
-        # One tiny script does everything: detect battery; print "|" or nothing.
         exec = pkgs.writeShellScript "divider-battery" ''
           #!${pkgs.stdenv.shell}
-          # Consider any power_supply whose "type" is exactly "Battery"
-          have_bat=1
           have_bat=0
+
           for t in /sys/class/power_supply/*/type; do
             [ -r "$t" ] || continue
+
+            # CORRECTED: Check if the *path* contains "hidpp_battery"
+            if echo "$t" | grep -q "hidpp_battery"; then
+              continue
+            fi
+
+            # This part is correct and now only runs on non-mouse batteries
             if grep -qx "Battery" "$t"; then
               have_bat=1
               break
@@ -119,8 +124,6 @@ in {
 
           if [ "$have_bat" -eq 1 ]; then
             printf '|'
-          else
-            : # print nothing -> hidden by hide-empty-text
           fi
         '';
       };
