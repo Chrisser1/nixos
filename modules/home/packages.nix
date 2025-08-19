@@ -23,6 +23,10 @@ let
 
     bluez
     bluez-tools
+
+    # Utils
+    wget
+    git-lfs
   ];
   
   environment.sessionVariables.NIXOS_OZONE_WL = "1"; # required per nixos wiki page on VS Code
