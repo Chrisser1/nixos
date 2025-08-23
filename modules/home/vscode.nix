@@ -9,6 +9,7 @@
       enableUpdateCheck = false;
       extensions = with pkgs.vscode-extensions; [
         bbenoist.nix
+        mkhl.direnv
       ];
       userSettings = {
         "files.autoSave" = "afterDelay";

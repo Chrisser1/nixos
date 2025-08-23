@@ -30,7 +30,6 @@
     # Developer stuff
     ./dev/python.nix
     ./dev/dotnet.nix
-    ./dev/c.nix
 
     # Network management
     ./networkmanager-dmenu.nix
