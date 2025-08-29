@@ -29,7 +29,6 @@
     # Developer stuff
     ./dev/python.nix
     ./dev/dotnet.nix
-    ./dev/clion.nix
     ./dev/vscode.nix
 
     # Network management

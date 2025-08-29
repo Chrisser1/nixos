@@ -39,6 +39,7 @@ let
     discord
     prismlauncher
     spotify
+    jetbrains.clion
   ];
 in {
   home.packages = base ++ extras;

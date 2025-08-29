@@ -113,12 +113,6 @@
         animate_manual_resizes = false;
         animate_mouse_windowdragging = false;
       };
-
-      windowrulev2 = [
-        "float, class:^(jetbrains-clion)$"
-        # You can add more rules here in the future, e.g.:
-        # "float, class:^(pavucontrol)$"
-      ];
     };
 
     extraConfig = ''

@@ -16,9 +16,4 @@
     #   "1, monitor:HDMI-A-2, default:true"
     # ];
   };
-
-  wayland.clion = {
-    enable = true;
-    scale = 1;
-  };
 }
