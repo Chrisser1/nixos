@@ -23,7 +23,6 @@
 
     # Utilities
     ./git.nix
-    ./vscode.nix
     ./hyprshot.nix
     ./firefox.nix
 
@@ -31,6 +30,7 @@
     ./dev/python.nix
     ./dev/dotnet.nix
     ./dev/clion.nix
+    ./dev/vscode.nix
 
     # Network management
     ./networkmanager-dmenu.nix
