@@ -18,6 +18,7 @@ in {
       "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://gemini.google.com"
       "${mod}, L, exec, ${pkgs.firefox}/bin/firefox https://learn.inside.dtu.dk/d2l/home"
       "${mod} SHIFT, L, exec, ${pkgs.firefox}/bin/firefox https://studieplan.dtu.dk/"
+      "${mod} SHIFT, R, exec, pkill waybar && waybar"
 
       # Workspaces
       "${mod}, 1, split-workspace, 1"
