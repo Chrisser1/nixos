@@ -26,7 +26,4 @@
       pkgs.xdg-desktop-portal-gtk
     ];
   };
-
-  # Helpful for Electron/Chromium apps on Wayland
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

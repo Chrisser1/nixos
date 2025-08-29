@@ -38,6 +38,8 @@
 
   environment.sessionVariables = {
     USE_WAYLAND_GRIM = "1";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+    NIXOS_OZONE_WL = "1"; # required per nixos wiki page on VS Code
     # NVIDIA + wlroots helpers (uncomment/tweak if needed)
     LIBVA_DRIVER_NAME = "nvidia";     # with nvidia-vaapi-driver
     GBM_BACKEND = "nvidia-drm";
