@@ -11,4 +11,10 @@
       "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ 1"
     ];
   };
+
+  # Enable the CLion wrapper and set the scale to 2
+  wayland.clion = {
+    enable = true;
+    scale = 2.0;
+  };
 }
