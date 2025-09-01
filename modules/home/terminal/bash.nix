@@ -7,7 +7,6 @@
       vim = "nvim";
       rebuild = "sudo nixos-rebuild switch --flake ${flakePath}#$(hostname)";
 			hms = "home-manager switch --flake ${flakePath}#$(hostname)";
-      update = "nix flake update ${flakePath}";
     };
   };
 
@@ -16,3 +15,4 @@
     nix-direnv.enable = true;
   };
 }
+ 
