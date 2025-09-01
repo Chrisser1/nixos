@@ -48,4 +48,9 @@
   hardware.bluetooth.enable = true;
   # optional GUI:
   services.blueman.enable = true;
+
+  # For virtualbox
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  users.extraGroups.vboxusers.members = [ "chris" ];
 }
