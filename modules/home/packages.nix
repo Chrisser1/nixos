@@ -40,6 +40,9 @@ let
     prismlauncher
     spotify
     jetbrains.clion
+    
+    # Used for operation systems DTU (for vm's)
+    vagrant
   ];
 in {
   home.packages = base ++ extras;
