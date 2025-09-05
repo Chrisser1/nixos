@@ -1,12 +1,10 @@
 { 
     config, 
     pkgs, 
-    lib, 
+    lib,
+    secrets, 
     ... 
 }:
-let 
-  secrets = import ../../secrets.nix;
-in
 {
   # Github token for private repos
   nix.settings.access-tokens = "github.com=${secrets.githubToken}";

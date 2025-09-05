@@ -32,6 +32,9 @@
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+    
+    # Import the secrets file here at the top level
+    secrets = import ./secrets.nix;
 
     commonArgs = {
       inherit inputs;
