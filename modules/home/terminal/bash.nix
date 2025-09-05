@@ -5,7 +5,7 @@
       flakePath = "$HOME/nixos";
     in {
       vim = "nvim";
-      rebuild = "sudo nixos-rebuild switch --flake ${flakePath}#$(hostname)";
+      rebuild = "sudo nixos-rebuild switch --flake path:${flakePath}#$(hostname)";
 			hms = "home-manager switch --flake ${flakePath}#$(hostname)";
     };
   };
