@@ -39,6 +39,7 @@
     commonArgs = {
       inherit inputs;
       inherit firefox-addons;
+      inherit secrets;
     };
   in {
     # NixOS system configurations
