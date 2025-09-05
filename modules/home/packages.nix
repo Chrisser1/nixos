@@ -39,6 +39,8 @@ let
     discord
     prismlauncher
     spotify
+
+    # JetBrains IDEs
     jetbrains.clion
     jetbrains.rider
     
