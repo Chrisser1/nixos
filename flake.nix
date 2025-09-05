@@ -34,7 +34,10 @@
     pkgs = nixpkgs.legacyPackages.${system};
     
     # Import the secrets file here at the top level
-    secrets = import ./secrets.nix;
+    secrets =
+      if builtins.pathExists ./secrets.nix
+      then import ./secrets.nix
+      else { githubToken = ""; };
 
     commonArgs = {
       inherit inputs;
