@@ -40,6 +40,7 @@ let
     prismlauncher
     spotify
     jetbrains.clion
+    jetbrains.rider
     
     # Used for operation systems DTU (for vm's)
     vagrant
