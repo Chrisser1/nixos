@@ -4,7 +4,14 @@
     lib, 
     ... 
 }:
+let 
+  secrets = import ../../secrets.nix;
+in
 {
+  # Github token for private repos
+  nix.settings.access-tokens = "github.com=${secrets.githubToken}";
+  
+  # ZRAM swap
   zramSwap = {
     enable = true;
     algorithm = "zstd";
