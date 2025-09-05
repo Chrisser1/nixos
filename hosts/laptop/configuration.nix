@@ -61,5 +61,5 @@
     * 192.168.0.0/16
   '';
   # Prevent KVM from loading to allow VirtualBox to use hardware virtualization
-  boot.blacklistedKernelModules = [ "kvm_amd" "kvm" ];
+  boot.blacklistedKernelModules = [ "kvm_intel" "kvm" ];
 }
