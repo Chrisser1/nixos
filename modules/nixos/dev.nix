@@ -10,8 +10,6 @@
     enable = true;
     setSocketVariable = true;
   };
-  # (group membership isn’t required for rootless, but having "docker" in
-  # extraGroups doesn't hurt and you already have it in base.nix.)
 
   ##### NVF (Neovim config)
   programs.nvf = {
@@ -50,6 +48,31 @@
           shiftwidth = 2;
           expandtab = true;
         };
+
+        globals = {
+          mapleader = " ";
+        };
+
+        keymaps = [
+          {
+            mode = "n"; # Normal mode
+            key = "<leader>ff";
+            action = "<cmd>Telescope find_files<cr>";
+            desc = "Telescope: Find Files";
+          }
+          {
+            mode = "n";
+            key = "<leader>fg";
+            action = "<cmd>Telescope live_grep<cr>";
+            desc = "Telescope: Live Grep";
+          }
+          {
+            mode = "n";
+            key = "<leader>fb";
+            action = "<cmd>Telescope buffers<cr>";
+            desc = "Telescope: Find Buffers";
+          }
+        ];
       };
     };
   };
