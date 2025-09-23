@@ -23,10 +23,11 @@
 
     settings = {
       general = {
-        gaps_in = 5;
-        gaps_out = 5;
+        gaps_in = 2;
+        gaps_out = 2;
         border_size = 2;
-        "col.active_border"   = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        # "col.active_border"   = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        "col.active_border" = "rgba(cdd6f4aa)";
         "col.inactive_border" = "rgba(595959aa)";
         resize_on_border = true;
         allow_tearing = false;
@@ -34,7 +35,7 @@
       };
 
       decoration = {
-        rounding = 10;
+        rounding = 0;
         rounding_power = 2;
 
         active_opacity = 1.0;
