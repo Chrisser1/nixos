@@ -7,7 +7,7 @@
 {
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "DP-4,preferred,0x0,1"
+      "DP-4,preferred,auto,1"
       "HDMI-A-2,preferred,auto-left,0.8"
     ];
 

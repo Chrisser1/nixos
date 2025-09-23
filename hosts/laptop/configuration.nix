@@ -14,7 +14,7 @@
   ];
 
   # # --- NVIDIA (safe defaults for Hyprland) ---
-  # # Requires: nixpkgs.config.allowUnfree = true (in your base).
+  nixpkgs.config.allowUnfree = true;
   # services.xserver.videoDrivers = [ "nvidia" ]; # loads the kernel module
   # hardware.nvidia = {
   #   modesetting.enable = true;
