@@ -12,11 +12,11 @@
   };
 
   home.file.".config/Code/User/settings.json" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/modules/home/dev/vscode-settings.json";
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/modules/home/dev/vscode-settings.json";
   };
 
   # This does the same for your keybindings.
   home.file.".config/Code/User/keybindings.json" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/modules/home/dev/vscode-keybindings.json";
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/modules/home/dev/vscode-keybindings.json";
   };
 }

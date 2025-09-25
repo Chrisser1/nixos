@@ -1,5 +1,9 @@
 {
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 1000,
-    "disable-hardware-acceleration": true
+  "disable-hardware-acceleration": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "update.mode": "none",
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "terminal.integrated.inheritEnv": false
 }
