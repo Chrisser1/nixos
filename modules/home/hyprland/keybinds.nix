@@ -8,18 +8,23 @@ in {
     bind = [
       "${mod}, S, exec, ${pkgs.firefox}/bin/firefox"
       "${mod} SHIFT, C, killactive"
-      "${mod}, Q, exec, ${terminal}"
+      "${mod}, T, exec, ${terminal}"
       "${mod}, Space, togglefloating,"
       "${mod}, R, exec, ${pkgs.wofi}/bin/wofi --show drun"
       "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       "${mod}, E, exec, ${fm}"
       "${mod} SHIFT, P, exec, shutdown now"
-      "${mod}, G, exec, ${pkgs.firefox}/bin/firefox https://github.com/Chrisser1"
-      "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://gemini.google.com"
+      "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://github.com/Chrisser1"
       "${mod}, L, exec, ${pkgs.firefox}/bin/firefox https://learn.inside.dtu.dk/d2l/home"
       "${mod} SHIFT, L, exec, ${pkgs.firefox}/bin/firefox https://studieplan.dtu.dk/"
       "${mod} SHIFT, R, exec, pkill waybar && waybar"
 
+      # Toggle a window into/out of a group
+      "${mod}, G, togglegroup"
+      "${mod}, TAB, changegroupactive, f"
+      "${mod}  SHIFT, TAB, changegroupactive, b"
+      "${mod}, F, moveoutofgroup"
+  
       # Workspaces
       "${mod}, 1, split-workspace, 1"
       "${mod}, 2, split-workspace, 2"
