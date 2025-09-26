@@ -7,9 +7,9 @@
 {
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "DP-4,2560x1440@144,auto,1"
+      "DP-4,preferred,auto,1"
 
-      "HDMI-A-2,preferred,auto-left,0.8"
+      "HDMI-A-2,preferred,auto-left,1"
     ];
 
     # (Recommended) Ensure workspace 1 always lives on your main DP-4 monitor.

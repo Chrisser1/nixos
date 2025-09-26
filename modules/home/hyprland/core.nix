@@ -28,7 +28,7 @@
         border_size = 2;
         # "col.active_border"   = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.active_border" = "rgba(880808ff)";
-        "col.inactive_border" = "rgba(595959aa)";
+        "col.inactive_border" = "rgba(595959ff)";
         resize_on_border = true;
         allow_tearing = false;
         layout = "dwindle";
@@ -38,21 +38,21 @@
         insert_after_current = true;
         focus_removed_window = true;
         "col.border_active" = "rgba(880808ff)";
-        "col.border_inactive" = "rgba(595959aa)";
+        "col.border_inactive" = "rgba(595959ff)";
 
         # Groupbar (Tabbed view) configuration
         groupbar = {
             enabled = true;
             render_titles = true; 
-            gradients = false;
-            font_family = "JetBrains Mono Nerd Font";
-            font_size = 14;
+            gradients = true;
+            font_size = 16;
+            font_weight_active = "ultraheavy";
             height = 24;
-            text_color = "rgba(89b4faaa)";
-            text_color_inactive = "rgba(45475aaa)";
-            "col.active" = "rgba(89b4faaa)";
-            "col.inactive" = "rgba(45475aaa)";
-            "col.locked_active" = "rgba(f38ba8aa)";
+            text_color = "rgba(33ccffee)";
+            text_color_inactive = "rgba(33ccffee)";
+            "col.active" = "rgba(880808ff)";          # Was rgba(89b4faff)
+            "col.inactive" = "0xff45475a";        # Was rgba(45475aff)
+            "col.locked_active" = "0xfff38ba8";
         };
       };
 
