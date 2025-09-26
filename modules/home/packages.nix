@@ -43,6 +43,8 @@ let
     # JetBrains IDEs
     jetbrains.clion
     jetbrains.rider
+    steam-run # Needed for live share
+    jetbrains-toolbox
     
     # Used for operation systems DTU (for vm's)
     vagrant
