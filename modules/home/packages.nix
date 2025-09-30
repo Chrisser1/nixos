@@ -47,7 +47,7 @@ let
     jetbrains-toolbox
     
     # Used for operation systems DTU (for vm's)
-    vagrant
+    # vagrant
   ];
 in {
   home.packages = base ++ extras;

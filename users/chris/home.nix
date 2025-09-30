@@ -6,7 +6,7 @@
 }:
 {
   nixpkgs.config.allowUnfree = true;
-  
+
   xdg.mimeApps.defaultApplications."inode/directory" = [ "org.gnome.Nautilus.desktop" ];
   xdg.mimeApps.defaultApplications."x-scheme-handler/jetbrains" = "jetbrains-toolbox.desktop";
 
