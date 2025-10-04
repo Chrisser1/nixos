@@ -6,7 +6,7 @@
     ... 
 }:
 let 
-  password = "$6$fVHOWpCZkfMidTuo$EFKQAqNuBzvUDl4hxACBbZzgYYO18yBw6/u.e8nIjHckpgFqmHRj4qh/UjrxKyH2lzUNQU41FcYaX3T0Jm1j70";
+  passwordHash = "$6$fVHOWpCZkfMidTuo$EFKQAqNuBzvUDl4hxACBbZzgYYO18yBw6/u.e8nIjHckpgFqmHRj4qh/UjrxKyH2lzUNQU41FcYaX3T0Jm1j70";
 in
 {
   # Github token for private repos
@@ -74,13 +74,13 @@ in
     isNormalUser = true;
     description = "chris";
     extraGroups = [ "wheel" "networkmanager" "docker" "audio" "video" "input" ];
-    hashedPassword = sharedPasswordHash;
+    hashedPassword = passwordHash;
   };
   users.users.work = {
     isNormalUser = true;
     description = "work";
     extraGroups = [ "wheel" "networkmanager" "docker" "audio" "video" "input" ];
-    hashedPassword = sharedPasswordHash;
+    hashedPassword = passwordHash;
   };
 
   # Optional: explicit, though sudo is enabled by default on NixOS
