@@ -66,6 +66,12 @@
                 ./hosts/laptop/home.nix
               ];
             };
+            home-manager.users.work = {
+              imports = [
+                ./users/work/home.nix
+                ./hosts/pc/home.nix
+              ];
+            };
           }
         ];
       };
@@ -91,6 +97,12 @@
                 ./hosts/pc/home.nix
               ];
             };
+            home-manager.users.work = {
+              imports = [
+                ./users/work/home.nix
+                ./hosts/pc/home.nix
+              ];
+            };
           }
         ];
       };
@@ -106,12 +118,28 @@
           ./hosts/laptop/home.nix
         ];
       };
+      laptop_work = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = commonArgs;
+        modules = [
+          ./users/work/home.nix
+          ./hosts/laptop/home.nix
+        ];
+      };
 
       pc = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = commonArgs;
         modules = [
           ./users/chris/home.nix
+          ./hosts/pc/home.nix
+        ];
+      };
+      pc_work = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = commonArgs;
+        modules = [
+          ./users/work/home.nix
           ./hosts/pc/home.nix
         ];
       };
