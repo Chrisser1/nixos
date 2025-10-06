@@ -47,6 +47,7 @@ in
 
   # Networking
   networking.networkmanager.enable = true;
+  services.tailscale.enable = true;
 
   # Fonts
   fonts.packages = with pkgs; [
