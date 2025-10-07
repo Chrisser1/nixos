@@ -122,6 +122,7 @@
       input = {
         kb_layout = "dk";
         follow_mouse = 1;
+        force_no_accel = 1;
         sensitivity = 1;
         touchpad = {
           disable_while_typing = true;
