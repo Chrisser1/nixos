@@ -30,6 +30,7 @@
     ./dev/python.nix
     ./dev/dotnet.nix
     ./dev/vscode.nix
+    ./dev/chisel.nix
 
     # Network management
     ./networkmanager-dmenu.nix
