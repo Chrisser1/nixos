@@ -6,7 +6,8 @@
   home.packages = with pkgs; [
     jdk17
     sbt 
-    gtkwave 
+    gtkwave
+    surfer 
     jetbrains.idea-ultimate
   ];
 
