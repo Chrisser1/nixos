@@ -24,6 +24,7 @@
     themeFile = "Catppuccin-Mocha";
 
     # (Optional) prompt/URL handlers etc.
-    shellIntegration.enableBashIntegration = true;
+    # shellIntegration.enableBashIntegration = true;
+    shellIntegration.enableFishIntegration = true;
   };
 }

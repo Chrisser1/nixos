@@ -10,7 +10,8 @@
     # Terminal
     ./terminal/kitty.nix
     ./terminal/starship.nix
-    ./terminal/bash.nix
+    # ./terminal/bash.nix
+    ./terminal/fish.nix
 
     # Hyprland split
     ./hyprland/core.nix

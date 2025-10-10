@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 let
   base = with pkgs; [
+    # Terminal + shell
     fastfetch
     tmux
 
