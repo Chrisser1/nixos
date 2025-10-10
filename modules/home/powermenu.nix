@@ -1,14 +1,19 @@
 { 
-    pkgs, 
-    ... 
+  pkgs, 
+  ... 
 }:
 let
+  powerMenuPkgs = pkgs.lightdm;
+  
   powermenu = pkgs.writeShellScriptBin "powermenu" ''
     #!${pkgs.bash}/bin/bash
-    OPTIONS="Logout\nShutdown\nReboot\nLock"
+    OPTIONS="Switch User\nLogout\nShutdown\nReboot\nLock"
     CHOICE=$(echo -e "$OPTIONS" | wofi --dmenu --prompt "Power Menu")
 
     case "$CHOICE" in
+      "Switch User")
+        ${powerMenuPkgs}/bin/dm-tool switch-to-greeter
+        ;;
       Logout)
         hyprctl dispatch exit
         ;;
@@ -19,7 +24,6 @@ let
         reboot
         ;;
       Lock)
-        # You'll need to have hyprlock configured for this to work
         hyprlock
         ;;
       *)
@@ -30,5 +34,6 @@ in
 {
   home.packages = [
     powermenu
+    powerMenuPkgs
   ];
 }
