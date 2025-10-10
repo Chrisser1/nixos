@@ -9,6 +9,8 @@ let
   passwordHash = "$6$fVHOWpCZkfMidTuo$EFKQAqNuBzvUDl4hxACBbZzgYYO18yBw6/u.e8nIjHckpgFqmHRj4qh/UjrxKyH2lzUNQU41FcYaX3T0Jm1j70";
 in
 {
+  programs.fish.enable = true;
+  
   # Github token for private repos
   nix.settings.access-tokens = "github.com=${secrets.githubToken}";
   
@@ -76,12 +78,14 @@ in
     description = "chris";
     extraGroups = [ "wheel" "networkmanager" "docker" "audio" "video" "input" ];
     hashedPassword = passwordHash;
+    shell = pkgs.fish;
   };
   users.users.work = {
     isNormalUser = true;
     description = "work";
     extraGroups = [ "wheel" "networkmanager" "docker" "audio" "video" "input" ];
     hashedPassword = passwordHash;
+    shell = pkgs.fish;
   };
 
   # Optional: explicit, though sudo is enabled by default on NixOS

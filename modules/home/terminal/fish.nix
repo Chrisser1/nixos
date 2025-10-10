@@ -1,7 +1,7 @@
-{ 
-    pkgs, 
-    config, 
-    ... 
+{
+    pkgs,
+    config,
+    ...
 }:
 {
   programs.fish = {
@@ -9,22 +9,24 @@
     shellAliases = let
       flakePath = "$HOME/nixos";
     in {
-      # Aliases from your old bash.nix
+      # Aliases from bash.nix
       vim = "nvim";
       rebuild = "sudo nixos-rebuild switch --flake path:${flakePath}#$(hostname)";
       update = "sudo nixos-rebuild switch --upgrade --flake path:${flakePath}#$(hostname)";
       hms = "home-manager switch --flake ${flakePath}#$(hostname)";
 
-      # Alias from your python.nix
+      # Alias from python.nix
       conda = "micromamba";
-    };
 
-    # This sets up the micromamba hook for fish
+      # Aliases from dotnet.nix
+      dn = "dotnet";
+      db = "dotnet build";
+      dr = "dotnet run";
+      dt = "dotnet test";
+    };
+    # Sets up the micromamba hook for fish
     interactiveShellInit = ''
       eval "$(${pkgs.micromamba}/bin/micromamba shell hook --shell fish)"
     '';
   };
-
-  # Set fish as the default shell for your user
-  users.defaultUserShell = pkgs.fish;
 }

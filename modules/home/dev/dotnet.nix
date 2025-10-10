@@ -25,12 +25,4 @@ in
     DOTNET_NOLOGO = "1";                 # mute first-run banner/notice
     DOTNET_ROOT = "${sdk}";              # lets global tools/IDEs find the SDK
   };
-
-  # Optional quality-of-life aliases
-  programs.bash.shellAliases = {
-    dn = "dotnet";
-    db = "dotnet build";
-    dr = "dotnet run";
-    dt = "dotnet test";
-  };
 }
