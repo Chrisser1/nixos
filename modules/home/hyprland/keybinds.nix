@@ -9,6 +9,7 @@ in {
       "${mod}, S, exec, ${pkgs.firefox}/bin/firefox"
       "${mod} SHIFT, C, killactive"
       "${mod}, Q, exec, ${terminal}"
+      "${mod}, U, exec, powermenu"
       "${mod}, Space, togglefloating,"
       "${mod}, R, exec, ${pkgs.wofi}/bin/wofi --show drun"
       "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"

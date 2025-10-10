@@ -16,6 +16,9 @@
     # Hyprland split
     ./hyprland/core.nix
     ./hyprland/keybinds.nix
+    
+    # Users
+    ./powermenu.nix
 
     # Visuals
     ./waybar.nix
