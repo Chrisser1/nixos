@@ -23,8 +23,9 @@
     # Reliable theme hook through kitty-themes
     themeFile = "Catppuccin-Mocha";
 
-    # (Optional) prompt/URL handlers etc.
-    # shellIntegration.enableBashIntegration = true;
-    shellIntegration.enableFishIntegration = true;
+    shellIntegration = {
+      enableFishIntegration = lib.mkIf (config.my.shell == "fish") true;
+      enableBashIntegration = lib.mkIf (config.my.shell == "bash") true;
+    };
   };
 }

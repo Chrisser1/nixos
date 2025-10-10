@@ -10,8 +10,6 @@
     # Terminal
     ./terminal/kitty.nix
     ./terminal/starship.nix
-    # ./terminal/bash.nix
-    ./terminal/fish.nix
 
     # Hyprland split
     ./hyprland/core.nix
@@ -32,9 +30,7 @@
 
     # Developer stuff
     ./dev/python.nix
-    ./dev/dotnet.nix
     ./dev/vscode.nix
-    ./dev/chisel.nix
 
     # Network management
     ./networkmanager-dmenu.nix

@@ -1,10 +1,21 @@
-{ config, pkgs, ... }:
-
+{ 
+  config, 
+  pkgs,
+  lib, 
+  ... 
+}:
+let
+  shellIntegrationConfig =
+    if config.my.shell == "fish"
+    then { enableFishIntegration = true; }
+    else { enableBashIntegration = true; };
+in
 {
   programs.starship = {
     enable = true;
-    # enableBashIntegration = true;
-    enableFishIntegration = true;
+
+    shellIntegrationConfig
+    
     settings = builtins.fromTOML ''
         "$schema" = 'https://starship.rs/config-schema.json'
 

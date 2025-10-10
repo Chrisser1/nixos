@@ -9,8 +9,6 @@ let
   passwordHash = "$6$fVHOWpCZkfMidTuo$EFKQAqNuBzvUDl4hxACBbZzgYYO18yBw6/u.e8nIjHckpgFqmHRj4qh/UjrxKyH2lzUNQU41FcYaX3T0Jm1j70";
 in
 {
-  programs.fish.enable = true;
-  
   # Github token for private repos
   nix.settings.access-tokens = "github.com=${secrets.githubToken}";
   
@@ -72,20 +70,28 @@ in
   # Printing
   services.printing.enable = true;
 
+  users.groups.nixos-admins = {};
+
   # Users
   users.users.chris = {
     isNormalUser = true;
     description = "chris";
-    extraGroups = [ "wheel" "networkmanager" "docker" "audio" "video" "input" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "audio" "video" "input" "nixos-admins" ];
     hashedPassword = passwordHash;
-    shell = pkgs.fish;
+    shell =
+      if config.home-manager.users.chris.my.shell == "fish"
+      then pkgs.fish
+      else pkgs.bash;
   };
   users.users.work = {
     isNormalUser = true;
     description = "work";
-    extraGroups = [ "wheel" "networkmanager" "docker" "audio" "video" "input" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "audio" "video" "input" "nixos-admins" ];
     hashedPassword = passwordHash;
-    shell = pkgs.fish;
+    shell =
+      if config.home-manager.users.work.my.shell == "fish"
+      then pkgs.fish
+      else pkgs.bash;
   };
 
   # Optional: explicit, though sudo is enabled by default on NixOS

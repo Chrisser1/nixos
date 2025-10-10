@@ -38,14 +38,7 @@ let
   # Optional apps
   extras = with pkgs; [
     discord
-    prismlauncher
     spotify
-
-    # JetBrains IDEs
-    jetbrains.clion
-    jetbrains.rider
-    steam-run # Needed for live share
-    jetbrains-toolbox
   ];
 in {
   home.packages = base ++ extras;
