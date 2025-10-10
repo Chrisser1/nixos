@@ -27,6 +27,7 @@
     # Sets up the micromamba hook for fish
     interactiveShellInit = ''
       eval "$(${pkgs.micromamba}/bin/micromamba shell hook --shell fish)"
+      set fish_greeting ""
     '';
   };
 }
