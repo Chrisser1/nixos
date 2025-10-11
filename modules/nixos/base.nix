@@ -96,26 +96,9 @@ in
       else pkgs.bash;
   };
 
-  # Optional: explicit, though sudo is enabled by default on NixOS
   security.sudo.enable = true;
-
-  # Unfree (for NVIDIA, Spotify, etc.)
-  nixpkgs.config.allowUnfree = true;
-
-  # Keep system packages minimal; GUI apps live in Home-Manager
   environment.systemPackages = with pkgs; [
     htop
     home-manager
   ];
-
-  programs.nix-ld = {
-    enable = true;
-    # a few extra libs that Python packages commonly need:
-    libraries = with pkgs; [
-      stdenv.cc.cc          # glibc + libstdc++
-      zlib
-      libffi
-      openssl
-    ];
-  };
 }

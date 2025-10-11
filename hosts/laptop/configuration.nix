@@ -13,44 +13,29 @@
     ./hardware-configuration.nix
   ];
 
-  # # --- NVIDIA (safe defaults for Hyprland) ---
   nixpkgs.config.allowUnfree = true;
-  # services.xserver.videoDrivers = [ "nvidia" ]; # loads the kernel module
-  # hardware.nvidia = {
-  #   modesetting.enable = true;
-  #   open = true;                           # open kernel module (Ada supported)
-  #   nvidiaSettings = true;
-  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
-  #   powerManagement.enable = false;        # leave off on desktops/VM passthrough; flip on if needed
-  # };
-  
+
   environment.sessionVariables = {
     USE_WAYLAND_GRIM = "1";
     NIXOS_OZONE_WL = "1"; # required per nixos wiki page on VS Code
     _JAVA_AWT_WM_NONREPARENTING = "1"; 
     _JAVA_OPTIONS = "-Dawt.toolkit.name=WLToolkit"; # Important for JetBrains IDEs
-    # # NVIDIA + wlroots helpers (uncomment/tweak if needed)
-    # LIBVA_DRIVER_NAME = "nvidia";     # with nvidia-vaapi-driver
-    # GBM_BACKEND = "nvidia-drm";
-    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    # # WLR_NO_HARDWARE_CURSORS = "1";  # only if you see cursor glitches
   };
 
   # Bootloader
-  # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.devices = [ "nodev" ];
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true;
+  boot.loader.grub = {
+    enable = true;
+    devices = [ "nodev" ];
+    efiSupport = true;
+    useOSProber = true;
+    gfxmodeEfi = "1920x1080";
+    fontSize = 24;
+  };
+  boot.kernelParams = [ "video=1024x768" ];
 
-  # # Bootloader (VM example)
-  # boot.loader.grub.enable = true;
-  # boot.loader.grub.device = "/dev/vda";
-
-  # configuration.nix or your host module
-  hardware.bluetooth.enable = true;
   # optional GUI:
+  hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
   # For virtualbox
