@@ -13,8 +13,6 @@ in
 {
   programs.starship = {
     enable = true;
-
-    shellIntegrationConfig
     
     settings = builtins.fromTOML ''
         "$schema" = 'https://starship.rs/config-schema.json'
@@ -239,5 +237,5 @@ in
         vimcmd_replace_symbol = '[](bold fg:blue)'
         vimcmd_visual_symbol = '[](bold fg:red)'
     '';
-    };
+    } // shellIntegrationConfig;
 }

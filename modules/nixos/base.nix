@@ -9,6 +9,8 @@ let
   passwordHash = "$6$fVHOWpCZkfMidTuo$EFKQAqNuBzvUDl4hxACBbZzgYYO18yBw6/u.e8nIjHckpgFqmHRj4qh/UjrxKyH2lzUNQU41FcYaX3T0Jm1j70";
 in
 {
+  programs.fish.enable = true;
+
   # Github token for private repos
   nix.settings.access-tokens = "github.com=${secrets.githubToken}";
   
