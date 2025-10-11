@@ -9,6 +9,7 @@ let
     };
 in 
 {
+    ss
     services.displayManager.sddm = {
         enable = true;
         wayland = {
