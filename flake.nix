@@ -69,7 +69,7 @@
             home-manager.users.work = {
               imports = [
                 ./users/work/home.nix
-                ./hosts/pc/home.nix
+                ./hosts/laptop/home.nix
               ];
             };
           }
