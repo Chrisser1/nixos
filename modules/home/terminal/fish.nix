@@ -25,6 +25,8 @@
         db = "dotnet build";
         dr = "dotnet run";
         dt = "dotnet test";
+
+        ssh = "kitten ssh";
       };
       # Sets up the micromamba hook for fish
       interactiveShellInit = ''
