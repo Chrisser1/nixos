@@ -1,4 +1,3 @@
-# modules/home/dev/python.nix
 { 
     pkgs, 
     config, 

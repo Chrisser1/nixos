@@ -13,5 +13,6 @@
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4.1",
   "terminal.integrated.inheritEnv": false,
-  "git.enableSmartCommit": true
+  "git.enableSmartCommit": true,
+  "jdk.telemetry.enabled": true
 }

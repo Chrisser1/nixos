@@ -14,7 +14,6 @@ in {
       "${mod}, R, exec, ${pkgs.wofi}/bin/wofi --show drun"
       "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       "${mod}, E, exec, ${fm}"
-      "${mod} SHIFT, P, exec, shutdown now"
       "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://github.com/Chrisser1"
       "${mod}, L, exec, ${pkgs.firefox}/bin/firefox https://learn.inside.dtu.dk/d2l/home"
       "${mod} SHIFT, L, exec, ${pkgs.firefox}/bin/firefox https://studieplan.dtu.dk/"
