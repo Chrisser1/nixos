@@ -17,5 +17,6 @@
   home.packages = with pkgs; [
     tailscale
     dconf
+    dbeaver-bin
   ];
 }
