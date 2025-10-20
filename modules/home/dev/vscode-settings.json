@@ -1,11 +1,4 @@
 {
-  "java.configuration.runtimes": [
-    {
-      "name": "JavaSE-17",
-      "path": "C:\\Program Files\\Java\\jdk-17.0.4",
-      "default": true
-    }
-  ],
   "disable-hardware-acceleration": true,
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000,
@@ -14,5 +7,12 @@
   "gitlens.ai.vscode.model": "copilot:gpt-4.1",
   "terminal.integrated.inheritEnv": false,
   "git.enableSmartCommit": true,
-  "jdk.telemetry.enabled": true
+  "jdk.telemetry.enabled": true,
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-17",
+      "path": "C:\\Program Files\\Java\\jdk-17.0.4",
+      "default": true
+    }
+  ]
 }

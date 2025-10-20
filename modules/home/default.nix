@@ -29,7 +29,6 @@
     ./firefox.nix
 
     # Developer stuff
-    ./dev/python.nix
     ./dev/vscode.nix
 
     # Network management
