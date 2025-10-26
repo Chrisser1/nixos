@@ -11,13 +11,3 @@
 ```bash
 nmcli con add type wifi con-name "DTUsecure" ssid "DTUsecure" 802-1x.identity "USERNAME" 802-1x.password "PASSWORD" 802-1x.eap "peap" 802-1x.phase2-auth "mschapv2"
 ```
-
-# Python environment
-To download a python environment use:
-```bash
-nix-shell -E 'with import <nixpkgs> {}; (pkgs.buildFHSEnv { name = "fhs"; }).env'
-```
-and then
-```bash
-micromamba env create -f environment.yml
-```
