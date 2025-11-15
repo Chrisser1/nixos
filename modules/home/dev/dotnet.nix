@@ -1,17 +1,12 @@
-# modules/home/dev/dotnet.nix
 { pkgs, config, lib, ... }:
 let
-  # Pick your SDK here:
-  #   pkgs.dotnet-sdk     -> latest in your channel
-  #   pkgs.dotnet-sdk_8   -> .NET 8 LTS
-  #   pkgs.dotnet-sdk_9   -> .NET 9 (if present in your channel)
   sdk = pkgs.dotnet-sdk_9;
 in
 {
-  # Core CLI (SDK includes the runtime)
+  # Core CLI
   home.packages = [
     sdk
-    pkgs.nuget        # optional: NuGet CLI alongside `dotnet restore`
+    pkgs.nuget
   ];
 
   # Make .NET global tools usable everywhere (`~/.dotnet/tools`)

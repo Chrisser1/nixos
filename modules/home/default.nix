@@ -27,6 +27,7 @@
     ./git.nix
     ./hyprshot.nix
     ./firefox.nix
+    ./nautilus.nix
 
     # Developer stuff
     ./dev/vscode.nix
