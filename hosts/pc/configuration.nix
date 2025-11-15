@@ -46,6 +46,7 @@
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     # WLR_NO_HARDWARE_CURSORS = "1";  # only if you see cursor glitches
+    ADW_DISABLE_PORTAL = "1";
   };
 
   # Bootloader (add what you actually use on the PC)

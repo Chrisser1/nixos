@@ -18,5 +18,8 @@
     tailscale
     dconf
     dbeaver-bin
+
+    gnome-online-accounts
+    gnome-control-center
   ];
 }

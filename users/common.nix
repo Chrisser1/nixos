@@ -29,8 +29,33 @@
       stateVersion = "25.05";
     };
 
-    dconf.settings."org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
+
+    gtk = {
+      gtk3 = {
+        extraConfig = {
+          gtk-application-prefer-dark-theme = 1;
+        };
+      };
+
+      gtk4 = {
+        extraConfig = {
+          gtk-application-prefer-dark-theme = 1;
+        };
+      };
+    };
+
+    qt = {
+      enable = true;
+      platformTheme.name = "Adwaita-dark";
+      style = {
+        name = "Adwaita-dark";
+        package = pkgs.adwaita-qt;
+      };
     };
   };
 }

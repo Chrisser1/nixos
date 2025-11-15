@@ -27,6 +27,7 @@ let
     zip
     unzip
     direnv
+    dbus
   ];
   
   
