@@ -25,6 +25,9 @@
     # Notes
     obsidian
 
+    # Minecraft
+    prismlauncher
+
     # Jet
     jetbrains.clion
     jetbrains.rider
