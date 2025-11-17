@@ -18,5 +18,7 @@
     tailscale
     dconf
     dbeaver-bin
+
+    rclone
   ];
 }

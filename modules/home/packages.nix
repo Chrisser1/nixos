@@ -14,14 +14,10 @@ let
     hyprshot
     hyprlock
 
-    nautilus
-    gvfs
-
-    obsidian
-
     # For waybar click to get wifi
     networkmanager_dmenu
 
+    # Bluetooth support
     bluez
     bluez-tools
 
@@ -31,6 +27,7 @@ let
     zip
     unzip
     direnv
+    dbus
   ];
   
   

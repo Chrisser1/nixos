@@ -10,6 +10,7 @@ let
 in
 {
   programs.fish.enable = true;
+  programs.dconf.enable = true;
 
   # Github token for private repos
   nix.settings.access-tokens = "github.com=${secrets.githubToken}";
@@ -100,5 +101,6 @@ in
   environment.systemPackages = with pkgs; [
     htop
     home-manager
+    gnome-themes-extra
   ];
 }

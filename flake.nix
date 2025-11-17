@@ -107,7 +107,7 @@
         ];
       };
     };
-
+  
     # Standalone Home Manager configurations
     homeConfigurations = {
       laptop = home-manager.lib.homeManagerConfiguration {
