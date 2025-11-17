@@ -4,7 +4,7 @@
 }:
 {
   home.packages = with pkgs; [
-    jdk17
+    jdk21
     sbt 
     gtkwave
     surfer 
@@ -12,6 +12,6 @@
   ];
 
   home.sessionVariables = {
-      JAVA_HOME = "${pkgs.jdk17}";
+      JAVA_HOME = "${pkgs.jdk21}";
   };
 }

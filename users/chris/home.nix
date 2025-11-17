@@ -3,8 +3,6 @@
     ... 
 }:
 {
-
-
   # Pull in your shared HM stack (kitty, starship, hyprland, waybar, etc.)
   imports = [
     ../common.nix
