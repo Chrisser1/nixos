@@ -8,6 +8,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +33,14 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+      overlays = [
+        inputs.nix-vscode-extensions.overlays.default
+      ];
+    };
     
     # Import the secrets file here at the top level
     secrets = import ./secrets.nix;
@@ -55,10 +64,16 @@
           home-manager.nixosModules.home-manager
           {
             networking.hostName = "laptop";
+
+            nixpkgs.overlays = [
+              inputs.nix-vscode-extensions.overlays.default
+            ];
             
             # Make HM see the same args as your homeConfigurations (esp. `inputs`)
             home-manager.extraSpecialArgs = commonArgs;
             home-manager.useUserPackages = true;
+
+            home-manager.useGlobalPkgs = true;
             
             home-manager.users.chris = {
               imports = [
@@ -87,9 +102,15 @@
           home-manager.nixosModules.home-manager
           {
             networking.hostName = "pc";
+
+            nixpkgs.overlays = [
+              inputs.nix-vscode-extensions.overlays.default
+            ];
             
             home-manager.extraSpecialArgs = commonArgs;
             home-manager.useUserPackages = true;
+
+            home-manager.useGlobalPkgs = true;
             
             home-manager.users.chris = {
               imports = [

@@ -22,7 +22,6 @@
   };
 
   config = {
-    nixpkgs.config.allowUnfree = true;
     xdg.mimeApps.defaultApplications."x-scheme-handler/jetbrains" = "jetbrains-toolbox.desktop";
 
     home = {
