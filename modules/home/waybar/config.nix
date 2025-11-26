@@ -8,11 +8,11 @@ in
   mainBar = {
     position = "top";
     layer = "top";
-    height = 18;
+    height = 24;
     margin-top = 0;
     margin-bottom = 0;
-    margin-left = 10;
-    margin-right = 10;
+    margin-left = 0;
+    margin-right = 0;
     
     # Left: Hardware stats
     "modules-left" = [ 

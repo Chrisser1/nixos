@@ -15,6 +15,7 @@ in {
     libnotify
     scripts.wpctlSinkMenu
     scripts.wallpaperLabel
+    scripts.wallpaperPicker
   ];
 
   programs.waybar = {

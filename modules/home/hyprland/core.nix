@@ -116,7 +116,6 @@
       # Base autostart: host files can append with lib.mkAfter
       exec-once = [
         "${pkgs.waybar}/bin/waybar"
-        "wpaperd -d"
       ];
 
       input = {

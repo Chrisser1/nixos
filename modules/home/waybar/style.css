@@ -8,8 +8,9 @@
 }
 
 window#waybar {
-    background: transparent;
+    background-color: rgba(23, 23, 23, 1);
     color: @text;
+    border-bottom: 2px solid @bg0;
 }
 
 /* --- The Pill Containers --- */
@@ -20,8 +21,8 @@ window#waybar {
 #tools,
 #mpris {
     background-color: @bg0;
-    padding: 4px 10px;      /* Standard padding for all pills */
-    margin: 4px 4px;        /* Spacing between pills */
+    padding: 4px 10px;
+    margin: 4px 4px;
     border-radius: 20px;
     border: 1px solid @subtext0;
 }
@@ -38,6 +39,12 @@ window#waybar {
 #battery { color: @green; }
 #battery.warning { color: @orange; }
 #battery.critical { color: @red; }
+
+/* Wallpaper Module */
+#custom-wallpaper {
+    color: @subtext1; /* Light grey/blue text */
+    padding-left: 8px;
+}
 
 /* Ensure internal modules don't have their own background */
 #hardware *, 
@@ -57,20 +64,23 @@ window#waybar {
 
 /* Power Button */
 #custom-power {
+    background: transparent; 
+    border: none;            
+    border-radius: 0;
     color: @red;
-    padding: 0 10px;    /* Use horizontal padding only */
-    margin-right: 10px; /* Space from edge */
-    min-width: 20px;    /* Force a minimum width to help centering */
-    font-size: 16px;    /* Slightly larger icon */
+    padding: 0 10px;    
+    margin-right: 10px;
+    min-width: 20px;
+    font-size: 16px;
 }
 
 /* Spotify (MPRIS) Style */
 #mpris {
-    color: @green;      /* Spotify Green-ish look */
+    color: @green;
 }
 
 #mpris.paused {
-    color: @subtext0;   /* Dimmed when paused */
+    color: @subtext0;
 }
 
 /* --- Workspaces --- */

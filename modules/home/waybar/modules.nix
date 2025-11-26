@@ -22,6 +22,7 @@
       "network#eth"
       "pulseaudio"
       "battery"
+      "custom/wallpaper"
     ];
   };
 
@@ -83,6 +84,15 @@
     format = "{icon} {capacity}%";
     "format-charging" = " {capacity}%";
     "format-icons" = [ "" "" "" "" "" ];
+  };
+
+  "custom/wallpaper" = {
+    exec = "${scripts.wallpaperLabel}/bin/waybar-wallpaper-label";
+    "return-type" = "text";
+    interval = 2;
+    format = "  {}";
+    # Opens the popup menu
+    "on-click" = "${scripts.wallpaperPicker}/bin/wallpaper-picker"; 
   };
 
   # --- Media ---
