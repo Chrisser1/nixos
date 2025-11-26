@@ -26,6 +26,7 @@
 
     home = {
       stateVersion = "25.05";
+      enableNixpkgsReleaseCheck = false;
     };
 
     dconf.settings = {
