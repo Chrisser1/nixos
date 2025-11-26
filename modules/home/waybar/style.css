@@ -55,7 +55,7 @@ window#waybar {
     padding: 4px 14px;
 }
 
-/* Power Button Centering Fix */
+/* Power Button */
 #custom-power {
     color: @red;
     padding: 0 10px;    /* Use horizontal padding only */
