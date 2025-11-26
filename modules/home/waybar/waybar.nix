@@ -16,6 +16,8 @@ in {
     scripts.wpctlSinkMenu
     scripts.wallpaperLabel
     scripts.wallpaperPicker
+    scripts.getWatts
+    scripts.launchWaybar
   ];
 
   programs.waybar = {

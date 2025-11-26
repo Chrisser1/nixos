@@ -4,6 +4,9 @@
     lib, 
     ... 
 }:
+let
+  scripts = import ../waybar/scripts.nix { inherit pkgs; };
+in
 {
   # Cursor theme across Wayland + XWayland
   home.pointerCursor = {
@@ -115,7 +118,7 @@
 
       # Base autostart: host files can append with lib.mkAfter
       exec-once = [
-        "${pkgs.waybar}/bin/waybar"
+        "pkill waybar || true; sleep 0.5; ${scripts.launchWaybar}/bin/launch-waybar"
       ];
 
       input = {

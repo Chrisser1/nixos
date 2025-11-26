@@ -31,7 +31,7 @@ window#waybar {
 #disk { color: @orange; }
 #cpu { color: @blue; }
 #memory { color: @green; }
-#custom-gpu { color: @purple; }
+#custom-gpu { color: @text; }
 
 /* --- Tools Colors --- */
 #network { color: @blue; }
@@ -39,6 +39,7 @@ window#waybar {
 #battery { color: @green; }
 #battery.warning { color: @orange; }
 #battery.critical { color: @red; }
+#custom-watts { color: @red; }
 
 /* Wallpaper Module */
 #custom-wallpaper {
@@ -58,7 +59,7 @@ window#waybar {
 
 /* --- Standalone Modules --- */
 #clock {
-    color: @purple;
+    color: @text;
     padding: 4px 14px;
 }
 

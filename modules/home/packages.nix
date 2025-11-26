@@ -1,5 +1,9 @@
 { pkgs, lib, ... }:
 let
+  btop-nvidia = pkgs.btop.override {
+    cudaSupport = true;
+  };
+
   base = with pkgs; [
     # Terminal + shell
     fastfetch
@@ -28,7 +32,11 @@ let
     unzip
     direnv
     dbus
-    btop
+    jq
+    bc
+
+    # System monitors
+    btop-nvidia
   ];
   
   

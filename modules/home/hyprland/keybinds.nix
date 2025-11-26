@@ -3,6 +3,7 @@ let
   terminal = "${pkgs.kitty}/bin/kitty";
   mod = "SUPER";
   fm = "${pkgs.nautilus}/bin/nautilus";
+  scripts = import ../waybar/scripts.nix { inherit pkgs; };
 in {
   wayland.windowManager.hyprland.settings = {
     bind = [
@@ -17,7 +18,7 @@ in {
       "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://github.com/Chrisser1"
       "${mod}, L, exec, ${pkgs.firefox}/bin/firefox https://learn.inside.dtu.dk/d2l/home"
       "${mod} SHIFT, L, exec, ${pkgs.firefox}/bin/firefox https://studieplan.dtu.dk/"
-      "${mod} SHIFT, R, exec, pkill waybar && waybar"
+      "${mod} SHIFT, R, exec, pkill waybar || true; sleep 0.5; ${scripts.launchWaybar}/bin/launch-waybar"
 
       # Toggle a window into/out of a group
       "${mod}, G, togglegroup"
