@@ -1,0 +1,101 @@
+@import "mocha.css";
+
+* {
+    font-family: "CaskaydiaCove Nerd Font", monospace;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: @text;
+}
+
+/* --- The Pill Containers --- */
+#clock,
+#custom-power,
+#workspaces,
+#hardware, 
+#tools,
+#mpris {
+    background-color: @bg0;
+    padding: 4px 10px;      /* Standard padding for all pills */
+    margin: 4px 4px;        /* Spacing between pills */
+    border-radius: 20px;
+    border: 1px solid @subtext0;
+}
+
+/* --- Hardware Colors --- */
+#disk { color: @orange; }
+#cpu { color: @blue; }
+#memory { color: @green; }
+#custom-gpu { color: @purple; }
+
+/* --- Tools Colors --- */
+#network { color: @blue; }
+#pulseaudio { color: @yellow; }
+#battery { color: @green; }
+#battery.warning { color: @orange; }
+#battery.critical { color: @red; }
+
+/* Ensure internal modules don't have their own background */
+#hardware *, 
+#tools * {
+    background: transparent;
+    padding: 0 6px;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+}
+
+/* --- Standalone Modules --- */
+#clock {
+    color: @purple;
+    padding: 4px 14px;
+}
+
+/* Power Button Centering Fix */
+#custom-power {
+    color: @red;
+    padding: 0 10px;    /* Use horizontal padding only */
+    margin-right: 10px; /* Space from edge */
+    min-width: 20px;    /* Force a minimum width to help centering */
+    font-size: 16px;    /* Slightly larger icon */
+}
+
+/* Spotify (MPRIS) Style */
+#mpris {
+    color: @green;      /* Spotify Green-ish look */
+}
+
+#mpris.paused {
+    color: @subtext0;   /* Dimmed when paused */
+}
+
+/* --- Workspaces --- */
+#workspaces button {
+    padding: 0 6px;
+    background: transparent;
+    color: @subtext0;
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+#workspaces button:not(.empty) {
+    color: @cyan; 
+}
+
+#workspaces button.active {
+    color: @purple; 
+}
+
+#workspaces button.urgent {
+    color: @red;
+}
+
+#workspaces button:hover {
+    background: transparent;
+    color: @text; 
+}

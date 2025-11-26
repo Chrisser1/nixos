@@ -28,6 +28,7 @@ let
     unzip
     direnv
     dbus
+    btop
   ];
   
   

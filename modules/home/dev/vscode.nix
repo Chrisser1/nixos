@@ -31,12 +31,12 @@ let
 in
 {
   programs.vscode = {
+    
     enable = true;
     package = pkgs.vscode;
 
     profiles = {
       default = {
-        enableExtensionUpdateCheck = false;
         extensions = commonExtensions;
       };
 
@@ -75,16 +75,26 @@ in
       # Ensure the directory exists
       mkdir -p "$PROFILE_DIR"
 
+      if [ -L "$PROFILE_DIR/settings.json" ]; then
+        echo "Removing read-only symlink for settings in $PROFILE_DIR"
+        rm -f "$PROFILE_DIR/settings.json"
+      fi
+
       # Copy Settings if missing
       if [ ! -f "$PROFILE_DIR/settings.json" ]; then
-        echo "Bootstrapping VS Code settings for $PROFILE_DIR"
+        echo "Bootstrapping settings for $PROFILE_DIR"
         cp -f "$SETTINGS_SOURCE" "$PROFILE_DIR/settings.json"
         chmod u+w "$PROFILE_DIR/settings.json"
       fi
 
+      if [ -L "$PROFILE_DIR/keybindings.json" ]; then
+        echo "Removing read-only symlink for keybindings in $PROFILE_DIR"
+        rm -f "$PROFILE_DIR/keybindings.json"
+      fi
+
       # Copy Keybindings if missing
       if [ ! -f "$PROFILE_DIR/keybindings.json" ]; then
-        echo "Bootstrapping VS Code keybindings for $PROFILE_DIR"
+        echo "Bootstrapping keybindings for $PROFILE_DIR"
         cp -f "$KEYS_SOURCE" "$PROFILE_DIR/keybindings.json"
         chmod u+w "$PROFILE_DIR/keybindings.json"
       fi

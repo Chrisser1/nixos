@@ -19,7 +19,7 @@
     ./powermenu.nix
 
     # Visuals
-    ./waybar.nix
+    ./waybar/waybar.nix
     ./wofi.nix
     ./wpaperd.nix
 

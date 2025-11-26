@@ -1,4 +1,5 @@
 {
+  "extensions.autoCheckUpdates": false,
   "disable-hardware-acceleration": true,
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000,
