@@ -31,6 +31,7 @@
 
     # Developer stuff
     ./dev/vscode.nix
+    ./dev/search.nix
 
     # Network management
     ./networkmanager-dmenu.nix
