@@ -61,7 +61,9 @@ in
 
       Cpp = {
         extensions = commonExtensions ++ (with marketplace; [
-          ms-vscode.cpptools-extension-pack
+          ms-vscode.cpptools
+          ms-vscode.cmake-tools
+          ms-vscode.cpptools-themes
         ]);
       };
     };
