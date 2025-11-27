@@ -2,9 +2,6 @@
 let
   marketplace = pkgs.vscode-marketplace;
 
-  # commonSettings = lib.importJSON ./vscode-settings.json;
-  # commonKeybindings = lib.importJSON ./vscode-keybindings.json;
-
   commonExtensions = with marketplace; [
     bbenoist.nix
     docker.docker
@@ -27,11 +24,11 @@ let
     streetsidesoftware.code-spell-checker
     tomoki1207.pdf
     usernamehw.errorlens
+    yzane.markdown-pdf
   ];
 in
 {
   programs.vscode = {
-    
     enable = true;
     package = pkgs.vscode;
 
@@ -41,7 +38,6 @@ in
       };
 
       Go = {
-        # Concatenate common extensions with Go-specific ones
         extensions = commonExtensions ++ (with marketplace; [
           bradlc.vscode-tailwindcss
           golang.go
@@ -60,6 +56,12 @@ in
           ms-toolsai.jupyter-renderers
           ms-toolsai.vscode-jupyter-cell-tags
           ms-toolsai.vscode-jupyter-slideshow
+        ]);
+      };
+
+      Cpp = {
+        extensions = commonExtensions ++ (with marketplace; [
+          ms-vscode.cpptools-extension-pack
         ]);
       };
     };
@@ -108,5 +110,8 @@ in
 
     # Bootstrap Python Profile
     bootstrap_profile "${config.home.homeDirectory}/.config/Code/User/profiles/Python"
+
+    # Bootstrap C Profile
+    bootstrap_profile "${config.home.homeDirectory}/.config/Code/User/profiles/Cpp"
   '';
 }
