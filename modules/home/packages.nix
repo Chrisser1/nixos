@@ -26,6 +26,8 @@ let
     bluez-tools
 
     # Utils
+    ocrmypdf
+    libreoffice
     wget
     git-lfs
     zip

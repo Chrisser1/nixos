@@ -21,8 +21,6 @@
 
     rclone
     fuse3
-
-    libreoffice
   ];
 
   xdg.userDirs = {
