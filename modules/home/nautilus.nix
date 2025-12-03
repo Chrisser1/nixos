@@ -14,6 +14,11 @@
         libheif             # For .heic/.avif image thumbnails
     ];
 
-    # Set Nautilus as the default file manager
-    xdg.mimeApps.defaultApplications."inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "inode/directory" = [ "org.gnome.Nautilus.desktop" ];
+        "application/pdf" = [ "org.kde.okular.desktop" ];
+      };
+    };
 }
