@@ -9,6 +9,9 @@ let
     fastfetch
     tmux
 
+    # PostgreSQL
+    dbeaver-bin
+
     # wallpapers + helpers
     wpaperd          # you exec it in Hyprland
     playerctl

@@ -17,7 +17,6 @@
   home.packages = with pkgs; [
     tailscale
     dconf
-    dbeaver-bin
 
     rclone
     fuse3
