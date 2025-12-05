@@ -13,6 +13,7 @@ in {
       "${mod}, U, exec, powermenu"
       "${mod}, Space, togglefloating,"
       "${mod}, R, exec, ${pkgs.wofi}/bin/wofi --show drun"
+      "ALT, SPACE, exec, ${pkgs.wofi}/bin/wofi --show drun"
       "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       "${mod}, E, exec, ${fm}"
       "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://github.com/Chrisser1"

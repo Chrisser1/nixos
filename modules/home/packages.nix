@@ -27,6 +27,7 @@ let
 
     # Utils
     ocrmypdf
+    pandoc
     libreoffice
     wget
     git-lfs
