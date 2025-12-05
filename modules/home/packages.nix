@@ -25,9 +25,12 @@ let
     bluez
     bluez-tools
 
+    # PDF and document handling
+    pandoc
+    texlive.combined.scheme-small
+    
     # Utils
     ocrmypdf
-    pandoc
     libreoffice
     wget
     git-lfs
