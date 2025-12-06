@@ -28,6 +28,9 @@
     # Minecraft
     prismlauncher
 
+    # Offline wikipedia reader
+    kiwix
+
     # Jet
     jetbrains.clion
     jetbrains.rider
