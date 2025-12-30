@@ -24,7 +24,6 @@ let
     streetsidesoftware.code-spell-checker
     tomoki1207.pdf
     usernamehw.errorlens
-    yzane.markdown-pdf
   ];
 in
 {

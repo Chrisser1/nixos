@@ -56,14 +56,4 @@
   boot.loader.grub.devices = [ "nodev" ];
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
-
-  # For virtualbox
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;  
-  users.extraGroups.vboxusers.members = [ "chris" ];
-  environment.etc."vbox/networks.conf".text = ''
-    * 192.168.0.0/16
-  '';
-  # Prevent KVM from loading to allow VirtualBox to use hardware virtualization
-  boot.blacklistedKernelModules = [ "kvm_amd" "kvm" ];
 }
