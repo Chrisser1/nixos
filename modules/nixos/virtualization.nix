@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   # For virtualbox
   virtualisation.virtualbox.host.enable = true;
