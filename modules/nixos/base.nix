@@ -52,6 +52,11 @@ in
   networking.networkmanager.enable = true;
   services.tailscale.enable = true;
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 9001 ];
+  };
+
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
