@@ -34,7 +34,7 @@ let
     
     # Utils
     ocrmypdf
-    # libreoffice
+    libreoffice
     wget
     git-lfs
     zip
