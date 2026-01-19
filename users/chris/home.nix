@@ -10,6 +10,7 @@
     ../../modules/home/dev/dotnet.nix
     # ../../modules/home/dev/chisel.nix
     ../../modules/home/dev/java.nix
+    # ../../modules/home/dev/go.nix
   ];
 
   home = {
