@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     go
+    gcc
     gopls   # Go Language Server
     delve   # Debugger
     gotools # Additional tools (goimports, etc.)
