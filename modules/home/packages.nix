@@ -9,6 +9,9 @@ let
     fastfetch
     tmux
 
+    # Python
+    micromamba
+
     # PostgreSQL
     dbeaver-bin
 

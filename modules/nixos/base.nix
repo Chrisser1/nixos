@@ -12,6 +12,21 @@ in
   programs.fish.enable = true;
   programs.dconf.enable = true;
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    glib
+    xorg.libX11
+    xorg.libXext
+    xorg.libXrender
+    xorg.libICE
+    xorg.libSM
+    libGL
+    glib
+    openssl
+  ];
+
   # Github token for private repos
   nix.settings.access-tokens = "github.com=${secrets.githubToken}";
   
