@@ -6,6 +6,7 @@
   imports = [
     ../common.nix
     ../../modules/home/dev/go.nix
+    ../../modules/home/dev/javascript.nix
   ];
 
   home = {
