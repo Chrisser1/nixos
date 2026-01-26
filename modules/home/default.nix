@@ -18,6 +18,7 @@
     
     # Users
     ./powermenu.nix
+    ./hyprlock.nix
 
     # Visuals
     ./waybar/waybar.nix
