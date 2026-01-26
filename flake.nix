@@ -48,8 +48,7 @@
       ];
     };
     
-    # Import the secrets file here at the top level
-    secrets = import ./secrets.nix;
+    secrets = import "/home/chris/nixos/secrets.nix";
 
     commonArgs = {
       inherit inputs;
