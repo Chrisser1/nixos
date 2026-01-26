@@ -5,49 +5,43 @@ let
   };
 
   base = with pkgs; [
-    # Terminal + shell
+    # --- System Utilities ---
     fastfetch
     tmux
-
-    # Python
-    micromamba
-
-    # PostgreSQL
-    dbeaver-bin
-
-    # wallpapers + helpers
-    wpaperd          # you exec it in Hyprland
-    playerctl
-    brightnessctl
-
-    # screenshots/lock from your binds
-    hyprshot
-    hyprlock
-
-    # For waybar click to get wifi
-    networkmanager_dmenu
-
-    # Bluetooth support
-    bluez
-    bluez-tools
-
-    # PDF and document handling
-    pandoc
-    texlive.combined.scheme-small
-    
-    # Utils
-    ocrmypdf
-    libreoffice
     wget
-    git-lfs
     zip
     unzip
-    direnv
     dbus
     jq
     bc
+    fd              # Faster 'find'
+    ripgrep         # Faster 'grep'
+    tldr            # Simpler 'man' pages
+    tree            # Directory visualization
+    
+    # --- Connectivity ---
+    networkmanager_dmenu
+    bluez
+    bluez-tools
 
-    # System monitors
+    # --- Document Handling ---
+    pandoc
+    poppler-utils
+    texlive.combined.scheme-small
+    ocrmypdf
+    libreoffice
+
+    # --- Media / Visuals ---
+    wpaperd
+    playerctl
+    brightnessctl
+
+    # --- Nix Tools ---
+    nh
+    nix-output-monitor
+    nix-tree
+
+    # --- Monitoring ---
     btop-nvidia
   ];
   

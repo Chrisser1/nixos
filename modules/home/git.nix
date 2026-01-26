@@ -1,6 +1,7 @@
 {
 	programs.git = {
 		enable = true;
+		lfs.enable = true;
 		settings = {
 			user = {
 				name = "Chrisser1";
@@ -12,4 +13,15 @@
 			};
 		};
 	};
+
+	programs.lazygit = {
+    enable = true;
+    settings = {
+      gui.theme = {
+        activeBorderColor = [ "#7F0909" "bold" ];
+        inactiveBorderColor = [ "#a6adc8" ];
+        selectedLineBgColor = [ "#2B2B2B" ];
+      };
+    };
+  };
 }

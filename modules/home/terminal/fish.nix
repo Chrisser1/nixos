@@ -20,8 +20,9 @@
       in {
         # Aliases from bash.nix
         vim = "nvim";
-        rebuild = "sudo nixos-rebuild switch --flake path:${flakePath}#$(hostname)";
-        update = "sudo nixos-rebuild switch --upgrade --flake path:${flakePath}#$(hostname)";
+        rebuild = "nh os switch ~/nixos"; 
+        update = "nh os switch ~/nixos --update";
+        clean = "nh clean all --keep 3";
         hms = "home-manager switch --flake ${flakePath}#$(hostname)";
 
         # Aliases from dotnet.nix

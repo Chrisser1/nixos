@@ -33,6 +33,7 @@ let
 in
 {
   home.packages = [
+    hyprlock
     powermenu
     powerMenuPkgs
   ];

@@ -6,8 +6,6 @@ let
     ripgrep-all
     fzf
     bat
-    poppler-utils
-    pandoc
     ffmpeg
     kdePackages.okular
   ];
