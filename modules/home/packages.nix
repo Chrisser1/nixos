@@ -43,6 +43,9 @@ let
 
     # --- Monitoring ---
     btop-nvidia
+
+    # --- Sound ---
+    easyeffects
   ];
   
   

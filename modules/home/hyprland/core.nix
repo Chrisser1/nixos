@@ -119,6 +119,7 @@ in
       # Base autostart: host files can append with lib.mkAfter
       exec-once = [
         "pkill waybar || true; sleep 0.5; ${scripts.launchWaybar}/bin/launch-waybar"
+        "easyeffects --gapplication-service"
       ];
 
       input = {
@@ -131,7 +132,7 @@ in
           natural_scroll = true;
         };
       };
-
+      
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
