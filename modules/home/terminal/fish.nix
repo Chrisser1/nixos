@@ -20,8 +20,8 @@
       in {
         # Aliases from bash.nix
         vim = "nvim";
-        rebuild = "nh os switch ~/nixos"; 
-        update = "nh os switch ~/nixos --update";
+        rebuild = "nh os switch ~/nixos -- --impure";
+        update = "nh os switch ~/nixos --update -- --impure";
         clean = "nh clean all --keep 3";
         hms = "home-manager switch --flake ${flakePath}#$(hostname)";
 
