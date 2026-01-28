@@ -81,9 +81,14 @@ in {
   wallpaperPicker = pkgs.writeShellScriptBin "wallpaper-picker" ''
     #!/usr/bin/env bash
     set -euo pipefail
+    
+    # Constants
     BASE_DIR="$HOME/.config/backgrounds"
     TARGET_DIR="$HOME/.local/state/wpaperd/selected"
+    THUMB_DIR="/tmp/wallpaper-thumbs"
+    mkdir -p "$THUMB_DIR"
     
+    # Select Theme (Text only, folders don't need previews)
     if [ -z "$(find "$BASE_DIR" -mindepth 1 -maxdepth 1 -type d)" ]; then
       notify-send "Error" "No theme folders found in $BASE_DIR"
       exit 1
@@ -92,13 +97,40 @@ in {
     THEME=$(find "$BASE_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%P\n' | sort | rofi -dmenu -p "Select Theme")
     [[ -z "$THEME" ]] && exit 0
     
-    SELECTION=$(ls -1 "$BASE_DIR/$THEME" | rofi -dmenu -p "Select Wallpaper")
+    # Select Wallpaper (With Image Previews)
+    SELECTION=$(
+        # Loop through images in the theme folder
+        for img_path in "$BASE_DIR/$THEME"/*; do
+            # Get just the filename (e.g. "forest.jpg")
+            filename=$(basename "$img_path")
+            
+            # Skip if directory or not a file
+            [ -f "$img_path" ] || continue
+            
+            # Create a unique thumbnail path (Theme_Filename.png)
+            # This avoids conflicts if two themes have "background.jpg"
+            thumb="$THUMB_DIR/''${THEME}_''${filename}.png"
+            
+            # Generate thumbnail if it doesn't exist
+            if [ ! -f "$thumb" ]; then
+                ${pkgs.imagemagick}/bin/magick "$img_path" "$thumb"
+            fi
+            
+            # Output: "Filename" + Icon Path
+            echo -en "$filename\0icon\x1f$thumb\n"
+        done | rofi -dmenu -show-icons -p "Select Wallpaper" \
+             -theme-str 'element-icon { size: 128px; }' \
+             -theme-str 'listview { lines: 5; }'
+    )
+    
     [[ -z "$SELECTION" ]] && exit 0
     
+    # Apply Selection
     mkdir -p "$TARGET_DIR"
     rm -f "$TARGET_DIR"/*
     FULL_PATH="$BASE_DIR/$THEME/$SELECTION"
     EXT="''${SELECTION##*.}"
+    
     ln -sf "$FULL_PATH" "$TARGET_DIR/wallpaper.$EXT"
     systemctl --user restart wpaperd.service
     notify-send "Wallpaper" "Changed to $THEME/$SELECTION"

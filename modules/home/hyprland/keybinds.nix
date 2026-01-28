@@ -21,7 +21,7 @@ in {
       "${mod} SHIFT, L, exec, ${pkgs.firefox}/bin/firefox https://studieplan.dtu.dk/"
       "${mod} SHIFT, R, exec, pkill waybar || true; sleep 0.5; ${scripts.launchWaybar}/bin/launch-waybar"
 
-      "${mod}, V, exec, cliphist-rofi"
+      "${mod}, V, exec, berserk-clipboard"
 
       # Toggle a window into/out of a group
       "${mod}, G, togglegroup"
