@@ -12,8 +12,8 @@ in {
       "${mod}, Q, exec, ${terminal}"
       "${mod}, U, exec, powermenu"
       "${mod}, Space, togglefloating,"
-      "${mod}, R, exec, ${pkgs.wofi}/bin/wofi --show drun"
-      "ALT, SPACE, exec, ${pkgs.wofi}/bin/wofi --show drun"
+      "${mod}, R, exec, rofi -show drun"
+      "ALT, SPACE, exec, rofi -show drun"
       "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       "${mod}, E, exec, ${fm}"
       "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://github.com/Chrisser1"
@@ -21,7 +21,7 @@ in {
       "${mod} SHIFT, L, exec, ${pkgs.firefox}/bin/firefox https://studieplan.dtu.dk/"
       "${mod} SHIFT, R, exec, pkill waybar || true; sleep 0.5; ${scripts.launchWaybar}/bin/launch-waybar"
 
-      "${mod}, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+      "${mod}, V, exec, cliphist-rofi"
 
       # Toggle a window into/out of a group
       "${mod}, G, togglegroup"

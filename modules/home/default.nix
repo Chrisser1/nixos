@@ -22,7 +22,8 @@
 
     # Visuals
     ./waybar/waybar.nix
-    ./wofi.nix
+    # ./wofi.nix
+    ./rofi.nix
     ./wpaperd.nix
 
     # Utilities

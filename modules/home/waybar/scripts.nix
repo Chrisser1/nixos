@@ -78,7 +78,6 @@ in {
     fi
   '';
 
-  # ... (Keep wallpaperPicker, wallpaperLabel, wpctlSinkMenu same as before) ...
   wallpaperPicker = pkgs.writeShellScriptBin "wallpaper-picker" ''
     #!/usr/bin/env bash
     set -euo pipefail
@@ -89,9 +88,11 @@ in {
       notify-send "Error" "No theme folders found in $BASE_DIR"
       exit 1
     fi
-    THEME=$(find "$BASE_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%P\n' | sort | wofi --dmenu -p "Select Theme")
+    
+    THEME=$(find "$BASE_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%P\n' | sort | rofi -dmenu -p "Select Theme")
     [[ -z "$THEME" ]] && exit 0
-    SELECTION=$(ls -1 "$BASE_DIR/$THEME" | wofi --dmenu -p "Select Wallpaper")
+    
+    SELECTION=$(ls -1 "$BASE_DIR/$THEME" | rofi -dmenu -p "Select Wallpaper")
     [[ -z "$SELECTION" ]] && exit 0
     
     mkdir -p "$TARGET_DIR"
@@ -131,7 +132,9 @@ in {
       exit 1
     fi
     MENU=$(printf "%s\n" "''${SINKS[@]}" | cut -d"|" -f2)
-    CHOICE=$(printf "%s\n" "$MENU" | wofi --dmenu -i -p "Switch output to:" --lines 10)
+    
+    CHOICE=$(printf "%s\n" "$MENU" | rofi -dmenu -p "Audio Output")
+    
     [[ -z "$CHOICE" ]] && exit 0
     ID=$(printf "%s\n" "''${SINKS[@]}" | grep -F -m1 "|$CHOICE" | cut -d"|" -f1)
     wpctl set-default "$ID"

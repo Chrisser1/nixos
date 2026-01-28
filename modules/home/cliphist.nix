@@ -1,24 +1,33 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
+let 
+  cliphistRofi = pkgs.writeShellScriptBin "cliphist-rofi" ''
+    #!/usr/bin/env bash
+    tmp_dir="/tmp/cliphist-thumbs"
+    mkdir -p "$tmp_dir"
+
+    # Feed cliphist content to Rofi with icons
+    cliphist list | while read -r line; do
+        id=$(echo "$line" | cut -d ' ' -f 1)
+        
+        if [[ "$line" == *"[Binary data"* ]]; then
+            # Extract image for preview
+            img="$tmp_dir/$id.png"
+            if [ ! -f "$img" ]; then
+                cliphist decode "$id" > "$img"
+            fi
+            echo -en "$line\0icon\x1f$img\n"
+        else
+            echo "$line"
+        fi
+    done | rofi -dmenu -show-icons -p "Clipboard" -display-columns 2 | cliphist decode | wl-copy
+  '';
+in
 {
-  systemd.user.services = lib.mkForce {
-    cliphist = {
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
+  home.packages = [ cliphistRofi ];
 
-      Unit = {
-        Description = "Clipboard history \"manager\" for wayland";
-        Documentation = [ "https://github.com/sentriz/cliphist" ];
-        After = [ "graphical-session.target" ];
-      };
-
-      Service = {
-        Type = "exec";
-        ExecStart = "${pkgs.wl-clipboard-rs}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist -max-items 10 store";
-        ExecCondition = "${pkgs.systemd}/lib/systemd/systemd-xdg-autostart-condition \"Hyprland\" \"\" ";
-        Restart = "on-failure";
-        Slice = "app-graphical.slice";
-      };
-    };
+  # Configure the Service
+  services.cliphist = {
+    enable = true;
+    allowImages = true; 
   };
 }
