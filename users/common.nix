@@ -36,16 +36,60 @@
     };
 
     gtk = {
+      enable = true;
+      
+      # Set a base Dark Theme
+      theme = {
+        name = "Adwaita-dark";
+        package = pkgs.gnome-themes-extra;
+      };
+
       gtk3 = {
         extraConfig = {
           gtk-application-prefer-dark-theme = 1;
         };
+        
+        extraCss = ''
+          /* Berserk Window Backgrounds */
+          window, headerbar, .titlebar, dialog {
+            background-color: #171717; /* bg2 */
+            color: #EDE6DB;            /* text */
+          }
+
+          /* Content Backgrounds (lists, inputs) */
+          view, list, row, entry, textview {
+            background-color: #2B2B2B; /* bg0 */
+            color: #EDE6DB;            /* text */
+          }
+
+          /* Borders and Highlights */
+          button, entry {
+            border: 1px solid #7F0909; /* red */
+          }
+
+          /* Selected Items */
+          row:selected, list:selected, selection {
+            background-color: #33ccffee; /* red */
+            color: #FFFFFF;
+          }
+
+          /* Text Colors */
+          label {
+            color: #EDE6DB;
+          }
+        '';
       };
 
       gtk4 = {
         extraConfig = {
           gtk-application-prefer-dark-theme = 1;
         };
+        extraCss = ''
+          window, headerbar, .titlebar, dialog { background-color: #171717; color: #EDE6DB; }
+          view, list, row, entry { background-color: #2B2B2B; color: #EDE6DB; }
+          button, entry { border: 1px solid #33ccffee; }
+          row:selected, list:selected, selection { background-color: #33ccffee; color: #FFFFFF; }
+        '';
       };
     };
 

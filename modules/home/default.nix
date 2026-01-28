@@ -30,6 +30,7 @@
     ./hyprshot.nix
     ./firefox.nix
     ./nautilus.nix
+    ./cliphist.nix
 
     # Developer stuff
     ./dev/vscode.nix

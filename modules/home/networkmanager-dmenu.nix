@@ -1,20 +1,37 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }: 
 {
   home.packages = [ pkgs.networkmanager_dmenu ];
 
-  # Configure the visual settings
+  # Define a separate config for the WiFi menu
+  xdg.configFile."wofi/config-wifi".text = ''
+    width=300
+    height=400
+    prompt=Networks
+    filter_rate=100
+    allow_markup=true
+    no_actions=true
+    halign=fill
+    orientation=vertical
+    content_halign=fill
+    insensitive=true
+    allow_images=true
+    image_size=24
+    gtk_dark=true
+  '';
+
+  # Configure networkmanager_dmenu
   xdg.configFile."networkmanager-dmenu/config.ini".text = ''
     [dmenu]
-    dmenu_command = wofi --dmenu --prompt "Wifi Networks"
+    # Point wofi to the custom config we just made
+    dmenu_command = wofi --dmenu --conf ${config.home.homeDirectory}/.config/wofi/config-wifi
     compact = True
     pinentry = wofi --dmenu --prompt "Password" --password
     
-    # Custom colors for the wifi signal bars
-    # Using standard icons for signal strength
     wifi_icons = 󰤯󰤟󰤢󰤥󰤨
 
     [editor]
     terminal = kitty
     gui_if_available = True
+    gui = nm-connection-editor
   '';
 }

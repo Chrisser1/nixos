@@ -21,6 +21,7 @@ let
     
     # --- Connectivity ---
     networkmanager_dmenu
+    networkmanagerapplet
     bluez
     bluez-tools
 
