@@ -1,30 +1,47 @@
-{ 
-  pkgs, 
-  ... 
-}:
+{ pkgs, ... }:
 let
-  powerMenuPkgs = pkgs.lightdm;
-  
+  # Define the script
   powermenu = pkgs.writeShellScriptBin "powermenu" ''
-    #!${pkgs.bash}/bin/bash
-    OPTIONS="Switch User\nLogout\nShutdown\nReboot\nLock"
-    CHOICE=$(echo -e "$OPTIONS" | wofi --dmenu --prompt "Power Menu")
+    #!/usr/bin/env bash
+    
+    # 1. Define Options using 'printf' for safety
+    # We construct the list first so we can pipe it cleanly
+    # \x00 = Null Byte (End of text, start of options)
+    # \x1f = Unit Separator (End of key, start of value)
+    
+    entries="Lock\x00icon\x1fsystem-lock-screen\n"
+    entries+="Logout\x00icon\x1fsystem-log-out\n"
+    entries+="Suspend\x00icon\x1fsystem-suspend\n"
+    entries+="Reboot\x00icon\x1fsystem-reboot\n"
+    entries+="Shutdown\x00icon\x1fsystem-shutdown\n"
+    entries+="Switch User\x00icon\x1fsystem-users\n"
+    
+    # 2. Pipe to Rofi
+    selected=$(printf "$entries" | rofi -dmenu -p "Power Menu" \
+                  -theme-str 'window { width: 400px; }' \
+                  -theme-str 'listview { lines: 6; }' \
+                  -theme-str 'element-icon { size: 48px; }' \
+                  -theme-str 'mainbox { children: [ "listview" ]; }')
 
-    case "$CHOICE" in
-      "Switch User")
-        ${powerMenuPkgs}/bin/dm-tool switch-to-greeter
+    # 3. Handle Selection
+    case "$selected" in
+      "Lock")
+        pidof hyprlock || hyprlock
         ;;
-      Logout)
+      "Logout")
         hyprctl dispatch exit
         ;;
-      Shutdown)
-        shutdown now
+      "Suspend")
+        systemctl suspend
         ;;
-      Reboot)
-        reboot
+      "Reboot")
+        systemctl reboot
         ;;
-      Lock)
-        hyprlock
+      "Shutdown")
+        systemctl poweroff
+        ;;
+      "Switch User")
+        ${pkgs.lightdm}/bin/dm-tool switch-to-greeter
         ;;
       *)
         ;;
@@ -34,6 +51,6 @@ in
 {
   home.packages = [
     powermenu
-    powerMenuPkgs
+    pkgs.lightdm
   ];
 }
