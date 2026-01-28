@@ -35,6 +35,7 @@ window#waybar {
 
 /* --- Tools Colors --- */
 #network { color: @blue; }
+#network.disconnected { color: #f38ba8; }
 #pulseaudio { color: @yellow; }
 #battery { color: @green; }
 #battery.warning { color: @orange; }

@@ -60,7 +60,8 @@
     format = "{ifname}";
     "format-wifi" = "  {signalStrength}%";
     "format-ethernet" = "󰈀  ⬇{bandwidthDownBytes} ⬆{bandwidthUpBytes}";
-    "format-disconnected" = ""; # Hides if no connection
+    "format-disconnected" = "󰤭  Disconnected"; 
+
     "tooltip-format" = "{ifname} via {gwaddr}";
     "tooltip-format-wifi" = "{essid} ({signalStrength}%)";
     "tooltip-format-ethernet" = "{ifname} ";

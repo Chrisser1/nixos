@@ -1,9 +1,10 @@
+{ pkgs, ... }:
 {
   programs.wofi = {
     enable = true;
     settings = {
       width = 600;
-      height = 300;
+      height = 400;
       location = "center";
       show = "drun";
       prompt = "Search...";
@@ -16,31 +17,62 @@
       insensitive = true;
       allow_images = true;
       image_size = 24;
+      gtk_dark = true;
     };
+    
+
     style = ''
       * {
-        font: "Fira Code 12";
+        font-family: "CaskaydiaCove Nerd Font";
+        font-size: 14px;
+        font-weight: bold;
       }
 
       #window {
-        background-color: #282a36;
-        color: #f8f8f2;
-        border-radius: 10px;
+        background-color: #0e0e0e; /* Deep Black */
+        color: #cdd6f4;
+        border: 2px solid #880808; /* Berserk Red Border */
+        border-radius: 0px; /* Sharp corners */
       }
 
       #input {
-        background-color: #44475a;
-        color: #f8f8f2;
+        background-color: #1a1a1a;
+        color: #ffffff;
+        border: 1px solid #880808;
+        margin: 10px;
+        padding: 10px;
+        border-radius: 0px;
+      }
+
+      #inner-box {
+        margin: 10px;
+      }
+
+      #outer-box {
+        margin: 5px;
         border: none;
-        padding: 8px;
+        background-color: #0e0e0e;
+      }
+
+      #scroll {
+        margin: 0px;
+        border: none;
+      }
+
+      #text {
+        margin: 5px;
+        border: none;
+        color: #cdd6f4;
       }
 
       #entry:selected {
-        background-color: #44475a;
+        background-color: #880808; /* Red selection background */
+        color: #ffffff;
+        border-radius: 0px;
       }
 
       #text:selected {
-        color: #f8f8f2;
+        color: #ffffff;
       }
     '';
   };
