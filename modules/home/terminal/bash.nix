@@ -12,15 +12,18 @@
         flakePath = "$HOME/nixos";
       in {
         vim = "nvim";
-        rebuild = "sudo nixos-rebuild switch --flake path:${flakePath}#$(hostname)";
-        update = "sudo nixos-rebuild switch --upgrade --flake path:${flakePath}#$(hostname)";
+        rebuild = "nh os switch ~/nixos -- --impure";
+        update = "nh os switch ~/nixos --update -- --impure";
+        clean = "nh clean all --keep 3";
         hms = "home-manager switch --flake ${flakePath}#$(hostname)";
-      };
-    };
 
-    programs.direnv = {
-      enable = true;
-      nix-direnv.enable = true;
+        dn = "dotnet";
+        db = "dotnet build";
+        dr = "dotnet run";
+        dt = "dotnet test";
+
+        ssh = "kitten ssh";
+      };
     };
   };
 }

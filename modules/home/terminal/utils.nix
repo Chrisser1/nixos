@@ -20,4 +20,10 @@
     enable = true;
     config.theme = "Dracula"; 
   };
+
+  # Automatic environment loading
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 }

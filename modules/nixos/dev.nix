@@ -5,13 +5,13 @@
     ... 
 }:
 {
-  ##### Docker (rootless) – enable only if you use it
+  # Docker (rootless)
   virtualisation.docker.rootless = {
     enable = true;
     setSocketVariable = true;
   };
 
-  ##### NVF (Neovim config)
+  # NVF (Neovim config)
   programs.nvf = {
     enable = true;
     defaultEditor = true;

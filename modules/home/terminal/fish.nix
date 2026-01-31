@@ -18,14 +18,12 @@
       shellAliases = let
         flakePath = "$HOME/nixos";
       in {
-        # Aliases from bash.nix
         vim = "nvim";
         rebuild = "nh os switch ~/nixos -- --impure";
         update = "nh os switch ~/nixos --update -- --impure";
         clean = "nh clean all --keep 3";
         hms = "home-manager switch --flake ${flakePath}#$(hostname)";
 
-        # Aliases from dotnet.nix
         dn = "dotnet";
         db = "dotnet build";
         dr = "dotnet run";
