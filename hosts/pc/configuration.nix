@@ -56,4 +56,8 @@
   boot.loader.grub.devices = [ "nodev" ];
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
+
+  # optional GUI:
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 }
