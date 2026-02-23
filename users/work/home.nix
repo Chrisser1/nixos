@@ -31,8 +31,8 @@
     createDirectories = true;
     # We can just list our mount points here
     extraConfig = {
-      XDG_SHAREPOINT_TEAM_DIR = "$HOME/WavepistonTeamFolder";
-      XDG_SHAREPOINT_DATA_DIR = "$HOME/WavepistonDataWarehouse";
+      SHAREPOINT_TEAM = "$HOME/WavepistonTeamFolder";
+      SHAREPOINT_DATA = "$HOME/WavepistonDataWarehouse";
     };
   };
 

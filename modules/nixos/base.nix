@@ -17,11 +17,11 @@ in
     stdenv.cc.cc.lib
     zlib
     glib
-    xorg.libX11
-    xorg.libXext
-    xorg.libXrender
-    xorg.libICE
-    xorg.libSM
+    libX11
+    libXext
+    libXrender
+    libICE
+    libSM
     libGL
     glib
     openssl
