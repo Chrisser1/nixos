@@ -29,7 +29,7 @@ let
     pandoc
     poppler-utils
     texlive.combined.scheme-small
-    ocrmypdf
+    # ocrmypdf
     libreoffice
 
     # --- Media / Visuals ---
