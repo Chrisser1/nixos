@@ -39,5 +39,6 @@
     jetbrains.rider
     steam-run
     jetbrains-toolbox
+    jetbrains.goland
   ];
 }
