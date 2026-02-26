@@ -14,6 +14,7 @@ let
     dbus
     jq
     bc
+    gdu             # Disk usage analyzer
     fd              # Faster 'find'
     ripgrep         # Faster 'grep'
     tldr            # Simpler 'man' pages

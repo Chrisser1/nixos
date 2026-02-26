@@ -21,7 +21,13 @@
         vim = "nvim";
         rebuild = "nh os switch ~/nixos -- --impure";
         update = "nh os switch ~/nixos --update -- --impure";
+
+        # File cleaning utils
         clean = "nh clean all --keep 3";
+        usage = "gdu /";
+        store-map = "nix-tree -- /run/current-system";
+        roots = "nix-store --gc --print-roots | grep -v '/proc/'";
+
         hms = "home-manager switch --flake ${flakePath}#$(hostname)";
 
         dn = "dotnet";
