@@ -23,7 +23,7 @@
         update = "nh os switch ~/nixos --update -- --impure";
 
         # File cleaning utils
-        clean = "nh clean all --keep 3";
+        clean = "nh clean all --keep 3 && rm -rf ~/.local/share/Trash/*";
         usage = "gdu /";
         store-map = "nix-tree -- /run/current-system";
         roots = "nix-store --gc --print-roots | grep -v '/proc/'";
