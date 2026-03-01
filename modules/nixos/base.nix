@@ -124,4 +124,9 @@ in
     home-manager
     gnome-themes-extra
   ];
+
+  # USB auto-mounting
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+  services.devmon.enable = true;
 }

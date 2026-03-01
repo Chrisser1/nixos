@@ -14,6 +14,7 @@ let
     dbus
     jq
     bc
+    vlc
     gdu             # Disk usage analyzer
     fd              # Faster 'find'
     ripgrep         # Faster 'grep'
