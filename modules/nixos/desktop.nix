@@ -16,10 +16,12 @@ in
     xwayland.enable = true;
   };
 
+  services.xserver.enable = true;
+
   services.displayManager = {
     sddm = {
       enable = true;
-      wayland.enable = true;
+      wayland.enable = false;
       autoNumlock = true;
       enableHidpi = true;
       package = pkgs.kdePackages.sddm;
