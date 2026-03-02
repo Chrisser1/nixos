@@ -32,7 +32,7 @@ let
     poppler-utils
     texlive.combined.scheme-small
     # ocrmypdf
-    libreoffice
+    libreoffice-fresh
 
     # --- Media / Visuals ---
     wpaperd
