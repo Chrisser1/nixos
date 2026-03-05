@@ -148,27 +148,4 @@ in {
       echo "?"
     fi
   '';
-
-  wpctlSinkMenu = pkgs.writeShellScriptBin "wpctl-sink-menu" ''
-    #!/usr/bin/env bash
-    set -euo pipefail
-    mapfile -t SINKS < <(wpctl status | awk '
-      /Sinks:/   {ins=1; next}
-      /Sources:/ {ins=0}
-      ins && match($0, /[[:space:]]\*?[[:space:]]*([0-9]+)\.\s+(.*)$/, m) {
-        print m[1] "|" m[2]
-      }
-    ')
-    if [[ ''${#SINKS[@]} -eq 0 ]]; then
-      notify-send "Audio" "No sinks found"
-      exit 1
-    fi
-    MENU=$(printf "%s\n" "''${SINKS[@]}" | cut -d"|" -f2)
-    
-    CHOICE=$(printf "%s\n" "$MENU" | rofi -dmenu -p "Audio Output")
-    
-    [[ -z "$CHOICE" ]] && exit 0
-    ID=$(printf "%s\n" "''${SINKS[@]}" | grep -F -m1 "|$CHOICE" | cut -d"|" -f1)
-    wpctl set-default "$ID"
-  '';
 }

@@ -74,7 +74,8 @@
     format = "{icon} {volume}%";
     "format-muted" = "";
     "format-icons" = { default = [ "" "" "" ]; };
-    "on-click" = "${scripts.wpctlSinkMenu}/bin/wpctl-sink-menu";
+    "on-click" = "pavucontrol";
+    "on-click-right" = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
   };
 
   battery = {

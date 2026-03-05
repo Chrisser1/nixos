@@ -10,7 +10,6 @@ in {
   home.packages = with pkgs; [
     pavucontrol 
     libnotify
-    scripts.wpctlSinkMenu
     scripts.wallpaperLabel
     scripts.wallpaperPicker
     scripts.getWatts
