@@ -125,6 +125,9 @@ in
     gnome-themes-extra
   ];
 
+  # Set time for windows and linux to agree
+  time.hardwareClockInLocalTime = true;
+
   # USB auto-mounting
   services.gvfs.enable = true;
   services.udisks2.enable = true;
