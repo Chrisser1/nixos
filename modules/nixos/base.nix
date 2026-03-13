@@ -69,7 +69,7 @@ in
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 9001 ];
+    allowedTCPPorts = [ 9001 6000 ];
   };
 
   # Fonts
