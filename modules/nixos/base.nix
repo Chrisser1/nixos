@@ -127,9 +127,12 @@ in
 
   # Set time for windows and linux to agree
   time.hardwareClockInLocalTime = true;
+  services.timesyncd.enable = true;
 
   # USB auto-mounting
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.devmon.enable = true;
+
+  programs.fuse.userAllowOther = true;
 }
