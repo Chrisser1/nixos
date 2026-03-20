@@ -126,7 +126,7 @@ in
   ];
 
   # Set time for windows and linux to agree
-  time.hardwareClockInLocalTime = true;
+  time.hardwareClockInLocalTime = false;
   services.timesyncd.enable = true;
 
   # USB auto-mounting
