@@ -72,5 +72,7 @@
     # Set time for windows and linux to agree
     time.hardwareClockInLocalTime = false;
     services.timesyncd.enable = true;
+
+    services.upower.enable = true;
   };
 }
