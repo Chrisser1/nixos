@@ -7,7 +7,7 @@ let
     docker.docker
     eamodio.gitlens
     formulahendry.docker-explorer
-    github.copilot
+    GitHub.copilot-chat
     github.vscode-github-actions
     h5web.vscode-h5web
     hediet.vscode-drawio
