@@ -17,10 +17,12 @@
     # NIRI
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs; 
+
+      passthru.providedSessions = [ "niri" ];
+
       settings = {
         spawn-at-startup = [
-          # Launch Noctalia automatically
-          { command = [ (lib.getExe self'.packages.myNoctalia) ]; }
+          (lib.getExe self'.packages.myNoctalia)
         ];
         
         # System mapping
@@ -32,8 +34,8 @@
           gaps = 2; 
           border = {
             width = 2;
-            active.color = "#880808";   # rgba(880808ff)
-            inactive.color = "#595959"; # rgba(595959ff)
+            active-color = "#880808";   
+            inactive-color = "#595959"; 
           };
         };
 

@@ -53,8 +53,6 @@
     hardware.bluetooth.enable = true;
     services.blueman.enable = true;
 
-    programs.fish.enable = true;
-
     # User config
     users.users.chris = let 
       passwordHash = "$6$fVHOWpCZkfMidTuo$EFKQAqNuBzvUDl4hxACBbZzgYYO18yBw6/u.e8nIjHckpgFqmHRj4qh/UjrxKyH2lzUNQU41FcYaX3T0Jm1j70";
@@ -63,6 +61,7 @@
       description = "Chris";
       extraGroups = [ "networkmanager" "wheel" "video" "audio" ];
       shell = pkgs.fish;
+      hashedPassword = passwordHash;
     };
 
     users.users.work = let 
@@ -72,6 +71,7 @@
       description = "Work";
       extraGroups = [ "networkmanager" "video" "audio" ];
       shell = pkgs.fish;
+      hashedPassword = passwordHash;
     };
   };
 }

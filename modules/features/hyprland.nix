@@ -20,7 +20,12 @@
     terminal = "${pkgs.kitty}/bin/kitty";
     mod = "SUPER";
     fm = "${pkgs.nautilus}/bin/nautilus";
+
+    noctalia-pkg = self.packages.${pkgs.stdenv.hostPlatform.system}.myNoctalia;
+    noctalia = "${noctalia-pkg}/bin/noctalia-shell";
   in {
+    home.packages = [ noctalia-pkg ];    
+
     home.pointerCursor = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
@@ -122,7 +127,7 @@
         ];
         
         exec-once = [
-          "pkill waybar || true; sleep 0.5; launch-waybar"
+          "${noctalia}"
         ];
         
         input = {
@@ -148,18 +153,22 @@
             "${mod}, S, exec, ${pkgs.firefox}/bin/firefox"
             "${mod} SHIFT, C, killactive"
             "${mod}, Q, exec, ${terminal}"
-            "${mod}, U, exec, powermenu"
             "${mod}, Space, togglefloating,"
-            "${mod}, R, exec, rofi -show drun"
-            "ALT, SPACE, exec, rofi -show drun"
+
+            # Map the exact plugin IPC command here once you find it
+            "${mod} SHIFT, S, exec, ${noctalia} ipc call plugin togglePanel screen-shot-and-record"
+            "${mod}, U, exec, ${noctalia} ipc call sessionMenu toggle"
+            "${mod}, V, exec, ${noctalia} ipc call launcher clipboard"
+            "${mod}, R, exec, ${noctalia} ipc call launcher toggle"
+            "ALT, SPACE, exec, ${noctalia} ipc call launcher toggle"
+
             "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
             "${mod}, E, exec, ${fm}"
             "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://github.com/Chrisser1"
             "${mod}, L, exec, ${pkgs.firefox}/bin/firefox https://learn.inside.dtu.dk/d2l/home"
             "${mod} SHIFT, L, exec, ${pkgs.firefox}/bin/firefox https://studieplan.dtu.dk/"
-            "${mod} SHIFT, R, exec, pkill waybar || true; sleep 0.5; launch-waybar"
+            # "${mod} SHIFT, R, exec, pkill waybar || true; sleep 0.5; launch-waybar"
 
-            "${mod}, V, exec, berserk-clipboard"
 
             "${mod}, G, togglegroup"
             "${mod}, TAB, changegroupactive, f"

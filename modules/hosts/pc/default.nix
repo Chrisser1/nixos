@@ -21,6 +21,7 @@ in {
       self.nixosModules.feature-core-packages
       self.nixosModules.feature-fonts
       self.nixosModules.feature-sddm
+      self.nixosModules.feature-terminal
 
       # Include your external flake modules
       inputs.nvf.nixosModules.default
@@ -38,15 +39,14 @@ in {
           
           # Windows manager and related packages
           self.homeModules.feature-hyprland
-          self.homeModules.feature-waybar
+          # self.homeModules.feature-waybar
 
           # Everyday use
           self.homeModules.feature-firefox
           self.homeModules.feature-terminal
           self.homeModules.feature-starship
           self.homeModules.feature-git
-          self.homeModules.feature-rofi
-          self.homeModules.feature-desktop-addons
+          # self.homeModules.feature-rofi
           self.homeModules.feature-nautilus
           self.homeModules.feature-clipboard
           self.homeModules.feature-appearance
@@ -59,15 +59,14 @@ in {
 
           # Windows manager and related packages
           self.homeModules.feature-hyprland
-          self.homeModules.feature-waybar
+          # self.homeModules.feature-waybar
           
           # Everyday use
           self.homeModules.feature-firefox
           self.homeModules.feature-terminal
           self.homeModules.feature-starship
           self.homeModules.feature-git
-          self.homeModules.feature-rofi
-          self.homeModules.feature-desktop-addons
+          # self.homeModules.feature-rofi
           self.homeModules.feature-nautilus
           self.homeModules.feature-clipboard
           self.homeModules.feature-appearance
