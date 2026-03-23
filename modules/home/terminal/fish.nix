@@ -12,7 +12,7 @@
       interactiveShellInit = ''
         set -gx MAMBA_EXE "${pkgs.micromamba}/bin/micromamba"
         set -gx MAMBA_ROOT_PREFIX "$HOME/micromamba"
-        $MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
+        eval "$($MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX)"
       '';
 
       shellAliases = let
