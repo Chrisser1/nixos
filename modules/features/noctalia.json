@@ -42,7 +42,7 @@
           "showMemoryUsage": true,
           "showNetworkStats": true,
           "showSwapUsage": false,
-          "textColor": "secondary",
+          "textColor": "tertiary",
           "useMonospaceFont": true,
           "usePadding": false
         },
@@ -59,7 +59,7 @@
           "maxWidth": 145,
           "scrollingMode": "hover",
           "showIcon": true,
-          "textColor": "none",
+          "textColor": "primary",
           "useFixedWidth": false
         },
         {
@@ -149,6 +149,10 @@
           "id": "Clock",
           "tooltipFormat": "HH:mm ddd, MMM dd",
           "useCustomFont": false
+        },
+        {
+          "iconColor": "none",
+          "id": "WallpaperSelector"
         },
         {
           "colorizeDistroLogo": false,
