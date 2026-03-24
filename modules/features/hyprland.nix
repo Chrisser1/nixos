@@ -149,61 +149,58 @@
             animate_mouse_windowdragging = false;
         };
 
-        bind = [
+        bind = let
+          # Automatically generate workspace binds 1 through 9 for your specific plugin
+          woworkspaces = map (n: "${mod}, ${toString n}, split-workspace, ${toString n}") [1 2 3 4 5 6 7 8 9];
+          moveworkspaces = map (n: "${mod} SHIFT, ${toString n}, split-movetoworkspace, ${toString n}") [1 2 3 4 5 6 7 8 9];
+        in [
+            # Apps & Shell
             "${mod}, S, exec, ${pkgs.firefox}/bin/firefox"
             "${mod} SHIFT, C, killactive"
             "${mod}, Q, exec, ${terminal}"
             "${mod}, Space, togglefloating,"
+            "${mod}, E, exec, ${fm}"
 
-            # Map the exact plugin IPC command here once you find it
+            # Noctalia IPC Binds
             "${mod} SHIFT, S, exec, ${noctalia} ipc call plugin togglePanel screen-shot-and-record"
             "${mod}, U, exec, ${noctalia} ipc call sessionMenu toggle"
             "${mod}, V, exec, ${noctalia} ipc call launcher clipboard"
             "${mod}, R, exec, ${noctalia} ipc call launcher toggle"
             "ALT, SPACE, exec, ${noctalia} ipc call launcher toggle"
-
             "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-            "${mod}, E, exec, ${fm}"
+
+            # Web Bookmarks
             "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://github.com/Chrisser1"
             "${mod}, L, exec, ${pkgs.firefox}/bin/firefox https://learn.inside.dtu.dk/d2l/home"
             "${mod} SHIFT, L, exec, ${pkgs.firefox}/bin/firefox https://studieplan.dtu.dk/"
-            # "${mod} SHIFT, R, exec, pkill waybar || true; sleep 0.5; launch-waybar"
 
-
+            # Groups
             "${mod}, G, togglegroup"
             "${mod}, TAB, changegroupactive, f"
             "${mod}  SHIFT, TAB, changegroupactive, b"
             "${mod}, F, moveoutofgroup"
-        
-            "${mod}, 1, split-workspace, 1"
-            "${mod}, 2, split-workspace, 2"
-            "${mod}, 3, split-workspace, 3"
-            "${mod}, 4, split-workspace, 4"
-            "${mod}, 5, split-workspace, 5"
-            "${mod}, 6, split-workspace, 6"
-            "${mod}, 7, split-workspace, 7"
-            "${mod}, 8, split-workspace, 8"
-            "${mod}, 9, split-workspace, 9"
 
-            "${mod} SHIFT, 1, split-movetoworkspace, 1"
-            "${mod} SHIFT, 2, split-movetoworkspace, 2"
-            "${mod} SHIFT, 3, split-movetoworkspace, 3"
-            "${mod} SHIFT, 4, split-movetoworkspace, 4"
-            "${mod} SHIFT, 5, split-movetoworkspace, 5"
-            "${mod} SHIFT, 6, split-movetoworkspace, 6"
-            "${mod} SHIFT, 7, split-movetoworkspace, 7"
-            "${mod} SHIFT, 8, split-movetoworkspace, 8"
-            "${mod} SHIFT, 9, split-movetoworkspace, 9"
-
+            # Focus (Arrows)
             "${mod}, left, movefocus, l"
             "${mod}, right, movefocus, r"
             "${mod}, up, movefocus, u"
             "${mod}, down, movefocus, d"
 
+            # Move Windows (Shift + Arrows)
             "${mod} SHIFT, left, movewindow, l"
             "${mod} SHIFT, right, movewindow, r"
             "${mod} SHIFT, up, movewindow, u"
             "${mod} SHIFT, down, movewindow, d"
+        ] 
+        ++ woworkspaces
+        ++ moveworkspaces;
+
+        binde = [
+            # Resize windows with CTRL + Arrows
+            "${mod} CTRL, right, resizeactive, 30 0"
+            "${mod} CTRL, left, resizeactive, -30 0"
+            "${mod} CTRL, up, resizeactive, 0 -30"
+            "${mod} CTRL, down, resizeactive, 0 30"
         ];
 
         bindm = [

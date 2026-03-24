@@ -26,6 +26,12 @@
     "widgets": {
       "left": [
         {
+          "displayMode": "alwaysShow",
+          "iconColor": "secondary",
+          "id": "Network",
+          "textColor": "secondary"
+        },
+        {
           "compactMode": false,
           "diskPath": "/",
           "iconColor": "error",
@@ -40,27 +46,11 @@
           "showLoadAverage": false,
           "showMemoryAsPercent": false,
           "showMemoryUsage": true,
-          "showNetworkStats": true,
+          "showNetworkStats": false,
           "showSwapUsage": false,
           "textColor": "tertiary",
           "useMonospaceFont": true,
           "usePadding": false
-        },
-        {
-          "displayMode": "alwaysShow",
-          "iconColor": "secondary",
-          "id": "Network",
-          "textColor": "secondary"
-        },
-        {
-          "colorizeIcons": false,
-          "hideMode": "hidden",
-          "id": "ActiveWindow",
-          "maxWidth": 145,
-          "scrollingMode": "hover",
-          "showIcon": true,
-          "textColor": "primary",
-          "useFixedWidth": false
         },
         {
           "compactMode": false,
@@ -429,7 +419,7 @@
     "onlySameOutput": true,
     "monitors": [],
     "pinnedApps": [],
-    "colorizeIcons": false,
+    "colorizeIcons": true,
     "pinnedStatic": false,
     "inactiveIndicators": false,
     "deadOpacity": 0.6,
@@ -610,7 +600,12 @@
   "desktopWidgets": {
     "enabled": false,
     "gridSnap": false,
-    "monitorWidgets": []
+    "monitorWidgets": [
+      {
+        "name": "eDP-1",
+        "widgets": []
+      }
+    ]
   }
 }
 } 
