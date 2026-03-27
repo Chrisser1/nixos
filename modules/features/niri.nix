@@ -7,38 +7,30 @@
   };
 
   perSystem = { pkgs, lib, self', ... }: {
-    
-    # NOCTALIA
-    packages.myNoctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
-      inherit pkgs; 
-      settings = (builtins.fromJSON (builtins.readFile ./noctalia.json)).settings;
-    };
-
     # NIRI
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
-      inherit pkgs; 
-
+      inherit pkgs;
       passthru.providedSessions = [ "niri" ];
 
       settings = {
         spawn-at-startup = [
-          (lib.getExe self'.packages.myNoctalia)
+          (lib.getExe self'.packages.noctalia)
         ];
         
         # System mapping
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
-        input.keyboard.xkb.layout = "dk"; # Matched your Hyprland layout!
+        input.keyboard.xkb.layout = "dk";
         
         # Visuals (Matched your Hyprland gaps and borders)
         layout = {
-          gaps = 2; 
+          gaps = 2;
           border = {
             width = 2;
-            active-color = "#880808";   
+            active-color = "#880808";
             inactive-color = "#595959"; 
           };
         };
-
+        
         binds = {
           # --- Apps & Scripts ---
           "Mod+S".spawn-sh = "${pkgs.firefox}/bin/firefox";

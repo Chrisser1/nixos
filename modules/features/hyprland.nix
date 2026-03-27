@@ -21,7 +21,7 @@
     mod = "SUPER";
     fm = "${pkgs.nautilus}/bin/nautilus";
 
-    noctalia-pkg = self.packages.${pkgs.stdenv.hostPlatform.system}.myNoctalia;
+    noctalia-pkg = self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
     noctalia = "${noctalia-pkg}/bin/noctalia-shell";
   in {
     home.packages = [ noctalia-pkg ];    
@@ -162,7 +162,7 @@
             "${mod}, E, exec, ${fm}"
 
             # Noctalia IPC Binds
-            "${mod} SHIFT, S, exec, ${noctalia} ipc call plugin togglePanel screen-shot-and-record"
+            "${mod} SHIFT, S, exec, sh -c 'PLUGIN_ID=$(${noctalia} ipc call state all | grep -oE \"[0-9a-f]{6}:screen-shot-and-record\" | head -n 1); ${noctalia} ipc call plugin togglePanel $PLUGIN_ID'"
             "${mod}, U, exec, ${noctalia} ipc call sessionMenu toggle"
             "${mod}, V, exec, ${noctalia} ipc call launcher clipboard"
             "${mod}, R, exec, ${noctalia} ipc call launcher toggle"

@@ -9,7 +9,7 @@
     xdg.userDirs = {
       enable = true;
       createDirectories = true;
-      setSessionVariables = false;
+      setSessionVariables = true;
       extraConfig = {
         SHAREPOINT_TEAM = "$HOME/WavepistonTeamFolder";
         SHAREPOINT_DATA = "$HOME/WavepistonDataWarehouse";

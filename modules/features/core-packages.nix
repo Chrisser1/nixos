@@ -16,9 +16,9 @@
         jq
         bc
         vlc
-        grim
         
         # --- Screen Capture & OCR ---
+        slurp
         grim
         swappy
         imagemagick    # (Provides magick)
