@@ -1,6 +1,4 @@
- {
-
-"settings": {
+{
   "settingsVersion": 53,
   "bar": {
     "barType": "simple",
@@ -158,7 +156,7 @@
     "screenOverrides": []
   },
   "general": {
-    "avatarImage": "/home/chris/nixos/assets/backgrounds/berserk/Knight.png",
+    "avatarImage": "/nix/store/0a209mjariljnabqrva480h4mm2qwq2h-Knight.png",
     "dimmerOpacity": 0.2,
     "showScreenCorners": false,
     "forceBlackScreenCorners": false,
@@ -264,7 +262,7 @@
   "wallpaper": {
     "enabled": true,
     "overviewEnabled": false,
-    "directory": "/home/chris/nixos/assets/backgrounds",
+    "directory": "/nix/store/ffal41gwkqbfw9rwaxk48x725gga6yg5-backgrounds",
     "monitorDirectories": [],
     "enableMultiMonitorDirectories": false,
     "showHiddenFiles": false,
@@ -608,4 +606,3 @@
     ]
   }
 }
-} 
