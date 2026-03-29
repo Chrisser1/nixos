@@ -6,7 +6,7 @@
 
       inherit pkgs;
 
-      settings = lib.recursiveUpdate (builtins.fromJSON (builtins.readFile ./noctalia.json)).settings {
+      settings = lib.recursiveUpdate (builtins.fromJSON (builtins.readFile ./noctalia.json)) {
 
         # Dynamically copying assets to the Nix store
 
