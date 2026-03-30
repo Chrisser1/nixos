@@ -36,8 +36,12 @@
     };
     boot.kernelParams = [ "video=1024x768" ];
 
-    # optional GUI:
-    hardware.bluetooth.enable = true;
+    hardware.enableRedistributableFirmware = true;
+    
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     services.blueman.enable = true;
 
     programs.fish.enable = true;

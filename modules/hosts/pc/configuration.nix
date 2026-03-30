@@ -50,7 +50,12 @@
     boot.loader.grub.efiSupport = true;
     boot.loader.grub.useOSProber = true;
 
-    hardware.bluetooth.enable = true;
+    hardware.enableRedistributableFirmware = true;
+    
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     services.blueman.enable = true;
 
     # User config
