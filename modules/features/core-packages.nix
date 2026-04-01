@@ -53,6 +53,7 @@
         nh
         nix-output-monitor
         nix-tree
+        prismlauncher
 
         # --- Monitoring ---
         btop-nvidia
