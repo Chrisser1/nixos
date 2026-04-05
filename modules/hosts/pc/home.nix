@@ -9,7 +9,7 @@
         "DP-4,highrr,0x0,1"
         
         # Left monitor (HP)
-        "HDMI-A-2,highrr,auto-left,1"
+        "HDMI-A-2,1920x1080,auto-left,1"
         
         ## Right monitor (HP)
         # "HDMI-A-2,highrr,auto-left,1" 
