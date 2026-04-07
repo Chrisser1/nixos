@@ -33,6 +33,7 @@
         tldr            # Simpler 'man' pages
 
         # --- Connectivity ---
+        dmenu
         networkmanager_dmenu
         networkmanagerapplet
         bluez
