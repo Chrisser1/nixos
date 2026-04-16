@@ -18,7 +18,6 @@
       gcc
       gopls   
       delve   
-      gotools 
       jetbrains.goland
       
       # Java
