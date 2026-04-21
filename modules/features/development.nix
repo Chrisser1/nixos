@@ -8,10 +8,10 @@
       dbeaver-bin
       jetbrains.datagrip
       
-      # .NET
-      dotnet-sdk
-      nuget
-      jetbrains.rider
+      # # .NET
+      # dotnet-sdk
+      # nuget
+      # jetbrains.rider
       
       # Go
       go
