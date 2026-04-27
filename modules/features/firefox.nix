@@ -1,11 +1,12 @@
 { self, inputs, ... }: {
   
-  flake.homeModules.feature-firefox = { pkgs, lib, ... }: 
+  flake.homeModules.feature-firefox = { pkgs, lib, config, ... }: 
   let
     addons = inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system};
   in {
     programs.firefox = {
       enable = true;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
       profiles.chris = {
         isDefault = true;
 
