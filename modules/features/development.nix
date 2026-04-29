@@ -26,6 +26,7 @@
       
       # Node & Python
       nodejs_24
+      pnpm
       micromamba
     ];
 
