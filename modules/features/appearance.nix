@@ -29,12 +29,13 @@
     # Enforce Dark Mode for QT Apps
     qt = {
       enable = true;
-      platformTheme.name = "adwaita"; 
-      style = {
-        name = "adwaita-dark";
-        package = pkgs.adwaita-qt;
-      };
+      platformTheme.name = "qtct";
     };
+
+    home.packages = with pkgs; [
+      kdePackages.qt6ct
+      libsForQt5.qt5ct
+    ];
     
   };
 }

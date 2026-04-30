@@ -8,6 +8,12 @@
 
     xdg.portal = {
       enable = true;
+      config = {
+        hyprland = {
+          default = [ "hyprland" "gtk" ];
+        };
+      };
+      
       extraPortals = lib.mkForce [
         pkgs.xdg-desktop-portal-hyprland
         pkgs.xdg-desktop-portal-gtk
@@ -124,10 +130,12 @@
         env = [
             "XCURSOR_THEME,Adwaita"
             "XCURSOR_SIZE,24"
+            "QT_QPA_PLATFORMTHEME,qt6ct"
         ];
         
         exec-once = [
-          "${noctalia}"
+            "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP QT_QPA_PLATFORMTHEME"
+            "${noctalia}"
         ];
         
         input = {
