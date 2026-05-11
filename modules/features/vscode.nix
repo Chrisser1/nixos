@@ -32,39 +32,49 @@
         package = pkgs.vscode;
 
         profiles = {
-        default = {
-            extensions = commonExtensions;
-        };
+            default = {
+                extensions = commonExtensions;
+            };
 
-        Go = {
-            extensions = commonExtensions ++ (with marketplace; [
-            bradlc.vscode-tailwindcss
-            golang.go
-            xabikos.javascriptsnippets
-            ]);
-        };
+            Go = {
+                extensions = commonExtensions ++ (with marketplace; [
+                bradlc.vscode-tailwindcss
+                golang.go
+                xabikos.javascriptsnippets
+                ]);
+            };
 
-        Python = {
-            extensions = commonExtensions ++ (with marketplace; [
-            ms-python.debugpy
-            ms-python.python
-            ms-python.vscode-pylance
-            ms-python.vscode-python-envs
-            ms-toolsai.jupyter
-            ms-toolsai.jupyter-keymap
-            ms-toolsai.jupyter-renderers
-            ms-toolsai.vscode-jupyter-cell-tags
-            ms-toolsai.vscode-jupyter-slideshow
-            ]);
-        };
+            Python = {
+                extensions = commonExtensions ++ (with marketplace; [
+                ms-python.debugpy
+                ms-python.python
+                ms-python.vscode-pylance
+                ms-python.vscode-python-envs
+                ms-toolsai.jupyter
+                ms-toolsai.jupyter-keymap
+                ms-toolsai.jupyter-renderers
+                ms-toolsai.vscode-jupyter-cell-tags
+                ms-toolsai.vscode-jupyter-slideshow
+                ]);
+            };
 
-        Cpp = {
-            extensions = commonExtensions ++ (with marketplace; [
-            ms-vscode.cpptools
-            ms-vscode.cmake-tools
-            ms-vscode.cpptools-themes
-            ]);
-        };
+            Cpp = {
+                extensions = commonExtensions ++ (with marketplace; [
+                ms-vscode.cpptools
+                ms-vscode.cmake-tools
+                ms-vscode.cpptools-themes
+                ]);
+            };
+
+            Rust = {
+                extensions = commonExtensions ++ (with marketplace; [
+                    rust-lang.rust-analyzer
+                    tamasfe.even-better-toml
+                    fill-labs.dependi
+                ]) ++ [
+                    pkgs.vscode-extensions.vadimcn.vscode-lldb
+                ];
+            };
         };
     };
 
@@ -114,6 +124,9 @@
 
         # Bootstrap C Profile
         bootstrap_profile "${config.home.homeDirectory}/.config/Code/User/profiles/Cpp"
+
+        # Bootstrap Rust Profile
+        bootstrap_profile "${config.home.homeDirectory}/.config/Code/User/profiles/Rust"
     '';
   };
 }
