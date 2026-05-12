@@ -23,7 +23,8 @@
         njpwerner.autodocstring
         pkief.material-icon-theme
         streetsidesoftware.code-spell-checker
-        tomoki1207.pdf
+        james-yu.latex-workshop
+        tintinweb.graphviz-interactive-preview
         usernamehw.errorlens
     ];
   in {
@@ -71,6 +72,7 @@
                     rust-lang.rust-analyzer
                     tamasfe.even-better-toml
                     fill-labs.dependi
+                    wgsl-analyzer.wgsl-analyzer
                 ]) ++ [
                     pkgs.vscode-extensions.vadimcn.vscode-lldb
                 ];
@@ -79,53 +81,39 @@
     };
 
     home.activation.boostrapVscodeSettings = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        # Function to bootstrap a profile
+        # Function to force-update a profile from source
         bootstrap_profile() {
-        PROFILE_DIR="$1"
-        SETTINGS_SOURCE="${./vscode-settings.json}"
-        KEYS_SOURCE="${./vscode-keybindings.json}"
+            PROFILE_DIR="$1"
+            SETTINGS_SOURCE="${./vscode-settings.json}"
+            KEYS_SOURCE="${./vscode-keybindings.json}"
 
-        # Ensure the directory exists
-        mkdir -p "$PROFILE_DIR"
+            mkdir -p "$PROFILE_DIR"
 
-        if [ -L "$PROFILE_DIR/settings.json" ]; then
-            echo "Removing read-only symlink for settings in $PROFILE_DIR"
-            rm -f "$PROFILE_DIR/settings.json"
-        fi
-
-        # Copy Settings if missing
-        if [ ! -f "$PROFILE_DIR/settings.json" ]; then
-            echo "Bootstrapping settings for $PROFILE_DIR"
+            # Remove if it's a symlink (Nix default) or just overwrite if it's a file
+            if [ -L "$PROFILE_DIR/settings.json" ]; then
+                rm -f "$PROFILE_DIR/settings.json"
+            fi
+            
+            # We use -f to overwrite and ensure it's writable by the user
+            echo "Updating settings for $PROFILE_DIR"
             cp -f "$SETTINGS_SOURCE" "$PROFILE_DIR/settings.json"
             chmod u+w "$PROFILE_DIR/settings.json"
-        fi
 
-        if [ -L "$PROFILE_DIR/keybindings.json" ]; then
-            echo "Removing read-only symlink for keybindings in $PROFILE_DIR"
-            rm -f "$PROFILE_DIR/keybindings.json"
-        fi
-
-        # Copy Keybindings if missing
-        if [ ! -f "$PROFILE_DIR/keybindings.json" ]; then
-            echo "Bootstrapping keybindings for $PROFILE_DIR"
+            # Handle Keybindings
+            if [ -L "$PROFILE_DIR/keybindings.json" ]; then
+                rm -f "$PROFILE_DIR/keybindings.json"
+            fi
+            
+            echo "Updating keybindings for $PROFILE_DIR"
             cp -f "$KEYS_SOURCE" "$PROFILE_DIR/keybindings.json"
             chmod u+w "$PROFILE_DIR/keybindings.json"
-        fi
         }
 
-        # Bootstrap Default Profile
+        # Bootstrap all profiles
         bootstrap_profile "${config.home.homeDirectory}/.config/Code/User"
-
-        # Bootstrap Go Profile
         bootstrap_profile "${config.home.homeDirectory}/.config/Code/User/profiles/Go"
-
-        # Bootstrap Python Profile
         bootstrap_profile "${config.home.homeDirectory}/.config/Code/User/profiles/Python"
-
-        # Bootstrap C Profile
         bootstrap_profile "${config.home.homeDirectory}/.config/Code/User/profiles/Cpp"
-
-        # Bootstrap Rust Profile
         bootstrap_profile "${config.home.homeDirectory}/.config/Code/User/profiles/Rust"
     '';
   };

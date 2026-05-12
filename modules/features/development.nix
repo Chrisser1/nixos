@@ -28,6 +28,11 @@
       nodejs_24
       pnpm
       micromamba
+
+      # Latex
+      texliveFull
+      graphviz
+      inkscape
     ];
 
     # --- Session Paths ---
