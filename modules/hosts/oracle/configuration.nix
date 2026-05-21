@@ -15,5 +15,6 @@
     };
 
     users.users.root.openssh.authorizedKeys.keys = secrets.sshKeys;
+    users.users.root.shell = pkgs.fish;
   };
 }

@@ -26,7 +26,6 @@ in {
       # Include your external flake modules
       inputs.nvf.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
-      
       {
         nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
         home-manager.extraSpecialArgs = commonArgs;
@@ -48,6 +47,9 @@ in {
           self.homeModules.cli
           self.homeModules.gui-terminal
           self.homeModules.shell-aliases
+
+          # Kubernetes client connection to server
+          self.homeModules.kubernetes-client
 
           # Everyday use
           self.homeModules.firefox

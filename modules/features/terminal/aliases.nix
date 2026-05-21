@@ -17,7 +17,7 @@
       dt = "dotnet test";
       ssh = "kitten ssh";
       
-      rebuild-oracle = "nixos-rebuild switch --flake ~/nixos#oracle --target-host oracle-server --build-host oracle-server --sudo";
+      rebuild-oracle = "nixos-rebuild switch --flake ~/nixos#oracle --target-host oracle-server --build-host oracle-server --impure";
     };
   };
 }

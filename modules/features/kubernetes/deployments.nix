@@ -1,6 +1,6 @@
 { self, ... }: {
     flake.nixosModules.kubernetes-deployments = { config, ... }: {
-        services.k3s.manifest = {
+        services.k3s.manifests = {
 
             prometheus-stack = {
                 content = {
@@ -41,7 +41,7 @@
                                 containers = [
                                     {
                                         name = "gym-bros";
-                                        image = "";
+                                        image = "nginx:alpine";
                                         ports = [
                                             { containerPort = 8080; }
                                         ];

@@ -8,25 +8,26 @@ in {
     specialArgs = commonArgs;
     modules = [
         self.nixosModules.oracle-configuration
-        
-        # 1. Enable fish system-wide
         self.nixosModules.cli 
+        
+        # Kubernetes Features
+        self.nixosModules.kubernetes-server
+        self.nixosModules.kubernetes-deployments
 
-        # 2. Inject Home Manager for the root user
         inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          
-          home-manager.users.root.imports = [
-            self.homeModules.cli
-            self.homeModules.shell-aliases
-          ];
-        }
-    
-    #   # Kubernetes Features
-    #   self.nixosModules.kubernetes-server
-    #   self.nixosModules.kubernetes-deployments
+            {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                
+                home-manager.users.root = {
+                    home.stateVersion = "25.05";
+                    
+                    imports = [
+                    self.homeModules.cli
+                    self.homeModules.shell-aliases
+                    ];
+                };
+            }
         ];
     };
 }
