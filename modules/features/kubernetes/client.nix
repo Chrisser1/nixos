@@ -5,5 +5,5 @@
             kubernetes-helm
             k9s
         ];
-    }
+    };
 }

@@ -43,15 +43,15 @@
                                         name = "gym-bros";
                                         image = "";
                                         ports = [
-                                            { containerPort = 8080; };
+                                            { containerPort = 8080; }
                                         ];
                                     }
                                 ];
                             };
                         };
                     };
-                }
-            }
-        }
+                };
+            };
+        };
     };
 }
