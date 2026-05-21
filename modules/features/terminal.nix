@@ -36,6 +36,7 @@
         flakePath = "$HOME/nixos";
       in {
         vim = "nvim";
+        rebuild-oracle = "nixos-rebuild switch --flake ~/nixos#oracle --target-host oracle-server --build-host oracle-server --use-remote-sudo";
         rebuild = "nh os switch ~/nixos -- --impure";
         update = "nh os switch ~/nixos --update -- --impure";
         clean = "nh clean all --keep 3 && rm -rf ~/.local/share/Trash/*";
