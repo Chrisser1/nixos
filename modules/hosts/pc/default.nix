@@ -12,16 +12,16 @@ in {
     specialArgs = commonArgs;
     modules = [
       self.nixosModules.pc-configuration
-      self.nixosModules.feature-base-system
-      self.nixosModules.feature-docker
+      self.nixosModules.base-system
+      self.nixosModules.docker
       
       # System requirements for packages
-      self.nixosModules.feature-hyprland
-      self.nixosModules.feature-niri
-      self.nixosModules.feature-core-packages
-      self.nixosModules.feature-fonts
-      self.nixosModules.feature-sddm
-      self.nixosModules.feature-terminal
+      self.nixosModules.hyprland
+      self.nixosModules.niri
+      self.nixosModules.core-packages
+      self.nixosModules.fonts
+      self.nixosModules.sddm
+      self.nixosModules.terminal
 
       # Include your external flake modules
       inputs.nvf.nixosModules.default
@@ -38,41 +38,41 @@ in {
           self.homeModules.pc-home 
           
           # Windows manager and related packages
-          self.homeModules.feature-hyprland
-          # self.homeModules.feature-waybar
+          self.homeModules.hyprland
+          # self.homeModules.waybar
 
           # Everyday use
-          self.homeModules.feature-firefox
-          self.homeModules.feature-terminal
-          self.homeModules.feature-starship
-          self.homeModules.feature-git
-          # self.homeModules.feature-rofi
-          self.homeModules.feature-nautilus
-          self.homeModules.feature-clipboard
-          self.homeModules.feature-appearance
-          self.homeModules.feature-development
-          self.homeModules.feature-search
-          self.homeModules.feature-vscode
+          self.homeModules.firefox
+          self.homeModules.terminal
+          self.homeModules.starship
+          self.homeModules.git
+          # self.homeModules.rofi
+          self.homeModules.nautilus
+          self.homeModules.clipboard
+          self.homeModules.appearance
+          self.homeModules.development
+          self.homeModules.search
+          self.homeModules.vscode
         ];
         home-manager.users.work.imports = [ 
           self.homeModules.pc-home 
 
           # Windows manager and related packages
-          self.homeModules.feature-hyprland
-          # self.homeModules.feature-waybar
+          self.homeModules.hyprland
+          # self.homeModules.waybar
           
           # Everyday use
-          self.homeModules.feature-firefox
-          self.homeModules.feature-terminal
-          self.homeModules.feature-starship
-          self.homeModules.feature-git
-          # self.homeModules.feature-rofi
-          self.homeModules.feature-nautilus
-          self.homeModules.feature-clipboard
-          self.homeModules.feature-appearance
-          self.homeModules.feature-development
-          self.homeModules.feature-search
-          self.homeModules.feature-vscode
+          self.homeModules.firefox
+          self.homeModules.terminal
+          self.homeModules.starship
+          self.homeModules.git
+          # self.homeModules.rofi
+          self.homeModules.nautilus
+          self.homeModules.clipboard
+          self.homeModules.appearance
+          self.homeModules.development
+          self.homeModules.search
+          self.homeModules.vscode
 
           self.homeModules.feature-work-mounts
         ];

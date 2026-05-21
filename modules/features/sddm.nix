@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.nixosModules.feature-sddm = { pkgs, ... }: 
+  flake.nixosModules.sddm = { pkgs, ... }: 
   let
     custom-sddm-astronaut = pkgs.sddm-astronaut.override {
         embeddedTheme = "pixel_sakura";

@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.homeModules.feature-nautilus = { pkgs, ... }: {
+  flake.homeModules.nautilus = { pkgs, ... }: {
     home.packages = with pkgs; [
       nautilus
       gvfs

@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.nixosModules.feature-core-packages = { pkgs, ... }: 
+  flake.nixosModules.core-packages = { pkgs, ... }: 
   let
     btop-nvidia = pkgs.btop.override {
       cudaSupport = true;

@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-  flake.homeModules.feature-waybar = { config, pkgs, lib, ... }: 
+  flake.homeModules.waybar = { config, pkgs, lib, ... }: 
   let
     scripts = import ../../config/waybar/scripts.nix { inherit pkgs; };
     barConfig = import ../../config/waybar/config.nix { inherit pkgs scripts; };

@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.homeModules.feature-rofi = { pkgs, config, ... }: 
+  flake.homeModules.rofi = { pkgs, config, ... }: 
   let
     powermenu = pkgs.writeShellScriptBin "powermenu" ''
       #!/usr/bin/env bash

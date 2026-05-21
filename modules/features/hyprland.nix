@@ -1,5 +1,5 @@
 { self, inputs, ... }: {
-  flake.nixosModules.feature-hyprland = { pkgs, lib, ... }: {
+  flake.nixosModules.hyprland = { pkgs, lib, ... }: {
     programs.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -21,7 +21,7 @@
     };
   };
 
-  flake.homeModules.feature-hyprland = { pkgs, config, lib, ... }: 
+  flake.homeModules.hyprland = { pkgs, config, lib, ... }: 
   let
     terminal = "${pkgs.kitty}/bin/kitty";
     mod = "SUPER";

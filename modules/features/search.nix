@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.homeModules.feature-search = { pkgs, lib, ... }: 
+  flake.homeModules.search = { pkgs, lib, ... }: 
   let
     my-dependencies = with pkgs; [
       ripgrep-all fzf bat ffmpeg kdePackages.okular

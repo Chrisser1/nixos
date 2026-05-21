@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.homeModules.feature-clipboard = { pkgs, ... }: 
+  flake.homeModules.clipboard = { pkgs, ... }: 
   let 
     berserk-clipboard = pkgs.writeShellScriptBin "berserk-clipboard" ''
       #!/usr/bin/env bash

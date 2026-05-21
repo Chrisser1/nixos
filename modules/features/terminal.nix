@@ -1,9 +1,9 @@
 { self, ... }: {
-  flake.nixosModules.feature-terminal = { pkgs, ... }: {
+  flake.nixosModules.terminal = { pkgs, ... }: {
     programs.fish.enable = true; 
   };
   
-  flake.homeModules.feature-terminal = { pkgs, lib, ... }: {
+  flake.homeModules.terminal = { pkgs, lib, ... }: {
     # --- Kitty Terminal ---
     programs.kitty = {
       enable = true;

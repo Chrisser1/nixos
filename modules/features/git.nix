@@ -1,6 +1,6 @@
 { self, ... }: {
   
-  flake.homeModules.feature-git = { pkgs, ... }: {
+  flake.homeModules.git = { pkgs, ... }: {
     
     programs.git = {
       enable = true;

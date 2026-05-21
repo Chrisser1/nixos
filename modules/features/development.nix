@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.homeModules.feature-development = { pkgs, config, lib, ... }: 
+  flake.homeModules.development = { pkgs, config, lib, ... }: 
   let
     dotnet-sdk = pkgs.dotnet-sdk_9;
   in {

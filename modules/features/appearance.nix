@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.homeModules.feature-appearance = { pkgs, ... }: {
+  flake.homeModules.appearance = { pkgs, ... }: {
     
     # MIME App Defaults
     xdg.mimeApps.defaultApplications."x-scheme-handler/jetbrains" = "jetbrains-toolbox.desktop";

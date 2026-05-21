@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.nixosModules.feature-base-system = { pkgs, secrets, ... }: 
+  flake.nixosModules.base-system = { pkgs, secrets, ... }: 
   {
     programs.dconf.enable = true;
     programs.nix-ld.enable = true;

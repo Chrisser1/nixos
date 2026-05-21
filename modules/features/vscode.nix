@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.homeModules.feature-vscode = { pkgs, config, lib, ... }: 
+  flake.homeModules.vscode = { pkgs, config, lib, ... }: 
   let
     marketplace = pkgs.vscode-marketplace;
 

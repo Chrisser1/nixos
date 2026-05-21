@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.nixosModules.feature-fonts = { pkgs, ... }: {
+  flake.nixosModules.fonts = { pkgs, ... }: {
     fonts.packages = with pkgs; [
       nerd-fonts.caskaydia-cove
       nerd-fonts.fira-code
