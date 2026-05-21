@@ -9,9 +9,9 @@ in {
     modules = [
       self.nixosModules.oracle-configuration
       
-      # Kubernetes Features
-      self.nixosModules.kubernetes-server
-      self.nixosModules.kubernetes-deployments
+    #   # Kubernetes Features
+    #   self.nixosModules.kubernetes-server
+    #   self.nixosModules.kubernetes-deployments
     ];
   };
 }

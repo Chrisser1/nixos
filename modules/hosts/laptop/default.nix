@@ -35,7 +35,10 @@ in {
         
         # User settings
         home-manager.users.chris.imports = [ 
-          self.homeModules.laptop-home 
+          self.homeModules.laptop-home
+
+          # For easy connection to servers
+          self.homeModules.ssh
           
           # Windows manager and related packages
           self.homeModules.hyprland

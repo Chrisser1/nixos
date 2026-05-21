@@ -37,6 +37,9 @@ in {
         home-manager.users.chris.imports = [ 
           self.homeModules.pc-home 
           
+          # For easy connection to servers
+          self.homeModules.ssh
+          
           # Windows manager and related packages
           self.homeModules.hyprland
           # self.homeModules.waybar
