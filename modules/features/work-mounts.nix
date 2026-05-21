@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.homeModules.feature-work-mounts = { pkgs, ... }: {
+  flake.homeModules.work-mounts = { pkgs, ... }: {
     home.packages = with pkgs; [
       rclone
       fuse3

@@ -21,7 +21,7 @@ in {
       self.nixosModules.core-packages
       self.nixosModules.fonts
       self.nixosModules.sddm
-      self.nixosModules.terminal
+      self.nixosModules.cli
 
       # Include your external flake modules
       inputs.nvf.nixosModules.default
@@ -44,9 +44,13 @@ in {
           self.homeModules.hyprland
           # self.homeModules.waybar
 
+          # Terminal
+          self.homeModules.cli
+          self.homeModules.gui-terminal
+          self.homeModules.shell-aliases
+
           # Everyday use
           self.homeModules.firefox
-          self.homeModules.terminal
           self.homeModules.starship
           self.homeModules.git
           # self.homeModules.rofi
@@ -63,10 +67,14 @@ in {
           # Windows manager and related packages
           self.homeModules.hyprland
           # self.homeModules.waybar
+
+          # Terminal
+          self.homeModules.cli
+          self.homeModules.gui-terminal
+          self.homeModules.shell-aliases
           
           # Everyday use
           self.homeModules.firefox
-          self.homeModules.terminal
           self.homeModules.starship
           self.homeModules.git
           # self.homeModules.rofi
@@ -77,7 +85,7 @@ in {
           self.homeModules.search
           self.homeModules.vscode
 
-          self.homeModules.feature-work-mounts
+          self.homeModules.work-mounts
         ];
       }
     ];
