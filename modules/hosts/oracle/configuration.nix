@@ -1,6 +1,6 @@
 { self, ... }: {
-  flake.nixosModules.oracle-configuration = { config, pkgs, ... }: {
-    imports = [ ./hardware.nix ];
+  flake.nixosModules.oracle-configuration = { config, pkgs, secrets, ... }: {
+    imports = [ self.nixosModules.oracle-hardware ];
 
     networking.hostName = "oracle";
     system.stateVersion = "25.05";
@@ -13,5 +13,7 @@
         PermitRootLogin = "prohibit-password";
       };
     };
+
+    users.users.root.openssh.authorizedKeys.keys = secrets.sshKeys;
   };
 }
