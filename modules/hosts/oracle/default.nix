@@ -8,7 +8,6 @@ in {
     specialArgs = commonArgs;
     modules = [
       self.nixosModules.oracle-configuration
-      self.nixosModules.base-system
       
       # Kubernetes Features
       self.nixosModules.kubernetes-server
