@@ -1,4 +1,7 @@
-{ self, ... }: {
+{ self, ... }: 
+let 
+    vars = import ./cluster-vars.nix;
+in {
     flake.homeModules.kubernetes-client = { pkgs, ... }: {
         home.packages = with pkgs; [
             kubectl
@@ -17,10 +20,33 @@
 
                 echo "🌐 Patching IP address..."
                 # Automatically replace localhost with your Oracle public IP
-                sed -i 's/127.0.0.1/158.180.42.198/g' ~/.kube/config
+                sed -i "s/127.0.0.1/${vars.controlPlaneIp}/g" ~/.kube/config
 
                 echo "✅ Kubeconfig successfully configured!"
                 echo "🚀 Type 'k9s' to connect to your cluster."
+            '')'
+
+            (writeShellScriptBin "bootstrap-node" ''
+                set -e
+                NEW_IP=$1
+                NEW_USER=$2
+
+                if [ -z "$NEW_IP" ] || [ -z "$NEW_USER" ]; then
+                  echo "❌ Usage: bootstrap-node <new-server-ip> <ssh-user>"
+                  echo "Example: bootstrap-node 192.168.1.50 root"
+                  exit 1
+                fi
+
+                echo "☁️  Fetching Master Token from Control Plane (${vars.controlPlaneSshAlias})..."
+                
+                # We replaced 'oracle-server' with the dynamic alias!
+                TOKEN=$(ssh ${vars.controlPlaneSshAlias} "sudo cat /var/lib/rancher/k3s/server/node-token")
+
+                echo "🔒 Injecting token into New Node ($NEW_IP)..."
+                ssh $NEW_USER@$NEW_IP "sudo mkdir -p /var/lib/rancher/k3s/ && echo '$TOKEN' | sudo tee /var/lib/rancher/k3s/cluster-token > /dev/null && sudo chmod 600 /var/lib/rancher/k3s/cluster-token"
+
+                echo "✅ Success! Token safely injected into $NEW_IP."
+                echo "🚀 You can now deploy agent.nix to this server."
             '')
         ];
     };

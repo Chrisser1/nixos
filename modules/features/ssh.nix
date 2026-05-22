@@ -1,4 +1,7 @@
-{ self, ... }: {
+{ self, ... }: 
+let 
+    vars = import ./kubernetes/cluster-vars.nix;
+in {
   flake.homeModules.ssh = { config, lib, ... }: {
     programs.ssh = {
       enable = true;
@@ -7,10 +10,10 @@
       settings = {
         "*" = {};
 
-        "oracle-server" = {
-          HostName = "158.180.42.198";
-          User = "root";
-          IdentityFile = "~/.ssh/ssh-key-2025-11-12.key";
+        "${vars.controlPlaneSshAlias}" = {
+          HostName = vars.controlPlaneIp;
+          User = vars.controlPlaneSshUser;
+          IdentityFile = vars.controlPlaneSshKey;
           IdentitiesOnly = "yes";
         };
       };

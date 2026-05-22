@@ -1,11 +1,14 @@
-{ self, ... }: {
+{ self, ... }:
+let 
+    vars = import ./cluster-vars.nix;
+in {
     flake.nixosModules.kubernetes-server = { pkgs, ... }: {
         services.k3s = {
             enable = true;
             role = "server";
             extraFlags = toString [
                 "--disable=traefik"
-                "--tls-san 158.180.42.198"
+                "--tls-san ${vars.controlPlaneIp}"
             ];
         };
 

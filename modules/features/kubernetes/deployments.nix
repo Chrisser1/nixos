@@ -16,39 +16,19 @@
                 };
             };
 
-            gym-bros = {
+            argo-cd = {
                 content = {
-                    apiVersion = "apps/v1";
-                    kind = "Deployment";
+                    apiVersion = "helm.cattle.io/v1";
+                    kind = "HelmChart";
                     metadata = { 
-                        name = "gym-bros"; 
-                        namespace = "default"; 
+                        name = "argo-cd"; 
+                        namespace = "kube-system"; 
                     };
                     spec = {
-                        replicas = 1;
-                        selector = {
-                            matchLabels = { 
-                                app = "gym-bros"; 
-                            };
-                        };
-                        template = {
-                            metadata = {
-                                labels = { 
-                                    app = "gym-bros"; 
-                                };
-                            };
-                            spec = {
-                                containers = [
-                                    {
-                                        name = "gym-bros";
-                                        image = "nginx:alpine";
-                                        ports = [
-                                            { containerPort = 8080; }
-                                        ];
-                                    }
-                                ];
-                            };
-                        };
+                        chart = "argo-cd";
+                        repo = "https://argoproj.github.io/argo-helm";
+                        targetNamespace = "argocd";
+                        createNamespace = true;
                     };
                 };
             };
