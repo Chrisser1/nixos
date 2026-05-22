@@ -1,6 +1,6 @@
 { self, ... }: 
 let 
-    vars = import ./cluster-vars.nix;
+    vars = builtins.fromJSON (builtins.readFile ./cluster-vars.json);
 in {
     flake.homeModules.kubernetes-client = { pkgs, ... }: {
         home.packages = with pkgs; [
@@ -24,7 +24,7 @@ in {
 
                 echo "✅ Kubeconfig successfully configured!"
                 echo "🚀 Type 'k9s' to connect to your cluster."
-            '')'
+            '')
 
             (writeShellScriptBin "bootstrap-node" ''
                 set -e

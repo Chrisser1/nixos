@@ -1,6 +1,6 @@
 { self, ... }: 
 let 
-    vars = import ./cluster-vars.nix;
+    vars = builtins.fromJSON (builtins.readFile ./cluster-vars.json);
 in {
     flake.nixosModules.kubernetes-agent = { pkgs, ... }: {
         services.k3s = {

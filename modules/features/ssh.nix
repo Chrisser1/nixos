@@ -1,6 +1,6 @@
 { self, ... }: 
 let 
-    vars = import ./kubernetes/cluster-vars.nix;
+    vars = builtins.fromJSON (builtins.readFile ./kubernetes/cluster-vars.json);
 in {
   flake.homeModules.ssh = { config, lib, ... }: {
     programs.ssh = {
