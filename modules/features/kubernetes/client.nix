@@ -48,6 +48,24 @@ in {
                 echo "✅ Success! Token safely injected into $NEW_IP."
                 echo "🚀 You can now deploy agent.nix to this server."
             '')
+
+            (writeShellScriptBin "open-k3s-monitoring" ''
+                set -e
+
+                echo "Extracting Grafana credentials from the cluster..."
+                PASSWORD=$(kubectl get secret kube-prometheus-stack-grafana -n monitoring -o jsonpath="{.data.admin-password}" | base64 -d)
+
+                echo "----------------------------------------"
+                echo "🔑 Username: admin"
+                echo "🔑 Password: $PASSWORD"
+                echo "----------------------------------------"
+                echo "🌍 Open your browser to: http://localhost:3000"
+                echo "🛑 Press Ctrl+C in this terminal to close the secure tunnel."
+                echo "----------------------------------------"
+                
+                # Start the port forward (this will block the terminal until you press Ctrl+C)
+                kubectl port-forward svc/kube-prometheus-stack-grafana -n monitoring 3000:80
+            '')
         ];
     };
 }
