@@ -5,6 +5,8 @@
     networking.hostName = "oracle";
     system.stateVersion = "25.05";
 
+    services.tailscale.enable = true;
+
     # Ensure SSH is running and strictly allows your key
     services.openssh = {
       enable = true;

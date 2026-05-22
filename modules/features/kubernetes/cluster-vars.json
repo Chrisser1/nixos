@@ -1,6 +1,6 @@
 {
   "controlPlaneIp": "158.180.42.198",
-  "controlPlaneTailscaleIp": "100.X.Y.Z",
+  "controlPlaneTailscaleIp": "100.81.239.16",
   "controlPlaneSshAlias": "oracle-server",
   "controlPlaneSshUser": "root",
   "controlPlaneSshKey": "~/.ssh/ssh-key-2025-11-12.key",

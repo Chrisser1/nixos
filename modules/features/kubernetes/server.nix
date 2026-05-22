@@ -9,6 +9,9 @@ in {
             extraFlags = toString [
                 "--disable=traefik"
                 "--tls-san ${vars.controlPlaneIp}"
+                "--tls-san ${vars.controlPlaneTailscaleIp}" # Trust the VPN IP
+                "--node-ip ${vars.controlPlaneTailscaleIp}" # Bind to VPN
+                "--flannel-iface tailscale0"                # Route pod traffic via VPN
             ];
         };
 

@@ -9,6 +9,9 @@ in {
             # The IP of my main Oracle Control Plane
             serverAddr = "https://${vars.controlPlaneIp}:6443"; 
             tokenFile = "/var/lib/rancher/k3s/cluster-token"; 
+            extraFlags = toString [
+                "--flannel-iface tailscale0"
+            ];
         };
 
         # Agents only need ports for internal cluster communication
