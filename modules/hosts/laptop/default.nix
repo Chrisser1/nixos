@@ -23,9 +23,6 @@ in {
       self.nixosModules.sddm
       self.nixosModules.cli
 
-      # Add as a k3s agent to my Oracle cluster
-      self.nixosModules.kubernetes-agent
-
       # Include your external flake modules
       inputs.nvf.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
@@ -51,8 +48,8 @@ in {
           self.homeModules.gui-terminal
           self.homeModules.shell-aliases
 
-          # # Kubernetes client connection to server
-          # self.homeModules.kubernetes-client
+          # Kubernetes client connection to server
+          self.homeModules.kubernetes-client
 
           # Everyday use
           self.homeModules.firefox
