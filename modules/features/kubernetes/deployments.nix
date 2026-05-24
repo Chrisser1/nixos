@@ -1,6 +1,12 @@
 { self, ... }: {
-    flake.nixosModules.kubernetes-deployments = { config, ... }: {
+    flake.nixosModules.kubernetes-deployments = { config, pkgs, ... }: {
         services.k3s.manifests = {
+            gateway-api-crds = {
+                source = pkgs.fetchurl {
+                    url = "https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.1.0/experimental-install.yaml";
+                    hash = "sha256-EPMidEoAXU5z4rBn6V/s1M/sYZ3HVkkwtIjClr+jvsE=";
+                };
+            };
 
             prometheus-stack = {
                 content = {
