@@ -62,6 +62,9 @@ in {
           self.homeModules.development
           self.homeModules.search
           self.homeModules.vscode
+
+          # AI tools
+          self.homeModules.claude-code
         ];
         home-manager.users.work.imports = [ 
           self.homeModules.laptop-home 

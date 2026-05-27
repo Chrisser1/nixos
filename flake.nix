@@ -29,6 +29,7 @@
       url = "github:Duckonaut/split-monitor-workspaces";
       inputs.hyprland.follows = "hyprland";
     };
+    claude-code.url = "github:sadjow/claude-code-nix";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake 
