@@ -12,7 +12,7 @@
         };
 
         url."git@github.com:" = {
-          insteadOf = "https://github.com/";
+          pushInsteadOf = "https://github.com/";
         };
       };
     };

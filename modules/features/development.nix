@@ -33,6 +33,9 @@
       texliveFull
       graphviz
       inkscape
+
+      # Dev Tools
+      devenv
     ];
 
     # --- Session Paths ---
