@@ -36,6 +36,7 @@
 
       # Dev Tools
       devenv
+      obsidian
     ];
 
     # --- Session Paths ---
