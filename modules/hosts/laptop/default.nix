@@ -20,6 +20,7 @@ in {
       self.nixosModules.niri
       self.nixosModules.core-packages
       self.nixosModules.vesktop
+      self.nixosModules.noise-cancellation
       self.nixosModules.fonts
       self.nixosModules.sddm
       self.nixosModules.cli

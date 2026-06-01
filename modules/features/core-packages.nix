@@ -60,7 +60,7 @@
         btop-nvidia
 
         # --- Sound ---
-        easyeffects
+        helvum
 
         # --- Extras ---
         spotify
