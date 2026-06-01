@@ -158,8 +158,8 @@
         };
 
         windowrule = [
-            "no_blur true, match:class ^(discord)$"
-            "opacity 1.0 override 1.0 override, match:class ^(discord)$"
+            "no_blur true, match:class ^(vesktop)$"
+            "opacity 1.0 override 1.0 override, match:class ^(vesktop)$"
         ];
 
         bind = let
