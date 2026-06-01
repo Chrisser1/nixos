@@ -157,6 +157,11 @@
             animate_mouse_windowdragging = false;
         };
 
+        windowrule = [
+            "no_blur true, match:class ^(discord)$"
+            "opacity 1.0 override 1.0 override, match:class ^(discord)$"
+        ];
+
         bind = let
           # Automatically generate workspace binds 1 through 9 for your specific plugin
           woworkspaces = map (n: "${mod}, ${toString n}, split-workspace, ${toString n}") [1 2 3 4 5 6 7 8 9];

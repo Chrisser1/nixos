@@ -1,5 +1,5 @@
 { self, ... }: {
-  flake.nixosModules.core-packages = { pkgs, ... }: 
+  flake.nixosModules.core-packages = { pkgs, ... }:
   let
     btop-nvidia = pkgs.btop.override {
       cudaSupport = true;
@@ -62,8 +62,7 @@
         # --- Sound ---
         easyeffects
 
-        # --- Extras --- 
-        discord
+        # --- Extras ---
         spotify
     ];
   };

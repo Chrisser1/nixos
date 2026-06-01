@@ -19,6 +19,7 @@ in {
       self.nixosModules.hyprland
       self.nixosModules.niri
       self.nixosModules.core-packages
+      self.nixosModules.discord
       self.nixosModules.fonts
       self.nixosModules.sddm
       self.nixosModules.cli

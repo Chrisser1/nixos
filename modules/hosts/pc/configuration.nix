@@ -36,13 +36,15 @@
     environment.sessionVariables = {
       USE_WAYLAND_GRIM = "1";
       NIXOS_OZONE_WL = "1";
-      _JAVA_AWT_WM_NONREPARENTING = "1"; 
+      _JAVA_AWT_WM_NONREPARENTING = "1";
       _JAVA_OPTIONS = "-Dawt.toolkit.name=WLToolkit";
       LIBVA_DRIVER_NAME = "nvidia";
-      GBM_BACKEND = "nvidia-drm";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      NVD_BACKEND = "direct";
       ADW_DISABLE_PORTAL = "1";
     };
+
+    boot.kernelParams = [ "usbcore.autosuspend=-1" ];
 
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.grub.enable = true;
