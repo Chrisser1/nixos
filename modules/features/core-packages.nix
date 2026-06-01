@@ -60,7 +60,7 @@
         btop-nvidia
 
         # --- Sound ---
-        helvum
+        crosspipe
 
         # --- Extras ---
         spotify

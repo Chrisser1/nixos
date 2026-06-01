@@ -1,7 +1,7 @@
 { self, ... }: {
   flake.nixosModules.noise-cancellation = { pkgs, ... }: {
-    # Creates a permanent virtual microphone "Noise Canceling source" via PipeWire.
-    # Select it as the input device in any app — works system-wide without EasyEffects.
+    services.pipewire.extraLadspaPackages = [ pkgs.rnnoise-plugin.ladspa ];
+
     services.pipewire.extraConfig.pipewire."99-noise-cancellation" = {
       "context.modules" = [
         {
@@ -14,7 +14,7 @@
                 {
                   type    = "ladspa";
                   name    = "rnnoise";
-                  plugin  = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
+                  plugin  = "librnnoise_ladspa";
                   label   = "noise_suppressor_mono";
                   control = {
                     "VAD Threshold (%)"          = 50.0;
