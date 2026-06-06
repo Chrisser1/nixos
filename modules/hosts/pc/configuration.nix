@@ -76,7 +76,7 @@
     in {
       isNormalUser = true;
       description = "Work";
-      extraGroups = [ "networkmanager" "video" "audio" ];
+      extraGroups = [ "networkmanager" "video" "audio" "wheel" ];
       shell = pkgs.fish;
       hashedPassword = passwordHash;
     };

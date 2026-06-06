@@ -46,6 +46,11 @@
     networking.firewall = {
       enable = true;
       allowedTCPPorts = [ 9001 6000 ];
+      allowedUDPPortRanges = [ 
+        { from = 50000; to = 65535; }
+      ];
+      checkReversePath = false;
+      trustedInterfaces = [ "tailscale0" ];
     };
 
     # Audio (PipeWire)
