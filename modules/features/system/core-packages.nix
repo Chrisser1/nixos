@@ -58,7 +58,6 @@
 
       # --- Extras ---
       spotify
-      prismlauncher
     ];
   };
 }

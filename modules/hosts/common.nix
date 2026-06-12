@@ -12,6 +12,7 @@
       self.nixosModules.desktop
       self.nixosModules.users
       self.nixosModules.docker
+      self.nixosModules.gaming
 
       # System requirements for packages
       self.nixosModules.hyprland

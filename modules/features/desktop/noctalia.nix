@@ -10,9 +10,9 @@
 
         # Dynamically copying assets to the Nix store
 
-        general.avatarImage = "${../../assets/backgrounds/berserk/Knight.png}";
+        general.avatarImage = "${../../../assets/backgrounds/berserk/Knight.png}";
 
-        wallpaper.directory = "${../../assets/backgrounds}";
+        wallpaper.directory = "${../../../assets/backgrounds}";
 
       };
 
