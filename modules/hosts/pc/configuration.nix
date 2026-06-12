@@ -2,7 +2,7 @@
   flake.nixosModules.pc-configuration = {
     config,
     pkgs,
-    inputs,
+    lib,
     ...
   }: {
     imports = [
@@ -34,6 +34,12 @@
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       NVD_BACKEND = "direct";
     };
+
+    # GPU monitoring in btop needs the CUDA build; hiPrio wins over the
+    # plain btop from core-packages
+    environment.systemPackages = [
+      (lib.hiPrio (pkgs.btop.override {cudaSupport = true;}))
+    ];
 
     boot.kernelParams = [
       "usbcore.autosuspend=-1"

@@ -1,69 +1,64 @@
-{ self, ... }: {
-  flake.nixosModules.core-packages = { pkgs, ... }:
-  let
-    btop-nvidia = pkgs.btop.override {
-      cudaSupport = true;
-    };
-  in {
-        environment.systemPackages = with pkgs; [
-        # --- System Utilities ---
-        fastfetch
-        tmux
-        wget
-        zip
-        unzip
-        dbus
-        jq
-        bc
-        vlc
-        
-        # --- Screen Capture & OCR ---
-        slurp
-        grim
-        swappy
-        imagemagick    # (Provides magick)
-        wl-clipboard   # (Provides wl-copy)
-        tesseract
-        xdg-utils      # (Provides xdg-open for Google Lens)
-        wf-recorder    # (For Screen Recording)
+{self, ...}: {
+  flake.nixosModules.core-packages = {pkgs, ...}: {
+    environment.systemPackages = with pkgs; [
+      # --- System Utilities ---
+      fastfetch
+      tmux
+      wget
+      zip
+      unzip
+      dbus
+      jq
+      bc
+      vlc
 
-        gdu             # Disk usage analyzer
-        fd              # Faster 'find'
-        ripgrep         # Faster 'grep'
-        tldr            # Simpler 'man' pages
+      # --- Screen Capture & OCR ---
+      slurp
+      grim
+      swappy
+      imagemagick # (Provides magick)
+      wl-clipboard # (Provides wl-copy)
+      tesseract
+      xdg-utils # (Provides xdg-open for Google Lens)
+      wf-recorder # (For Screen Recording)
 
-        # --- Connectivity ---
-        dmenu
-        networkmanager_dmenu
-        networkmanagerapplet
-        bluez
-        bluez-tools
+      gdu # Disk usage analyzer
+      fd # Faster 'find'
+      ripgrep # Faster 'grep'
+      tldr # Simpler 'man' pages
 
-        # --- Document Handling ---
-        pandoc
-        poppler-utils
-        texlive.combined.scheme-small
-        # ocrmypdf
-        libreoffice-fresh
+      # --- Connectivity ---
+      dmenu
+      networkmanager_dmenu
+      networkmanagerapplet
+      bluez
+      bluez-tools
 
-        # --- Media / Visuals ---
-        playerctl
-        brightnessctl
+      # --- Document Handling ---
+      pandoc
+      poppler-utils
+      texlive.combined.scheme-small
+      # ocrmypdf
+      libreoffice-fresh
 
-        # --- Nix Tools ---
-        nh
-        nix-output-monitor
-        nix-tree
-        prismlauncher
+      # --- Media / Visuals ---
+      playerctl
+      brightnessctl
 
-        # --- Monitoring ---
-        btop-nvidia
+      # --- Nix Tools ---
+      nh
+      nix-output-monitor
+      nix-tree
 
-        # --- Sound ---
-        crosspipe
+      # --- Monitoring ---
+      btop
 
-        # --- Extras ---
-        spotify
+      # --- Sound ---
+      crosspipe
+
+      # --- Extras ---
+      spotify
+      prismlauncher
     ];
   };
 }
