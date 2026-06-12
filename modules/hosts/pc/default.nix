@@ -1,5 +1,8 @@
-{ self, inputs, ... }: 
-let
+{
+  self,
+  inputs,
+  ...
+}: let
   system = "x86_64-linux";
   commonArgs = {
     inherit inputs;
@@ -13,8 +16,10 @@ in {
     modules = [
       self.nixosModules.pc-configuration
       self.nixosModules.base-system
+      self.nixosModules.desktop
+      self.nixosModules.users
       self.nixosModules.docker
-      
+
       # System requirements for packages
       self.nixosModules.hyprland
       self.nixosModules.niri
@@ -29,70 +34,18 @@ in {
       inputs.nvf.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
       {
-        nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
+        nixpkgs.overlays = [inputs.nix-vscode-extensions.overlays.default];
         home-manager.extraSpecialArgs = commonArgs;
         home-manager.useUserPackages = true;
         home-manager.useGlobalPkgs = true;
-        
-        # User settings
-        home-manager.users.chris.imports = [ 
-          self.homeModules.pc-home 
-          
-          # For easy connection to servers
-          self.homeModules.ssh
-          
-          # Windows manager and related packages
-          self.homeModules.hyprland
-          # self.homeModules.waybar
 
-          # Terminal
-          self.homeModules.cli
-          self.homeModules.gui-terminal
-          self.homeModules.shell-aliases
-
-          # Kubernetes client connection to server
-          self.homeModules.kubernetes-client
-
-          # Everyday use
-          self.homeModules.firefox
-          self.homeModules.starship
-          self.homeModules.git
-          # self.homeModules.rofi
-          self.homeModules.nautilus
-          self.homeModules.clipboard
-          self.homeModules.appearance
-          self.homeModules.development
-          self.homeModules.search
-          self.homeModules.vscode
-
-          # AI tools
-          self.homeModules.claude-code
+        home-manager.users.chris.imports = [
+          self.homeModules.pc-home
+          self.homeModules.profile-chris
         ];
-        home-manager.users.work.imports = [ 
-          self.homeModules.pc-home 
-
-          # Windows manager and related packages
-          self.homeModules.hyprland
-          # self.homeModules.waybar
-          
-          # Terminal
-          self.homeModules.cli
-          self.homeModules.gui-terminal
-          self.homeModules.shell-aliases
-
-          # Everyday use
-          self.homeModules.firefox
-          self.homeModules.starship
-          self.homeModules.git
-          # self.homeModules.rofi
-          self.homeModules.nautilus
-          self.homeModules.clipboard
-          self.homeModules.appearance
-          self.homeModules.development
-          self.homeModules.search
-          self.homeModules.vscode
-
-          self.homeModules.work-mounts
+        home-manager.users.work.imports = [
+          self.homeModules.pc-home
+          self.homeModules.profile-work
         ];
       }
     ];

@@ -1,4 +1,4 @@
-# CLAUDE.local.md
+# CLAUDE.md
 
 Personal preferences for working with this NixOS config repo.
 

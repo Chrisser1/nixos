@@ -6,7 +6,6 @@
     commonExtensions = with marketplace; [
         bbenoist.nix
         docker.docker
-        eamodio.gitlens
         formulahendry.docker-explorer
         github.copilot-chat
         github.vscode-github-actions
