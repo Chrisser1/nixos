@@ -44,7 +44,10 @@
       ADW_DISABLE_PORTAL = "1";
     };
 
-    boot.kernelParams = [ "usbcore.autosuspend=-1" ];
+    boot.kernelParams = [ 
+      "usbcore.autosuspend=-1" 
+      "nvidia-drm.fbdev=1"
+    ];
 
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.grub.enable = true;
