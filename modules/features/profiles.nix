@@ -56,6 +56,9 @@
       self.homeModules.vscode
 
       self.homeModules.work-mounts
+
+      # AI tools
+      self.homeModules.claude-code
     ];
   };
 }
