@@ -45,6 +45,8 @@
   in {
     home.packages = [noctalia-pkg];
 
+    home.file.".config/hypr/monitors.conf".text = "";
+
     home.pointerCursor = {
       name = "Adwaita";
       package = pkgs.adwaita-icon-theme;
