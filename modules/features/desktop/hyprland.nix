@@ -45,7 +45,15 @@
   in {
     home.packages = [noctalia-pkg];
 
-    home.file.".config/hypr/monitors.conf".text = "";
+    home.activation.hyprMonitorsConf = lib.hm.dag.entryBefore ["writeBoundary"] ''
+      if [ -L "$HOME/.config/hypr/monitors.conf" ]; then
+        rm "$HOME/.config/hypr/monitors.conf"
+      fi
+      if [ ! -f "$HOME/.config/hypr/monitors.conf" ]; then
+        mkdir -p "$HOME/.config/hypr"
+        touch "$HOME/.config/hypr/monitors.conf"
+      fi
+    '';
 
     home.pointerCursor = {
       name = "Adwaita";
