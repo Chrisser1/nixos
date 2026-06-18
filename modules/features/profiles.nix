@@ -28,7 +28,7 @@
       self.homeModules.development
       self.homeModules.search
       self.homeModules.vscode
-      self.homeModules.nwg-displays
+      self.homeModules.wdisplays
 
       # AI tools
       self.homeModules.claude-code
@@ -55,7 +55,7 @@
       self.homeModules.development
       self.homeModules.search
       self.homeModules.vscode
-      self.homeModules.nwg-displays
+      self.homeModules.wdisplays
 
       self.homeModules.work-mounts
 
