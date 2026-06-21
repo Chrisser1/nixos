@@ -15,7 +15,7 @@
       # --- Screen Capture & OCR ---
       slurp
       grim
-      swappy
+      satty
       imagemagick # (Provides magick)
       wl-clipboard # (Provides wl-copy)
       tesseract

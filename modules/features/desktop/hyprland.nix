@@ -43,7 +43,7 @@
     noctalia-pkg = self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
     noctalia = "${noctalia-pkg}/bin/noctalia-shell";
   in {
-    home.packages = [noctalia-pkg];
+    home.packages = [noctalia-pkg pkgs.hyprpicker pkgs.satty];
 
     home.activation.hyprMonitorsConf = lib.hm.dag.entryBefore ["writeBoundary"] ''
       if [ -L "$HOME/.config/hypr/monitors.conf" ]; then
@@ -214,6 +214,9 @@
             "${mod} SHIFT, G, exec, ${pkgs.firefox}/bin/firefox https://github.com/Chrisser1"
             "${mod}, L, exec, ${pkgs.firefox}/bin/firefox https://learn.inside.dtu.dk/d2l/home"
             "${mod} SHIFT, L, exec, ${pkgs.firefox}/bin/firefox https://studieplan.dtu.dk/"
+
+            # Color Picker
+            "${mod}, P, exec, hyprpicker -a"
 
             # Monitor Management
             "${mod} SHIFT, M, exec, hypr-mirror-toggle"
