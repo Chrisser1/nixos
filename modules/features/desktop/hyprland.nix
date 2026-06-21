@@ -39,8 +39,36 @@
     terminal = "${pkgs.kitty}/bin/kitty";
     mod = "SUPER";
     fm = "${pkgs.nautilus}/bin/nautilus";
+
+    noctaliaHyprExtra = pkgs.writeShellScriptBin "noctalia-hypr-extra" ''
+      colors="$HOME/.config/noctalia/colors.json"
+      out="$HOME/.config/hypr/noctalia-extra.conf"
+      get() { awk -F'"' -v k="$1" '$2==k{gsub("#","",$(NF-1));print $(NF-1)}' "$colors" 2>/dev/null; }
+      if [ -f "$colors" ]; then
+        on_sec=$(get mOnSecondary)
+        on_surf=$(get mOnSurface)
+      fi
+      on_sec=''${on_sec:-000000}
+      on_surf=''${on_surf:-d1d1c7}
+      printf 'group:groupbar:text_color = rgb(%s)\ngroup:groupbar:text_color_inactive = rgb(%s)\n' \
+        "$on_sec" "$on_surf" > "$out"
+    '';
   in {
-    home.packages = with pkgs; [hyprpicker satty];
+    home.packages = with pkgs; [hyprpicker satty noctaliaHyprExtra];
+
+    systemd.user.services.noctalia-hypr-extra = {
+      Unit.Description = "Update Hyprland extra colors from Noctalia palette";
+      Service = {
+        Type = "oneshot";
+        ExecStart = "${noctaliaHyprExtra}/bin/noctalia-hypr-extra";
+      };
+    };
+
+    systemd.user.paths.noctalia-hypr-extra = {
+      Unit.Description = "Watch Noctalia Hyprland config for palette changes";
+      Path.PathModified = "%h/.config/hypr/noctalia.conf";
+      Install.WantedBy = ["default.target"];
+    };
 
     home.activation.hyprMonitorsConf = lib.hm.dag.entryBefore ["writeBoundary"] ''
       if [ -L "$HOME/.config/hypr/monitors.conf" ]; then
@@ -50,6 +78,15 @@
         mkdir -p "$HOME/.config/hypr"
         touch "$HOME/.config/hypr/monitors.conf"
       fi
+      if [ ! -f "$HOME/.config/hypr/noctalia.conf" ]; then
+        mkdir -p "$HOME/.config/hypr"
+        touch "$HOME/.config/hypr/noctalia.conf"
+      fi
+      if [ ! -f "$HOME/.config/hypr/noctalia-extra.conf" ]; then
+        mkdir -p "$HOME/.config/hypr"
+        touch "$HOME/.config/hypr/noctalia-extra.conf"
+      fi
+      ${noctaliaHyprExtra}/bin/noctalia-hypr-extra || true
     '';
 
     home.pointerCursor = {
@@ -83,8 +120,6 @@
         group = {
           insert_after_current = true;
           focus_removed_window = true;
-          "col.border_active" = "rgba(880808ff)";
-          "col.border_inactive" = "rgba(595959ff)";
 
           groupbar = {
             enabled = true;
@@ -93,10 +128,6 @@
             font_size = 16;
             font_weight_active = "ultraheavy";
             height = 24;
-            text_color = "rgba(33ccffee)";
-            text_color_inactive = "rgba(33ccffee)";
-            "col.active" = "rgba(880808ff)";
-            "col.inactive" = "0xff45475a";
             "col.locked_active" = "0xfff38ba8";
           };
         };
@@ -203,6 +234,7 @@
             "${mod} SHIFT, S, exec, noctalia msg screenshot-region"
             "${mod}, U, exec, noctalia msg panel-toggle session"
             "${mod}, V, exec, noctalia msg panel-toggle clipboard"
+            "${mod}, T, exec, noctalia msg settings-toggle"
             "${mod}, R, exec, noctalia msg panel-toggle launcher"
             "ALT, SPACE, exec, noctalia msg panel-toggle launcher"
             "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -255,6 +287,8 @@
       extraConfig = ''
         plugin:split-monitor-workspaces:enable_persistent_workspaces = 0
         source = ~/.config/hypr/monitors.conf
+        source = ~/.config/hypr/noctalia.conf
+        source = ~/.config/hypr/noctalia-extra.conf
       '';
     };
   };

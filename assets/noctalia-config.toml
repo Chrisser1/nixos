@@ -14,6 +14,7 @@ order = [ "Chrisser" ]
         [[bar.Chrisser.capsule_group]]
         border = "primary"
         fill = "surface_variant"
+        foreground = "primary"
         id = "g1"
         members = [ "volume", "battery", "brightness", "bluetooth", "wallpaper" ]
         opacity = 1.0
@@ -22,6 +23,7 @@ order = [ "Chrisser" ]
         [[bar.Chrisser.capsule_group]]
         border = "primary"
         fill = "surface_variant"
+        foreground = "tertiary"
         id = "g2"
         members = [ "control-center", "clock", "session" ]
         opacity = 1.0
@@ -39,6 +41,7 @@ order = [ "Chrisser" ]
         [[bar.Chrisser.capsule_group]]
         border = "primary"
         fill = "surface_variant"
+        foreground = "secondary"
         id = "g4"
         members = [ "notifications", "clipboard" ]
         opacity = 1.0
@@ -126,16 +129,16 @@ transition_on_startup = true
     enabled = true
 
     [wallpaper.default]
-    path = "/home/chris/nixos/assets/backgrounds/berserk/Stance.jpg"
+    path = "/home/chris/nixos/assets/backgrounds/berserk/Farm.jpg"
 
     [wallpaper.last]
-    path = "/home/chris/nixos/assets/backgrounds/berserk/Stance.jpg"
+    path = "/home/chris/nixos/assets/backgrounds/berserk/Farm.jpg"
 
     [wallpaper.monitors.DP-4]
-    path = "/home/chris/nixos/assets/backgrounds/berserk/Stance.jpg"
+    path = "/home/chris/nixos/assets/backgrounds/berserk/Farm.jpg"
 
     [wallpaper.monitors.HDMI-A-2]
-    path = "/home/chris/nixos/assets/backgrounds/berserk/Stance.jpg"
+    path = "/home/chris/nixos/assets/backgrounds/berserk/Farm.jpg"
 
 [widget.media]
 capsule = true
