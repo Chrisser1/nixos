@@ -40,6 +40,8 @@
     mod = "SUPER";
     fm = "${pkgs.nautilus}/bin/nautilus";
 
+    hyprctl = "${inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland}/bin/hyprctl";
+
     noctaliaHyprExtra = pkgs.writeShellScriptBin "noctalia-hypr-extra" ''
       colors="$HOME/.config/noctalia/colors.json"
       out="$HOME/.config/hypr/noctalia-extra.conf"
@@ -50,8 +52,17 @@
       fi
       on_sec=''${on_sec:-000000}
       on_surf=''${on_surf:-d1d1c7}
+
+      # Persist for next hyprland startup
       printf 'group:groupbar:text_color = rgb(%s)\ngroup:groupbar:text_color_inactive = rgb(%s)\n' \
         "$on_sec" "$on_surf" > "$out"
+
+      # Apply immediately at runtime — avoids race with noctalia.conf reload debounce
+      hypr_sig=$(ls /run/user/$(id -u)/hypr/ 2>/dev/null | head -1)
+      if [ -n "$hypr_sig" ]; then
+        HYPRLAND_INSTANCE_SIGNATURE="$hypr_sig" ${hyprctl} keyword group:groupbar:text_color "rgb(''${on_sec})"
+        HYPRLAND_INSTANCE_SIGNATURE="$hypr_sig" ${hyprctl} keyword group:groupbar:text_color_inactive "rgb(''${on_surf})"
+      fi
     '';
   in {
     home.packages = with pkgs; [hyprpicker satty noctaliaHyprExtra];

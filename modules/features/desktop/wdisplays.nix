@@ -31,24 +31,14 @@
       state="$HOME/.config/hypr/.mirror-state"
       theme="$HOME/.config/rofi/noctalia.rasi"
 
-      # Read accent colors from noctalia palette; fall back to safe defaults
-      _nc="$HOME/.config/noctalia/colors.json"
-      _get() { awk -F'"' -v k="$1" '$2==k{gsub("#","",$(NF-1));print $(NF-1)}' "$_nc" 2>/dev/null; }
-      if [ -f "$_nc" ]; then
-        c_pri=$(_get mPrimary);    c_on_pri=$(_get mOnPrimary)
-        c_sec=$(_get mSecondary);  c_on_sec=$(_get mOnSecondary)
-      fi
-      c_pri=''${c_pri:-39bae6};   c_on_pri=''${c_on_pri:-0b0e14}
-      c_sec=''${c_sec:-aad94c};   c_on_sec=''${c_on_sec:-0b0e14}
-
-      # Step-specific overrides on top of the noctalia rofi base theme
+      # Step-specific overrides referencing noctalia.rasi variables directly —
+      # no colors.json needed, so this always follows the active palette.
       _rofi() {
-        local accent="$1" on_accent="$2" mesg="$3" prompt="$4"
+        local border="$1" mesg="$2" prompt="$3"
         $rofi -dmenu -i \
           -theme "$theme" \
-          -theme-str "window { border: 2px; border-color: #''${accent}; border-radius: 10px; width: 520px; }" \
-          -theme-str "element selected { background-color: #''${accent}; text-color: #''${on_accent}; }" \
-          -theme-str "prompt { text-color: #''${accent}; }" \
+          -theme-str "window { border: 2px; border-color: $border; border-radius: 10px; width: 520px; }" \
+          -theme-str "prompt { text-color: $border; }" \
           -mesg "$mesg" \
           -p "$prompt"
       }
@@ -60,9 +50,9 @@
       for m in json.load(sys.stdin):
           n, w, h = m['name'], m['width'], m['height']
           r = round(m['refreshRate'])
-          desc = m.get('description', '''').split('(')[0].strip()
-          label = f'  {desc}' if desc else ''''
-          print(f'  {n}   {w}×{h} @ {r}Hz{label}')
+          desc = m.get('description', ''').split('(')[0].strip()
+          label = f'  {desc}' if desc else '''
+          print(f'  {n}   {w}x{h} @ {r}Hz{label}')
       "
       }
 
@@ -83,12 +73,12 @@
 
       # Step 1: pick source (or un-mirror)
       SOURCE_LINE=$(printf '%s\n' "$MENU" | \
-        _rofi "$c_pri" "$c_on_pri" "Pick a monitor to mirror — or select an active mirror to undo it" " Source")
+        _rofi "@accent" "Pick a monitor to mirror — or select an active mirror to undo it" " Source")
       [ -z "$SOURCE_LINE" ] && exit 0
 
       # Handle un-mirror
       if [[ "$SOURCE_LINE" == *"unmirroring"* ]]; then
-        MON=$(printf '%s' "$SOURCE_LINE" | awk '{print $2}')
+        MON=$(printf '%s' "$SOURCE_LINE" | awk '{print $1}')
         SAVED=$(grep "^monitor=''${MON}," "$conf" 2>/dev/null | grep -v ',mirror' | head -1 | sed 's/^monitor=//')
         if [ -n "$SAVED" ]; then
           ${realHyprctl} keyword monitor "''${SAVED}"
@@ -100,13 +90,13 @@
         exit 0
       fi
 
-      SOURCE=$(printf '%s' "$SOURCE_LINE" | awk '{print $2}')
+      SOURCE=$(printf '%s' "$SOURCE_LINE" | awk '{print $1}')
 
       # Step 2: pick target
-      TARGET_LINE=$(_monitors | grep -v "  ''${SOURCE} " | \
-        _rofi "$c_sec" "$c_on_sec" "Mirror  ''${SOURCE}  onto which monitor?" " Target")
+      TARGET_LINE=$(_monitors | grep -v "''${SOURCE}" | \
+        _rofi "@fg" "Mirror ''${SOURCE} onto which monitor?" " Target")
       [ -z "$TARGET_LINE" ] && exit 0
-      TARGET=$(printf '%s' "$TARGET_LINE" | awk '{print $2}')
+      TARGET=$(printf '%s' "$TARGET_LINE" | awk '{print $1}')
 
       # Save current layout for restore, then apply mirror
       ${realHyprctl} -j monitors | $py -c "
