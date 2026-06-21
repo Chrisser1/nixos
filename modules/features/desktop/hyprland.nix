@@ -39,11 +39,8 @@
     terminal = "${pkgs.kitty}/bin/kitty";
     mod = "SUPER";
     fm = "${pkgs.nautilus}/bin/nautilus";
-
-    noctalia-pkg = self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
-    noctalia = "${noctalia-pkg}/bin/noctalia-shell";
   in {
-    home.packages = [noctalia-pkg pkgs.hyprpicker pkgs.satty];
+    home.packages = with pkgs; [hyprpicker satty];
 
     home.activation.hyprMonitorsConf = lib.hm.dag.entryBefore ["writeBoundary"] ''
       if [ -L "$HOME/.config/hypr/monitors.conf" ]; then
@@ -162,7 +159,7 @@
         ];
 
         exec-once = [
-          "${noctalia}"
+          "noctalia --daemon"
         ];
 
         input = {
@@ -203,11 +200,11 @@
             "${mod}, E, exec, ${fm}"
 
             # Noctalia IPC Binds
-            "${mod} SHIFT, S, exec, sh -c 'PLUGIN_ID=$(${noctalia} ipc call state all | grep -oE \"[0-9a-f]{6}:screen-shot-and-record\" | head -n 1); ${noctalia} ipc call plugin togglePanel $PLUGIN_ID'"
-            "${mod}, U, exec, ${noctalia} ipc call sessionMenu toggle"
-            "${mod}, V, exec, ${noctalia} ipc call launcher clipboard"
-            "${mod}, R, exec, ${noctalia} ipc call launcher toggle"
-            "ALT, SPACE, exec, ${noctalia} ipc call launcher toggle"
+            "${mod} SHIFT, S, exec, noctalia msg screenshot-region"
+            "${mod}, U, exec, noctalia msg panel-toggle session"
+            "${mod}, V, exec, noctalia msg panel-toggle clipboard"
+            "${mod}, R, exec, noctalia msg panel-toggle launcher"
+            "ALT, SPACE, exec, noctalia msg panel-toggle launcher"
             "${mod}, M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
 
             # Web Bookmarks

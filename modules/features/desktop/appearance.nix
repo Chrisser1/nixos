@@ -1,41 +1,27 @@
-{ self, ... }: {
-  flake.homeModules.appearance = { pkgs, ... }: {
-    
+{self, ...}: {
+  flake.homeModules.appearance = {pkgs, ...}: {
     # MIME App Defaults
     xdg.mimeApps.defaultApplications."x-scheme-handler/jetbrains" = "jetbrains-toolbox.desktop";
 
-    # Enforce Dark Mode in GNOME/dconf
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
-    };
-
-    # Enforce Dark Mode for GTK Apps
+    # Dark mode hints for apps that read settings.ini directly.
+    # color-scheme and gtk-theme are intentionally omitted here — noctalia owns those
+    # and sets them via gsettings when you switch themes.
     gtk = {
       enable = true;
-      theme = {
-        name = "Adwaita-dark";
-        package = pkgs.gnome-themes-extra;
-      };
       gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
-      
-      gtk4 = {
-        extraConfig.gtk-application-prefer-dark-theme = 1;
-        theme = null;
-      };
+      gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
     };
 
-    # Enforce Dark Mode for QT Apps
+    # Qt theming via qt6ct/qt5ct — select the noctalia color scheme in qt6ct after first run
     qt = {
       enable = true;
       platformTheme.name = "qtct";
     };
 
     home.packages = with pkgs; [
+      adw-gtk3
       kdePackages.qt6ct
       libsForQt5.qt5ct
     ];
-    
   };
 }

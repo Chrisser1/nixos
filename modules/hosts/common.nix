@@ -17,6 +17,7 @@
       # System requirements for packages
       self.nixosModules.hyprland
       self.nixosModules.niri
+      self.nixosModules.noctalia
       self.nixosModules.core-packages
       self.nixosModules.vesktop
       self.nixosModules.noise-cancellation

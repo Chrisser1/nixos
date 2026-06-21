@@ -9,6 +9,7 @@
 
       # Window manager and related packages
       self.homeModules.hyprland
+      self.homeModules.noctalia
 
       # Terminal
       self.homeModules.cli
@@ -39,6 +40,7 @@
     imports = [
       # Window manager and related packages
       self.homeModules.hyprland
+      self.homeModules.noctalia
 
       # Terminal
       self.homeModules.cli

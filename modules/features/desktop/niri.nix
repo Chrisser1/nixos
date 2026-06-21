@@ -1,36 +1,49 @@
-{ self, inputs, ... }: {
-  flake.nixosModules.niri = { pkgs, lib, ... }: {
+{
+  self,
+  inputs,
+  ...
+}: {
+  flake.nixosModules.niri = {
+    pkgs,
+    lib,
+    ...
+  }: {
     programs.niri = {
       enable = true;
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
     };
   };
 
-  perSystem = { pkgs, lib, self', ... }: {
+  perSystem = {
+    pkgs,
+    lib,
+    self',
+    ...
+  }: {
     # NIRI
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
-      passthru.providedSessions = [ "niri" ];
+      passthru.providedSessions = ["niri"];
 
       settings = {
         spawn-at-startup = [
-          (lib.getExe self'.packages.noctalia)
+          "noctalia --daemon"
         ];
-        
+
         # System mapping
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
         input.keyboard.xkb.layout = "dk";
-        
+
         # Visuals (Matched your Hyprland gaps and borders)
         layout = {
           gaps = 2;
           border = {
             width = 2;
             active-color = "#880808";
-            inactive-color = "#595959"; 
+            inactive-color = "#595959";
           };
         };
-        
+
         binds = {
           # --- Apps & Scripts ---
           "Mod+S".spawn-sh = "${pkgs.firefox}/bin/firefox";
@@ -41,7 +54,7 @@
           "Mod+E".spawn-sh = "${pkgs.nautilus}/bin/nautilus";
           "Mod+V".spawn-sh = "berserk-clipboard";
           "Mod+M".spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-          
+
           # --- Window Management ---
           "Mod+Shift+C".close-window = [];
           "Mod+Space".toggle-window-floating = [];
