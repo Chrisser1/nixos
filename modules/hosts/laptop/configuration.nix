@@ -23,6 +23,5 @@
       gfxmodeEfi = "1920x1080";
       fontSize = 24;
     };
-    boot.kernelParams = ["video=1024x768"];
   };
 }
